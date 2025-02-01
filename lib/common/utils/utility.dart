@@ -127,13 +127,7 @@ class Utils {
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
-  static double getScreenHeight(BuildContext context) {
-    return MediaQuery.of(context).size.height;
-  }
 
-  static double getScreenWidth(BuildContext context) {
-    return MediaQuery.of(context).size.width;
-  }
 
   static Widget buildProgressIndicator() {
     return Container(

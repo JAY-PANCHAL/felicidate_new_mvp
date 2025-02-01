@@ -41,19 +41,19 @@ Future<void> main() async {
 
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    home: OeHealthApp(),
+    home: MyApp(),
     color: AppColors.appColor,
   ));
 }
 
-class OeHealthApp extends StatefulWidget {
+class MyApp extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return OeHealthAppState();
+    return MyAppState();
   }
 }
 
-class OeHealthAppState extends State<OeHealthApp> {
+class MyAppState extends State<MyApp> {
 /*  final PushNotificationService _notificationService =
       PushNotificationService();*/
 

@@ -26,8 +26,6 @@ class LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var width = Utils.getScreenWidth(context);
-    var height = Utils.getScreenHeight(context);
 
     return Obx(() {
       return ModalProgressHUD(
@@ -47,7 +45,7 @@ class LoginScreenState extends State<LoginScreen> {
                 height: height - 120.sp,
 */
 
-                width: width,
+                width: 1.sw,
                 child: Form(
                   key: loginScreenController.formKey,
                   child: Padding(
@@ -193,7 +191,7 @@ class LoginScreenState extends State<LoginScreen> {
                             buttonText: AppConstants.login.toUpperCase(),
                             height: 44,
                             color: AppColors.appColor.shade800,
-                            width: width,
+                            width: 1.sw,
                             onpressed: () {
                               //Get.offAllNamed(Routes.dashboard);
                               print("button clicked");
