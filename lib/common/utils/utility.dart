@@ -19,7 +19,6 @@ import 'Styles.dart';
 import 'app_constants.dart';
 import 'color_constants.dart';
 import 'dimensions.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class Utils {
   static Future<bool> isConnected() async {
@@ -70,23 +69,28 @@ class Utils {
   }
 
   static loader(context) {
-    return Center(
-      child: /*Container(
-          height: 60.0,
-        width: 60.0,
-        padding: const EdgeInsets.all(8),
-        decoration: BoxDecoration(
-            color: Colors.white24, borderRadius: BorderRadius.circular(30)),
-        child: const CircularProgressIndicator(
-          backgroundColor: Colors.white,
-          valueColor: AlwaysStoppedAnimation<Color>(
-            AppColors.appblue,
+    return GestureDetector(
+      onTap: () {},
+      child: Container(
+        height: 1.sh,
+        width: 1.sw,
+        color: Colors.black.withOpacity(0.6),
+        child: Center(
+          child: Container(
+            padding: const EdgeInsets.all(8),
+            decoration: BoxDecoration(
+                color: Colors.white, borderRadius: BorderRadius.circular(50.h)),
+            child: const Stack(
+              alignment: Alignment.center,
+              children: [
+                CircularProgressIndicator(
+                  backgroundColor: Colors.white,
+                  valueColor: AlwaysStoppedAnimation<Color>(AppColors.blue),
+                ),
+              ],
+            ),
           ),
         ),
-      )*/
-          LoadingAnimationWidget.newtonCradle(
-        color: AppColors.appblue,
-        size: 60,
       ),
     );
   }
