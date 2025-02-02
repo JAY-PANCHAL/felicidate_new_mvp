@@ -6,6 +6,7 @@ const Color PRIMARY_COLOR = Color(0xFFFFA9BC);
 const Color BLUE_COLOR = Color(0xFF0170A3);
 const Color LIGHT_BLUE1= Color(0xFFE7F7FF);
 const Color LIGHT_BLUE2 = Color(0xFFA8E2FF);
+const Color DARK_GREY = Color(0xFF6F6F6F);
 
 
 const Color LIGHT_BLACK = Color(0xFF2C3125);

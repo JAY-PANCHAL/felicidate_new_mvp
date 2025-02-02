@@ -14,10 +14,12 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import '../../network/model/user_model.dart';
 import '../../routes/app_pages.dart';
+import '../../ui/widget/image_view.dart';
 import 'Styles.dart';
 import 'app_constants.dart';
 import 'color_constants.dart';
 import 'dimensions.dart';
+import 'image_paths.dart';
 
 class AppConstants {
 
@@ -288,4 +290,20 @@ class AppConstants {
       throw 'Could not launch $phoneUri';
     }
   }
+
+  static CommonFloatButton({onTap}){
+    return GestureDetector(
+      onTap: (){
+        onTap();
+      },
+      child: ImageView(
+        width: 75.sp,
+        height: 75.sp,
+        boxFit: BoxFit.contain,
+        image: AppSvgIcons.icFloatButtonIcon,
+        imageType: ImageType.svg,
+      ),
+    );
+  }
+
 }

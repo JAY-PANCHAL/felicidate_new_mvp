@@ -8,6 +8,7 @@ abstract class Routes {
   //
   // static const login = '/login';
    static const phoneLoginScreen = '/PhoneLoginScreen';
+   static const phoneOtpScreen = '/PhoneOtpScreen';
 
 
 }

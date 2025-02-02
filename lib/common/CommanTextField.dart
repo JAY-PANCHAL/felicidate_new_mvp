@@ -48,7 +48,7 @@ class CustomTextField extends StatefulWidget {
     this.labelKey,
     this.controller,
     this.focusNode,
-    this.decoration = const InputDecoration(),
+    this.decoration,
     this.keyboardType = TextInputType.text,
     this.textInputAction,
     this.textCapitalization = TextCapitalization.none,
@@ -135,16 +135,50 @@ class _CustomTextFieldState extends State<CustomTextField> {
       controller: widget.controller,
       focusNode: _focusNode,
       decoration: widget.decoration ?? InputDecoration(
+        filled: true,
+        fillColor: WHITE,
+        focusColor: WHITE,
+        contentPadding: EdgeInsets.only(left: 15,top: 10),
+        errorMaxLines: 2,
+        hintText: "",
+        hintStyle: Styles.textFontRegular(size: 16,color: GREY_COLOR),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.0),
+          borderSide: const BorderSide(
+              color: DIVIDER_COLOR,
+              width: 1
+          ),
+        ),
+
+        disabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.0),
+          borderSide: const BorderSide(
+            color: DIVIDER_COLOR, // Color when focused
+            width: 1,
+          ),
+        ),
+
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.0),
+          borderSide: const BorderSide(
+            color: RED, // Color when focused
+            width: 1,
+          ),
+        ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(100),
-          borderSide: BorderSide(color: _borderColor),
+          borderRadius: BorderRadius.circular(8.0),
+          borderSide: const BorderSide(
+            color: PRIMARY_COLOR, // Color when focused
+            width: 1,
+          ),
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(100),
-          borderSide: BorderSide(color: _borderColor),
+          borderRadius: BorderRadius.circular(8.0),
+          borderSide: const BorderSide(
+            color: DIVIDER_COLOR,
+            width: 1,
+          ),
         ),
-        contentPadding: EdgeInsets.only(left: 15.w, right: 10.w),
-        errorText: _errorText,
       ),
       keyboardType: widget.keyboardType,
       cursorHeight: widget.cursorHeight ?? 19.h,

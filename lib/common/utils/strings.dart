@@ -120,7 +120,7 @@ class Strings {
   static const String errorStreet = "Please enter Street";
   static const String errorAddressType = "Please enter Address Type";
   static const String errorAddressDetails = "Please enter building/Flat.no";
-  static const String errorPhone = "Please enter phone number";
+
 
   static get validPwdField =>
       "kindly use a mix of upper and lowercase \nletters,numbers, symbols and minimum \n6 characters length";
@@ -139,5 +139,7 @@ class Strings {
   static const withFacebook = 'with Facebook';
   static const useMobileNumber = 'Use mobile number';
   static const startedWithYourNumber = 'Let’s get started with your number? ';
+  static const errorPhone = "Please enter phone number";
+  static const messageNumber = "We’ll send you a code to verify it’s you, message and data rates may apply";
 
 }
