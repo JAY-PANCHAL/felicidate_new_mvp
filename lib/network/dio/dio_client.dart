@@ -8,12 +8,11 @@ class DioClient {
 
   // injecting dio instance
   DioClient(this._dio) {
-
     _dio
       ..options.baseUrl = Endpoints.baseUrl
-      ..options.connectTimeout = Endpoints.connectionTimeout
-      ..options.receiveTimeout = Endpoints.receiveTimeout
-      ..options.responseType = ResponseType.json
+      ..options.connectTimeout = const Duration(seconds: Endpoints.connectionTimeout)
+      ..options.receiveTimeout = const Duration(seconds: Endpoints.receiveTimeout)
+      ..options.responseType = ResponseType.plain
       ..interceptors.add(LogInterceptor(
         request: true,
         requestHeader: true,
@@ -23,85 +22,63 @@ class DioClient {
       ));
   }
 
-   // Get:-----------------------------------------------------------------------
-/*
-  Future<Response> get(
-    String url, {
-    Map<String, dynamic> ?queryParameters,
-    Options ?options,
-    CancelToken ?cancelToken,
-    ProgressCallback ?onReceiveProgress,
-  }) async {
-    try {
-      var uri = url.toString().replaceAll('%40', '@');
-      final Response response = await _dio.get(
-        uri,
-        queryParameters: queryParameters,
-        options: options,
-        cancelToken: cancelToken,
-        onReceiveProgress: onReceiveProgress,
-      );
-      return response;
-    } catch (e) {
-      rethrow;
-    }
-  }
-*/
-  Future<Response> get(
+  // Get:-----------------------------------------------------------------------
+  Future<String> get(
       String url, {
         Map<String, dynamic>? queryParameters,
         Options? options,
         CancelToken? cancelToken,
         ProgressCallback? onReceiveProgress,
       }) async {
+    var encryption =  0;
+
     try {
-
-      String queryString = '';
-
-      // Manually build query string to preserve @
-      if (queryParameters != null) {
-        queryString = queryParameters.entries.map((entry) {
-          return '${Uri.encodeComponent(entry.key)}=${entry.value}';
-        }).join('&');
-      }
-
-      // Append query string to the URL
-      final uri = queryString.isNotEmpty ? '$url?$queryString' : url;
-
       final Response response = await _dio.get(
-        uri,
-        options: options,
+        url,
+        queryParameters: queryParameters,
+        options: options?.copyWith(
+            contentType: (encryption == 1)
+                ? Headers.textPlainContentType
+                : Headers.jsonContentType),
         cancelToken: cancelToken,
         onReceiveProgress: onReceiveProgress,
       );
-
-      return response;
+      return response.data;
     } catch (e) {
       rethrow;
     }
   }
 
   // Post:----------------------------------------------------------------------
-  Future<Response> post(
-    String uri, {
-    data,
-    Map<String, dynamic>? queryParameters,
-    Options? options,
-    CancelToken? cancelToken,
-    ProgressCallback? onSendProgress,
-    ProgressCallback? onReceiveProgress,
-  }) async {
+  Future<String> post(
+      String uri, {
+        data,
+        Map<String, dynamic>? queryParameters,
+        Options? options,
+        CancelToken? cancelToken,
+        ProgressCallback? onSendProgress,
+        ProgressCallback? onReceiveProgress,
+      }) async {
+    var encryption =  0;
+    // if (encryption == 0)
+
+    // print("encryption---$encryption");
+
     try {
       final Response response = await _dio.post(
         uri,
         data: data,
-        queryParameters: queryParameters,
-        options: options,
+        // queryParameters: queryParameters,
+        // queryParameters: data,
+        options: options?.copyWith(
+            contentType: (encryption == 1)
+                ? Headers.textPlainContentType
+                : Headers.jsonContentType),
         cancelToken: cancelToken,
         onSendProgress: onSendProgress,
         onReceiveProgress: onReceiveProgress,
       );
-      return response;
+      return response.data;
     } catch (e) {
       rethrow;
     }
@@ -109,20 +86,25 @@ class DioClient {
 
   // Put:-----------------------------------------------------------------------
   Future<Response> put(
-    String uri, {
-    data,
-    Map<String, dynamic> ?queryParameters,
-    Options ?options,
-    CancelToken? cancelToken,
-    ProgressCallback? onSendProgress,
-    ProgressCallback? onReceiveProgress,
-  }) async {
+      String uri, {
+        data,
+        Map<String, dynamic>? queryParameters,
+        Options? options,
+        CancelToken? cancelToken,
+        ProgressCallback? onSendProgress,
+        ProgressCallback? onReceiveProgress,
+      }) async {
     try {
+      var encryption =  0;
+
       final Response response = await _dio.put(
         uri,
         data: data,
         queryParameters: queryParameters,
-        options: options,
+        options: options?.copyWith(
+            contentType: (encryption == 1)
+                ? Headers.textPlainContentType
+                : Headers.jsonContentType),
         cancelToken: cancelToken,
         onSendProgress: onSendProgress,
         onReceiveProgress: onReceiveProgress,
@@ -135,14 +117,14 @@ class DioClient {
 
   // Delete:--------------------------------------------------------------------
   Future<dynamic> delete(
-    String uri, {
-    data,
-    Map<String, dynamic>? queryParameters,
-    Options ?options,
-    CancelToken ?cancelToken,
-    ProgressCallback? onSendProgress,
-    ProgressCallback? onReceiveProgress,
-  }) async {
+      String uri, {
+        data,
+        Map<String, dynamic>? queryParameters,
+        Options? options,
+        CancelToken? cancelToken,
+        ProgressCallback? onSendProgress,
+        ProgressCallback? onReceiveProgress,
+      }) async {
     try {
       final Response response = await _dio.delete(
         uri,
@@ -156,5 +138,4 @@ class DioClient {
       rethrow;
     }
   }
-
 }

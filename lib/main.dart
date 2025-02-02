@@ -2,6 +2,7 @@ import 'package:felicidade/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 
 import 'common/dependency_injection.dart';
@@ -12,6 +13,8 @@ import 'common/utils/strings.dart';
 
 final GlobalKey<NavigatorState> navigatorKey =
     GlobalKey<NavigatorState>(debugLabel: "navigator");
+
+FlutterSecureStorage? storage;
 
 /*Future<void> backgroundHandler(RemoteMessage message) async {
   print('Handling a background message ${message.messageId}');

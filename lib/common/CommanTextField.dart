@@ -1,282 +1,183 @@
 import 'package:felicidade/common/utils/Styles.dart';
-import 'package:felicidade/common/utils/color_constants.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../ui/widget/constants/app_colors.dart';
 
-class getTextFormField extends StatelessWidget {
-  getTextFormField(
-      {Key? key,
-      this.controller,
-      this.ontap,
-      this.labelText,
-      required this.validator,
-      this.enableInteractiveSelection,
-      this.hintText,
-      this.callback,
-      this.length,
-      this.prefixIcon,
-      required this.isObscureText,
-      this.passwordButton,
-      this.inputType,
-      this.enabled,
-      this.inputFormatters,
-      this.autovalidateMode,
-      required this.onChanged,
-      this.readMode,
-      this.focusNode})
-      : super(key: key);
-
+class CustomTextField extends StatefulWidget {
   final TextEditingController? controller;
-  final String? labelText;
-  final int? length;
-  final String? Function(String?)? validator;
-  final VoidCallback? callback;
-  bool isObscureText;
-  final String? hintText;
-  final Widget? passwordButton;
-  final Widget? prefixIcon;
-
-  final TextInputType? inputType;
-  final AutovalidateMode? autovalidateMode;
-  final List<TextInputFormatter>? inputFormatters;
-  final VoidCallback? ontap;
   final FocusNode? focusNode;
-  bool? enabled = true;
-  bool? enableInteractiveSelection = true;
-  bool? readMode = false;
-  final ValueChanged<String> onChanged;
-
-  @override
-  Widget build(BuildContext context) {
-    return TextFormField(
-      autovalidateMode: autovalidateMode,
-      inputFormatters: inputFormatters,
-      controller: controller,
-      enableInteractiveSelection: enableInteractiveSelection,
-      maxLength: length,
-      onTap: ontap,
-      validator: validator,
-      obscureText: isObscureText,
-      enabled: enabled,
-      focusNode: focusNode,
-      style: Styles.midContrassText(value: 16.0),
-      cursorColor: AppColors.appColor,
-      keyboardType: inputType,
-      readOnly: readMode ?? false,
-      decoration: InputDecoration(
-        filled: true,
-        prefixIcon: prefixIcon,
-        fillColor: AppColors.appColor.shade50,
-        suffixIcon: passwordButton,
-        labelText: labelText,
-        labelStyle: Styles.TextBoxLableStyle(16.0),
-        //  floatingLabelStyle: Styles.TextBoxFlotingLableStyle(16.0),
-        contentPadding:
-            EdgeInsets.symmetric(vertical: 16.sp, horizontal: 16.sp),
-        hintText: hintText,
-        border: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.transparent)),
-        errorBorder: OutlineInputBorder(
-            borderRadius: const BorderRadius.all(Radius.circular(10.0)),
-            borderSide: BorderSide(color: Colors.transparent)),
-        hintStyle: Styles.TextBoxHintStyle(14.0),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: const BorderRadius.all(Radius.circular(10.0)),
-          borderSide: BorderSide(color: Colors.transparent),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: const BorderRadius.all(Radius.circular(10.0)),
-          borderSide: BorderSide(color: Colors.transparent),
-        ),
-      ),
-    );
-  }
-}
-
-class getenabledTextFormField extends StatelessWidget {
-  getenabledTextFormField(
-      {Key? key,
-      this.controller,
-      this.ontap,
-      this.labelText,
-      required this.validator,
-      this.enableInteractiveSelection,
-      this.hintText,
-      this.callback,
-      this.length,
-      required this.isObscureText,
-      this.passwordButton,
-      this.inputType,
-      this.enabled,
-      this.inputFormatters,
-      this.autovalidateMode,
-      this.onChanged,
-      this.readMode,
-      this.focusNode})
-      : super(key: key);
-
-  final TextEditingController? controller;
-  final String? labelText;
-  final int? length;
-  final String? Function(String?)? validator;
-  final VoidCallback? callback;
-  final bool isObscureText;
-  final String? hintText;
-  final Widget? passwordButton;
-  final TextInputType? inputType;
-  final AutovalidateMode? autovalidateMode;
-  final List<TextInputFormatter>? inputFormatters;
-  final VoidCallback? ontap;
-  final FocusNode? focusNode;
-  bool? enabled = true;
-  bool? enableInteractiveSelection = true;
-  bool? readMode = false;
+  final InputDecoration? decoration;
+  final TextInputType keyboardType;
+  final TextInputAction? textInputAction;
+  final TextCapitalization textCapitalization;
+  final TextStyle? style;
+  final TextAlign textAlign;
+  final TextAlignVertical? textAlignVertical;
+  final TextDirection? textDirection;
+  final bool autofocus;
+  final String obscuringCharacter;
+  final bool obscureText;
+  final bool autocorrect;
+  final bool enableSuggestions;
+  final int? maxLines;
+  final int? minLines;
+  final bool expands;
+  final bool readOnly;
+  final bool showCursor;
+  final int? maxLength;
   final ValueChanged<String>? onChanged;
+  final VoidCallback? onEditingComplete;
+  final ValueChanged<String>? onFieldSubmitted;
+  final List<TextInputFormatter>? inputFormatters;
+  final bool? enabled;
+  final GestureTapCallback? onTap;
+  final Function(String)? validator;
+  final AutovalidateMode? autovalidateMode;
+  final bool autovalidate;
+  final Color? cursorColor;
+  final double? cursorHeight;
+  final String? titleLabel;
+  final LabeledGlobalKey? labelKey;
+
+  final Function(PointerDownEvent)? onTapOutside;
+
+  const CustomTextField({
+    this.labelKey,
+    this.controller,
+    this.focusNode,
+    this.decoration = const InputDecoration(),
+    this.keyboardType = TextInputType.text,
+    this.textInputAction,
+    this.textCapitalization = TextCapitalization.none,
+    this.style,
+    this.textAlign = TextAlign.start,
+    this.textAlignVertical,
+    this.textDirection,
+    this.readOnly = false,
+    this.showCursor = true,
+    this.autofocus = false,
+    this.obscuringCharacter = '•',
+    this.obscureText = false,
+    this.autocorrect = true,
+    this.enableSuggestions = true,
+    this.maxLines = 1,
+    this.minLines,
+    this.expands = false,
+    this.maxLength,
+    this.onChanged,
+    this.onEditingComplete,
+    this.onFieldSubmitted,
+    this.inputFormatters,
+    this.enabled,
+    this.onTap,
+    this.validator,
+    this.autovalidateMode,
+    this.autovalidate = false,
+    this.cursorColor,
+    this.cursorHeight,
+    this.titleLabel,
+    this.onTapOutside,
+  });
 
   @override
-  Widget build(BuildContext context) {
-    return TextFormField(
-      autovalidateMode: autovalidateMode,
-      inputFormatters: inputFormatters,
-      controller: controller,
-      enableInteractiveSelection: enableInteractiveSelection,
-      maxLength: length,
-      onTap: ontap,
-      validator: validator,
-      obscureText: isObscureText,
-      enabled: enabled,
-      focusNode: focusNode,
-      style: Styles.midContrassText(value: 16.0),
-      cursorColor: Colors.grey,
-      keyboardType: inputType,
-      readOnly: readMode ?? false,
-      decoration: InputDecoration(
-        filled: true,
-        fillColor: Colors.white,
-        suffixIcon: passwordButton,
-        labelText: labelText,
-        labelStyle: Styles.TextBoxLableStyle(16.0),
-        // floatingLabelStyle: Styles.TextBoxFlotingLableStyle(16.0),
-        contentPadding:
-            EdgeInsets.symmetric(vertical: 16.sp, horizontal: 16.sp),
-        hintText: hintText,
-        border: OutlineInputBorder(
-            borderSide: BorderSide(color: AppColors.appblue)),
-        errorBorder: OutlineInputBorder(
-            borderRadius: const BorderRadius.all(Radius.circular(10.0)),
-            borderSide: BorderSide(color: AppColors.appblue)),
-        hintStyle: Styles.TextBoxHintStyle(14.0),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: const BorderRadius.all(Radius.circular(10.0)),
-          borderSide: BorderSide(color: AppColors.appblue),
-        ),
-        disabledBorder: OutlineInputBorder(
-          borderRadius: const BorderRadius.all(Radius.circular(10.0)),
-          borderSide: BorderSide(color: AppColors.appblue),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: const BorderRadius.all(Radius.circular(10.0)),
-          borderSide: BorderSide(color: AppColors.appblue),
-        ),
-      ),
-    );
-  }
+  _CustomTextFieldState createState() => _CustomTextFieldState();
 }
 
-class getTransparentTextFormField extends StatelessWidget {
-  getTransparentTextFormField(
-      {Key? key,
-      this.controller,
-      this.ontap,
-      this.labelText,
-      required this.validator,
-      this.enableInteractiveSelection,
-      this.hintText,
-      this.callback,
-      this.length,
-      required this.isObscureText,
-      this.passwordButton,
-      this.inputType,
-      this.enabled,
-      this.inputFormatters,
-      this.autovalidateMode,
-      required this.onChanged,
-      this.minlines,
-      this.readMode,
-      this.focusNode})
-      : super(key: key);
+class _CustomTextFieldState extends State<CustomTextField> {
+  late FocusNode _focusNode;
+  Color _borderColor = BLACK; // Default border color
+  String? _errorText;
 
-  final TextEditingController? controller;
-  final String? labelText;
-  final int? length;
-  final int? minlines;
+  @override
+  void initState() {
+    super.initState();
+    _focusNode = widget.focusNode ?? FocusNode();
+    _focusNode.addListener(() {
+      setState(() {
+        _borderColor = _focusNode.hasFocus ? PRIMARY_COLOR : Colors.black;
+      });
+    });
+  }
 
-  final String? Function(String?)? validator;
-  final VoidCallback? callback;
-  final bool isObscureText;
-  final String? hintText;
-  final Widget? passwordButton;
-  final TextInputType? inputType;
-  final AutovalidateMode? autovalidateMode;
-  final List<TextInputFormatter>? inputFormatters;
-  final VoidCallback? ontap;
-  final FocusNode? focusNode;
-
-  bool? enabled = true;
-  bool? enableInteractiveSelection = true;
-  bool? readMode = false;
-  final ValueChanged<String> onChanged;
+  @override
+  void dispose() {
+    if (widget.focusNode == null) {
+      _focusNode.dispose();
+    }
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-        autovalidateMode: autovalidateMode,
-        inputFormatters: inputFormatters,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        if (widget.titleLabel != "")
+          Container(
+            padding: EdgeInsets.only(bottom: 5.h),
+            child: Text(
+              widget.titleLabel!,
+              textAlign: TextAlign.start,
+              style: Styles.textFontSemiBold(size: 16),
+            ),
+          ),
+        buildSimpleTextField(),
+      ],
+    );
+  }
 
-        controller: controller,
-        enableInteractiveSelection: enableInteractiveSelection,
-        maxLength: length,
-        onTap: ontap,
-        validator: validator,
-        obscureText: isObscureText,
-        enabled: enabled,
-        focusNode: focusNode,
-        style: Styles.midContrassText(value: 16.0),
-        cursorColor: Colors.grey,
-        keyboardType: inputType,
-        minLines: minlines,
-        maxLines: 5,
-        readOnly: readMode ?? false,
-        decoration: InputDecoration(
-          filled: true,
-          fillColor: Colors.white,
-          suffixIcon: passwordButton,
-          labelText: labelText,
-          labelStyle: Styles.TextBoxLableStyle(16.0),
-          //  floatingLabelStyle: Styles.TextBoxFlotingLableStyle(16.0),
-          contentPadding:
-              EdgeInsets.symmetric(vertical: 16.sp, horizontal: 16.sp),
-          hintText: hintText,
-          border: OutlineInputBorder(
-              borderSide: BorderSide(color: AppColors.appblue)),
-          errorBorder: OutlineInputBorder(
-              borderRadius: const BorderRadius.all(Radius.circular(10.0)),
-              borderSide: BorderSide(color: AppColors.appblue)),
-          hintStyle: Styles.TextBoxHintStyle(14.0),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: const BorderRadius.all(Radius.circular(10.0)),
-            borderSide: BorderSide(color: AppColors.appblue),
-          ),
-          disabledBorder: OutlineInputBorder(
-            borderRadius: const BorderRadius.all(Radius.circular(10.0)),
-            borderSide: BorderSide(color: AppColors.appblue),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: const BorderRadius.all(Radius.circular(10.0)),
-            borderSide: BorderSide(color: AppColors.appblue),
-          ),
-        ));
+  Widget buildSimpleTextField() {
+    return TextFormField(
+      key: widget.labelKey,
+      controller: widget.controller,
+      focusNode: _focusNode,
+      decoration: widget.decoration ?? InputDecoration(
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(100),
+          borderSide: BorderSide(color: _borderColor),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(100),
+          borderSide: BorderSide(color: _borderColor),
+        ),
+        contentPadding: EdgeInsets.only(left: 15.w, right: 10.w),
+        errorText: _errorText,
+      ),
+      keyboardType: widget.keyboardType,
+      cursorHeight: widget.cursorHeight ?? 19.h,
+      onTapOutside: widget.onTapOutside,
+      validator: (val) {
+        final validationError = widget.validator?.call(val ?? '');
+        setState(() {
+          _errorText = validationError;
+        });
+        return validationError;
+      },
+      textAlignVertical: TextAlignVertical.center,
+      textAlign: widget.textAlign,
+      textDirection: widget.textDirection,
+      textCapitalization: widget.textCapitalization,
+      autofocus: widget.autofocus,
+      readOnly: widget.readOnly,
+      showCursor: widget.showCursor,
+      obscuringCharacter: widget.obscuringCharacter,
+      obscureText: widget.obscureText,
+      autocorrect: widget.autocorrect,
+      enableSuggestions: widget.enableSuggestions,
+      maxLines: widget.maxLines,
+      minLines: widget.minLines,
+      expands: widget.expands,
+      maxLength: widget.maxLength,
+      onChanged: widget.onChanged,
+      onTap: widget.onTap,
+      onEditingComplete: widget.onEditingComplete,
+      onFieldSubmitted: widget.onFieldSubmitted,
+      inputFormatters: widget.inputFormatters,
+      enabled: widget.enabled ?? true,
+      cursorColor: widget.cursorColor ?? BLACK,
+    );
   }
 }

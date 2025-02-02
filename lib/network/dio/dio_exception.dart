@@ -1,30 +1,46 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:dio/dio.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+
+import '../../common/utils/shared_pref_utils.dart';
+import '../../routes/app_pages.dart';
+import '../api/Felicidade_api.dart';
 
 class DioExceptions implements Exception {
-  String message = "";
+  late String message;
 
   DioExceptions.fromDioError(DioError dioError) {
     switch (dioError.type) {
       case DioErrorType.cancel:
         message = "Request to API server was cancelled";
         break;
-      case DioErrorType.connectTimeout:
+      case DioErrorType.connectionTimeout:
         message = "Connection timeout with API server";
         break;
       case DioErrorType.receiveTimeout:
         message = "Receive timeout in connection with API server";
         break;
-      case DioErrorType.response:
+      case DioErrorType.badResponse:
+        var decrypedMsg =
+        jsonDecode(dioError.response.toString());
         message = _handleError(
           dioError.response?.statusCode,
-          dioError.response?.data,
+          decrypedMsg,
         );
+        //Opps authontication failed by defaut logout
+        if (message == "Unauthorized") {
+          onLogout();
+          Get.offNamedUntil(Routes.splash, (route) => false);
+        }
         break;
       case DioErrorType.sendTimeout:
         message = "Send timeout in connection with API server";
         break;
-      case DioErrorType.other:
-        if (dioError.message.contains("SocketException")) {
+      case DioErrorType.unknown:
+        if (dioError.error is SocketException) {
           message = 'No Internet';
           break;
         }
@@ -39,19 +55,19 @@ class DioExceptions implements Exception {
   String _handleError(int? statusCode, dynamic error) {
     switch (statusCode) {
       case 400:
-        return 'Bad request';
+        return error['message'] ?? 'Bad request';
       case 401:
-        return 'Unauthorized';
+        return error['message'] ?? 'Unauthorized';
       case 403:
-        return 'Forbidden';
+        return error['message'] ?? 'Forbidden';
       case 404:
-        return error['message'];
+        return error['message'] ?? 'Oops something went wrong';
       case 500:
-        return 'Internal server error';
+        return error['message'] ?? "Internal server error";
       case 502:
         return 'Bad gateway';
       default:
-        return 'Oops something went wrong';
+        return error['message'] ?? 'Oops something went wrong';
     }
   }
 

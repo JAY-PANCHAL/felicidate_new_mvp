@@ -1,56 +1,48 @@
-import 'package:get/get.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_disposable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'app_constants.dart';
-
 class StorageService extends GetxService {
-  static StorageService get to => Get.find();
-
-  Future<SharedPreferences> init() async {
-    return await SharedPreferences.getInstance();
+  static SharedPreferences? preferences;
+  init() async {
+    preferences ??= await SharedPreferences.getInstance();
   }
 
-  Future<void> clearData() async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    preferences.remove(AppConstants.loginPref);
+  static void clearData(key) {
+    preferences?.remove(key);
   }
 
-  Future<void> clearAllData() async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    preferences.clear();
+  static void clearAllData() {
+    preferences?.clear();
   }
 
-  Future<void> setString(key,value) async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString(key, value);
+  static void setString(key, value) {
+    preferences?.setString(key, value);
   }
-  Future<void> setBool(key,value) async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setBool(key, value);
+
+  static void setBool(key, value) {
+    preferences?.setBool(key, value);
   }
-  Future<void> setInt(key,value) async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setInt(key, value);
+
+  static void setInt(key, value) {
+    preferences?.setInt(key, value);
   }
 
 //get value from shared preferences
-  Future<String> getString(key) async {
-    final SharedPreferences pref = await SharedPreferences.getInstance();
-    String authToken;
-    authToken = pref.getString(key)??"";
-    return authToken;
-  }
-  Future<bool> getBool(key) async {
-    final SharedPreferences pref = await SharedPreferences.getInstance();
-    bool authToken;
-    authToken = pref.getBool(key)??false;
-    return authToken;
-  }
-  Future<int> getInt(key) async {
-    final SharedPreferences pref = await SharedPreferences.getInstance();
-    int authToken;
-    authToken = pref.getInt(key)??0;
+  static String? getString(key) {
+    String? authToken;
+    authToken = preferences?.getString(key);
     return authToken;
   }
 
+  static bool? getBool(key) {
+    bool? authToken;
+    authToken = preferences?.getBool(key);
+    return authToken;
+  }
+
+  static int? getInt(key) {
+    int? authToken;
+    authToken = preferences?.getInt(key);
+    return authToken;
+  }
 }

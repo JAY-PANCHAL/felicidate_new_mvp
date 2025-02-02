@@ -88,7 +88,7 @@ class NotificationHelper {
 *//*
 
         await storageService.setString(
-            AppConstants.fcmtokenPr, token);
+            Strings.fcmtokenPr, token);
         print("Device token :---------------------------------->" + token!);
 
         setupInteractedMessage();

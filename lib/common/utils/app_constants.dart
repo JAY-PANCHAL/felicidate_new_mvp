@@ -1,135 +1,306 @@
+import 'dart:convert';
+import 'dart:io';
+import 'package:felicidade/common/utils/storage_service.dart';
+import 'package:felicidade/common/utils/strings.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+import 'package:connectivity/connectivity.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
+import 'package:intl/intl.dart';
+import '../../network/model/user_model.dart';
+import '../../routes/app_pages.dart';
+import 'Styles.dart';
+import 'app_constants.dart';
+import 'color_constants.dart';
+import 'dimensions.dart';
+
 class AppConstants {
-  //App related
-  static const String appName = 'OE Health';
-  static const int appVersion = 1;
+
+  static const String fontFamilyGilroy = "Gilroy";
+
+  static Future<bool> isConnected() async {
+    var connectivityResult = await (Connectivity().checkConnectivity());
+    if (connectivityResult == ConnectivityResult.mobile) {
+      if (kDebugMode) {
+        print('Internet mode : mobile');
+      }
+      return true;
+    } else if (connectivityResult == ConnectivityResult.wifi) {
+      if (kDebugMode) {
+        print('Internet mode : wifi');
+      }
+      return true;
+    }
+    return false;
+  }
+
+  static String getCurrentTimeFormatted() {
+    DateTime now = DateTime.now();
+    String formattedTime = DateFormat('HH:mm').format(now);
+    return formattedTime;
+  }
+
+  static void showSnackBar(error, context, onRetry) {
+    final snackBar = SnackBar(
+      backgroundColor: Colors.black,
+      content: Text(error),
+      duration: const Duration(hours: 1),
+      action: SnackBarAction(
+        label: 'Retry',
+        onPressed: () {
+          onRetry();
+        },
+      ),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
+  static String getDeviceType() {
+    //1 for iOS, 2 for Android
+    if (Platform.isIOS) {
+      // import 'dart:io'
+      return "1";
+    } else {
+      return "2";
+    }
+  }
+
+  static loader(context) {
+    return GestureDetector(
+      onTap: () {},
+      child: Container(
+        height: 1.sh,
+        width: 1.sw,
+        color: Colors.black.withOpacity(0.6),
+        child: Center(
+          child: Container(
+            padding: const EdgeInsets.all(8),
+            decoration: BoxDecoration(
+                color: Colors.white, borderRadius: BorderRadius.circular(50.h)),
+            child: const Stack(
+              alignment: Alignment.center,
+              children: [
+                CircularProgressIndicator(
+                  backgroundColor: Colors.white,
+                  valueColor: AlwaysStoppedAnimation<Color>(AppColors.blue),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  static bool isEmail(String email) {
+    return RegExp(
+            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+        .hasMatch(email);
+  }
+
+  static Widget? hideKeyboard(BuildContext context) {
+    FocusScope.of(context).requestFocus(FocusNode());
+    return null;
+  }
+
+  static showToast(message) => Fluttertoast.showToast(
+      msg: message,
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.CENTER,
+      timeInSecForIosWeb: 1,
+      backgroundColor: Colors.black,
+      textColor: Colors.white,
+      fontSize: 15.0);
+
+  static String convertiEnDateEtHeure(n) {
+    String date = DateFormat('yyyy-MM-dd').format(n);
+    return date;
+  }
+
+  void snackBar(String msg, BuildContext context) {
+    var snackBar = SnackBar(
+      content: Text(msg),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
 
 
-  //change scope mode
-  static const String yes = 'Yes';
-  static const String no = 'No';
-  static const dayFormat = 'dd';
 
-  //validation
-  static const String noInternet = 'Please check your internet connection';
-
-
-  static const String login = 'LOGIN';
-  static const String verifyOtp = 'VERIFY OTP';
-
-  static const String register = 'REGISTER';
-  static const String myAccount = 'My Account';
-  static const String editPersonalDetails = 'Edit personal details';
-  static const String enterOTP = 'Enter OTP';
-
-  static const String editProfile = 'Profile';
-  static const String address = 'Address';
-  static const String referralCode = 'Referral code';
-  static const String wallet = 'Wallet';
-
-  static const String paymentMethods = 'Payment Methods';
-  static const String settings = 'Settings';
-  static const String helpcenter = 'Help Center';
-  static const String logout = 'Logout';
-
-  static const String loginK = "login";
+  static Widget buildProgressIndicator() {
+    return Container(
+      height: Dimensions.screenHeight,
+      color: AppColors.black.withOpacity(0.4),
+      child: Center(
+        child: CircularProgressIndicator(
+          backgroundColor: AppColors.blue,
+          valueColor: new AlwaysStoppedAnimation<Color>(AppColors.white),
+        ),
+      ),
+    );
+  }
 
 
-  static const String passwordK = "password";
-  static const String device_typeK = "device_type";
-  static const String device_registration_tokenK = "device_registration_token";
 
-  static const String dbK = "db";
+  static addSmallGap10() {
+    return SizedBox(
+      height: 10.sp,
+    );
+  }
 
-  static const String loginValue = "info@braincrewapps.com";
-  static const String passWordValue = "13365190";
-  static const String dbname="oehealth17";
+  static addSmallGap5() {
+    return SizedBox(
+      height: 5,
+    );
+  }
 
+  static addGap15() {
+    return SizedBox(
+      height: 15.sp,
+    );
+  }
 
-  static const String save = 'save';
-  static const String sendEmail = 'Send email';
+  static addMediumGap() {
+    return SizedBox(
+      height: 20.sp,
+    );
+  }
 
-  //keys for pref
-  static const String tokenPr = 'tokenPr';
-  static const String isLoggedIn = 'isLoggedInPr';
-  static const String isDailyLoginPr = 'isDailyLoginPr';
+  static addGap(int size) {
+    return SizedBox(
+      height: size.sp,
+    );
+  }
 
-  static const String loginPref = 'loginPref';
-  static const String userIDPr = 'user_idpref';
-  static const String userTypePr = 'user_typepref';
+  static addHGap(int size) {
+    return SizedBox(
+      width: size.sp,
+    );
+  }
 
-  static const String stateTagResPr = 'stateTagResPr';
-  static const String profileImagePref = 'profileImagePref';
-  static const String fcmtokenPr = 'fcmtokenPr';
-  static const String visitAgendaPr = 'visitAgendaPr';
+  static checkConnectivity() async {
+    try {
+      final result = await InternetAddress.lookup('google.com');
+      if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
+        return true;
+      }
+    } on SocketException catch (_) {
+      return false;
+    }
+  }
 
-//api keys
-
-  static const String uFileK = 'ufile';
-  static const String userIdK = 'user_id';
-  static const String notification_bit_K = 'notification_bit';
-
-  static const String latitudeK = 'latitude';
-  static const String longitudeK = 'longitude';
-  static const String fullDayAttendanceEntryK = 'full_day_attendance_entry';
-
-  static const String dobK = 'date_of_birth';
-  static const String genderk = 'gender';
-
-  static const String isFromb2cK = 'is_booking_from_b2c';
-  static const String booking = 'Book now';
-
-  static const String dateK = 'date';
-  static const String fNameK = 'name';
-  static const String lNameK = 'last_name';
-  static const String emailK = 'email';
-  static const String phoneK = 'phone';
-  static const String nameK = 'name';
-
-  static const String unitK = 'unit_id';
-  static const String reasonIDK = 'reason_id';
-
-  static const String addressK = 'address_id';
-  static const String bookingIDK = 'booking_id';
-
-  static const String timeK = 'time';
-  static const String minuteK = 'minute';
-
-  static const String no_of_hoursK = 'no_of_hours';
-
-  static const String amountK = 'amount';
-  static const String keyK = 'key';
-
-  static const String deviceTypeK = 'device_type';
-  static const String addressIdK = 'address_id';
-  static const String deviceRegistrationTokenK = 'device_registration_token';
+  static addLargeGap() {
+    return SizedBox(
+      height: 30.sp,
+    );
+  }
 
 
-  static const String errorEmail = "Please enter email";
-  static const String validEmail = "Please enter valid email";
-  static const String validPhone = "Please enter valid phone number";
-  static const String validPhoneCode = "Phone number must start with \"971\"";
-  static const String otpDoesntMatch = "Otp doesn't match";
-  static const String validOtp = "Please enter valid otp";
-
-    static const String errorName = "Please enter your name";
-  static const String errorRQuantity = "Please enter required quantity";
-  static const String errorVisitedWith = "Please enter visited with";
-  static const String errorRemarks = "Please enter remarks";
-  static const String errorCity = "Please enter city";
-
-  static const String errorStreet = "Please enter Street";
-  static const String errorAddressType = "Please enter Address Type";
-  static const String errorAddressDetails = "Please enter building/Flat.no";
-  static const String errorPhone = "Please enter phone number";
-
-  static get validPwdField =>
-      "kindly use a mix of upper and lowercase \nletters,numbers, symbols and minimum \n6 characters length";
-  static const String errorPassword = "Please enter password";
-  static const String errorNewPassword = "Please enter new password";
-  static const String errorConfirmPassword = "Please enter confirm password";
-
-  static const emirates = 'Emirates';
-  static const selectTime = 'Select time';
 
 
+  static svgFile({fileName, height, width, color}) => SvgPicture.asset(
+        fileName,
+        height: height,
+        width: width,
+        color: color,
+      );
+
+  static svgFileWithoutColor({fileName, height, width}) => SvgPicture.asset(
+        fileName,
+        height: height,
+        width: width,
+      );
+
+  static void getDeleteNotificationDialog(context, onYesPressed, onNoPressed) {
+    Platform.isAndroid
+        ? Get.dialog(
+            AlertDialog(
+              title: Text('Are you sure you want to delete this notification?'),
+              actions: [
+                TextButton(
+                    child: Text(Strings.yes),
+                    onPressed:
+                        onYesPressed /*() {
+              Navigator.of(Get.overlayContext!, rootNavigator: true)
+                  .pop(Strings.logout);                    //  Get.back();
+
+            },*/
+                    ),
+                TextButton(
+                  child: Text(Strings.no),
+                  onPressed:
+                      onNoPressed, /* () {
+              Navigator.of(Get.overlayContext!, rootNavigator: true)
+                  .pop(Strings.logout);                  },*/
+                ),
+              ],
+            ),
+            barrierDismissible: false,
+          )
+        : Get.dialog(
+            CupertinoAlertDialog(
+              title: Text('Are you sure you want to logout?'),
+              actions: [
+                CupertinoDialogAction(
+                  child: Text(Strings.yes),
+                  onPressed: onYesPressed,
+                ),
+                CupertinoDialogAction(
+                  child: Text(Strings.no),
+                  onPressed: onNoPressed,
+                )
+              ],
+            ),
+            barrierDismissible: false,
+          );
+  }
+
+  static Widget callWidget(String phonenumber, Widget commonwidget) {
+    return GestureDetector(
+      onTap: () async {
+        await launchPhone(phonenumber);
+      },
+      child: commonwidget,
+    );
+  }
+
+
+  static Widget emailWidget(String email, Widget commonwidget) {
+    return GestureDetector(
+      onTap: () async {
+        await launchEmail(email);
+      },
+      child: commonwidget,
+    );
+  }
+
+  static Future<void> launchEmail(String email) async {
+    final Uri emailUri = Uri(
+      scheme: 'mailto',
+      path: email,
+    );
+    if (await canLaunch(emailUri.toString())) {
+      await launch(emailUri.toString());
+    } else {
+      throw 'Could not launch $emailUri';
+    }
+  }
+
+  // Function to launch phone dialer
+  static Future<void> launchPhone(String phoneNumber) async {
+    final Uri phoneUri = Uri(
+      scheme: 'tel',
+      path: phoneNumber,
+    );
+    if (await canLaunch(phoneUri.toString())) {
+      await launch(phoneUri.toString());
+    } else {
+      throw 'Could not launch $phoneUri';
+    }
+  }
 }

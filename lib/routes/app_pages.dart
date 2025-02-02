@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
-import '../ui/screens/login_screen.dart';
-import '../ui/screens/splash_screen.dart';
-import '../ui/screens/welcomescreen.dart';
+
+import '../main.dart';
+
 part 'app_routes.dart';
 
 class AppPages {
@@ -10,15 +10,15 @@ class AppPages {
   static final routes = [
     GetPage(
         name: Routes.splash,
-        page: () => SplashScreen(),
+        page: () => MyApp(),
         transition: Transition.fade),
-    GetPage(
-        name: Routes.login,
-        page: () => LoginScreen(),
-        transition: Transition.rightToLeft),
-    GetPage(
-        name: Routes.welcome,
-        page: () => WelcomeScreen(),
-        transition: Transition.rightToLeft),
+    // GetPage(
+    //     name: Routes.login,
+    //     page: () => LoginScreen(),
+    //     transition: Transition.rightToLeft),
+    // GetPage(
+    //     name: Routes.welcome,
+    //     page: () => WelcomeScreen(),
+    //     transition: Transition.rightToLeft),
   ];
 }

@@ -5,11 +5,9 @@ class Endpoints {
 //base url live
     static const String baseUrl = "";//Live
 
-  // receiveTimeout
-  static const int receiveTimeout = 250000;
-
+  static const int receiveTimeout = 15; //15000;
   // connectTimeout
-  static const int connectionTimeout = 250000;
+  static const int connectionTimeout = 60; //60000;
   static const String user="api_user";
   static const String pwd="api_user";
 
