@@ -4,7 +4,6 @@ import 'package:felicidade/common/utils/storage_service.dart';
 import 'package:felicidade/common/utils/strings.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import 'package:connectivity/connectivity.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -25,21 +24,6 @@ class AppConstants {
   static const String fontFamilySatoshi = "Satoshi";
   static const String fontFamilyOgg = "Ogg";
 
-  static Future<bool> isConnected() async {
-    var connectivityResult = await (Connectivity().checkConnectivity());
-    if (connectivityResult == ConnectivityResult.mobile) {
-      if (kDebugMode) {
-        print('Internet mode : mobile');
-      }
-      return true;
-    } else if (connectivityResult == ConnectivityResult.wifi) {
-      if (kDebugMode) {
-        print('Internet mode : wifi');
-      }
-      return true;
-    }
-    return false;
-  }
 
   static String getCurrentTimeFormatted() {
     DateTime now = DateTime.now();
