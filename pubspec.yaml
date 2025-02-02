@@ -60,11 +60,11 @@ flutter:
 
     - family: Ogg
       fonts:
-        - asset: assets/font/Ogg-Light.otf
+        - asset: assets/font/OggText-Light.otf
           weight: 300
         - asset: assets/font/Ogg-Regular.otf
           weight: 400
-        - asset: assets/font/Ogg-Medium.otf
+        - asset: assets/font/OggText-Medium.otf
           weight: 500
         - asset: assets/font/Ogg-Bold.otf
           weight: 700
