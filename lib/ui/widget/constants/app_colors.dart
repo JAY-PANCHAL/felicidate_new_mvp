@@ -2,7 +2,12 @@
 
 import 'package:flutter/material.dart';
 
-const Color PRIMARY_COLOR = Color(0xFF84C043);
+const Color PRIMARY_COLOR = Color(0xFFFFA9BC);
+const Color BLUE_COLOR = Color(0xFF0170A3);
+const Color LIGHT_BLUE1= Color(0xFFE7F7FF);
+const Color LIGHT_BLUE2 = Color(0xFFA8E2FF);
+
+
 const Color LIGHT_BLACK = Color(0xFF2C3125);
 const Color OFF_WHITE = Color(0xFFF9FAF8);
 const Color ROSE_TAUPE_COLOR = Color(0xFF965454);
@@ -11,7 +16,7 @@ const Color DETAILS_COLOR = Color(0xFF61DEA9);
 const Color BLUE_COLOR2 = Color(0xFF67A2DA);
 const Color LIGHT_GREEN = Color(0xFFF2F5EF);
 const Color DIVIDER_COLOR = Color(0xFFC1C7BC);
-const Color   LIGHT_GREY_COLOR = Color(0xffF7F9FA);
+const Color LIGHT_GREY_COLOR = Color(0xffF7F9FA);
 const Color GRAY_COLOR_LIGHT = Color(0xFFD5DEE2);
 const Color LIGHT_GREY_COLOR2 = Color(0xffd2d9dc);
 
@@ -23,7 +28,7 @@ const Color GREEN_COLOR2 = Color(0xFFA3CE73);
 const Color YELLOW_COLOR = Color(0xFFE8B342);
 Color HINT_TEXT_COLOR = HexColor.fromHex("#A1B0B1");
 const Color FILL_GREY_COLOR = Color(0xFFF5F5F5);
-const Color GREY_COLOR = Color(0xFFB7ADAD);
+const Color GREY_COLOR = Color(0xFF807B7B);
 
 const Color WHITE = Colors.white;
 const Color BLACK = Colors.black;

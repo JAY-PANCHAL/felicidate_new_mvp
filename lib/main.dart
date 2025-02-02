@@ -15,7 +15,7 @@ final GlobalKey<NavigatorState> navigatorKey =
     GlobalKey<NavigatorState>(debugLabel: "navigator");
 
 FlutterSecureStorage? storage;
-
+StorageService storageService = StorageService();
 /*Future<void> backgroundHandler(RemoteMessage message) async {
   print('Handling a background message ${message.messageId}');
 }*/
@@ -31,9 +31,9 @@ Future<void> main() async {
   NotificationHelper().initNotification(navigatorKey);
   FirebaseMessaging.onBackgroundMessage(backgroundHandler);
 */
-  await DependencyInjection.init();
+  // await DependencyInjection.init();
   setup();
-  Get.put(StorageService());
+  // Get.put(StorageService());
   await ScreenUtil.ensureScreenSize();
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,

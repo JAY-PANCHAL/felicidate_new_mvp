@@ -131,4 +131,13 @@ class Strings {
   static const emirates = 'Emirates';
   static const selectTime = 'Select time';
 
+  //new String
+  static const felicidade = 'Felicidade';
+  static const findYourTribe = 'Find Your Tribe, Find\nYour Peace.';
+  static const continueAs = 'Continue as';
+  static const signIn = 'Sign in';
+  static const withFacebook = 'with Facebook';
+  static const useMobileNumber = 'Use mobile number';
+  static const startedWithYourNumber = 'Let’s get started with your number? ';
+
 }
