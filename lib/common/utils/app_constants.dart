@@ -22,7 +22,8 @@ import 'dimensions.dart';
 
 class AppConstants {
 
-  static const String fontFamilyGilroy = "Gilroy";
+  static const String fontFamilySatoshi = "Satoshi";
+  static const String fontFamilyOgg = "Ogg";
 
   static Future<bool> isConnected() async {
     var connectivityResult = await (Connectivity().checkConnectivity());

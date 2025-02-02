@@ -8,32 +8,35 @@ abstract class Styles {
   static TextStyle textFontSemiBold(
       {Color color = BLACK,
         required double size,
+        String fontFamily = AppConstants.fontFamilySatoshi,
         double letterSpacing = 0}) {
     return TextStyle(
         color: color,
         fontSize: size.sp,
         //  height: 1,
         letterSpacing: letterSpacing,
-        fontFamily: AppConstants.fontFamilyGilroy,
+        fontFamily: fontFamily,
         fontWeight: FontWeight.w600);
   }
 
   static TextStyle textFontBold(
       {Color color = BLACK,
         required double size,
+        String fontFamily = AppConstants.fontFamilySatoshi,
         double letterSpacing = 0}) {
     return TextStyle(
         color: color,
         fontSize: size.sp,
         //  height: 1,
         letterSpacing: letterSpacing,
-        fontFamily: AppConstants.fontFamilyGilroy,
+        fontFamily: fontFamily,
         fontWeight: FontWeight.w700);
   }
 
   static TextStyle textFontMedium(
       {Color color = BLACK,
         required double size,
+        String fontFamily = AppConstants.fontFamilySatoshi,
         double letterSpacing = 0,
       }) {
     return TextStyle(
@@ -41,7 +44,7 @@ abstract class Styles {
         fontSize: size.sp,
         //  height: 1,
         letterSpacing: letterSpacing,
-        fontFamily: AppConstants.fontFamilyGilroy,
+        fontFamily: fontFamily,
         fontWeight: FontWeight.w500);
   }
 
@@ -50,13 +53,14 @@ abstract class Styles {
         required double size,
         weight = FontWeight.w400,
         double height = 1.4,
+        String fontFamily = AppConstants.fontFamilySatoshi,
         double letterSpacing = 0}) {
     return TextStyle(
         color: color,
         fontSize: size.sp,
         height: height,
         letterSpacing: letterSpacing,
-        fontFamily: AppConstants.fontFamilyGilroy,
+        fontFamily: fontFamily,
         fontWeight: weight);
   }
 
@@ -66,6 +70,7 @@ abstract class Styles {
         required double size,
         weight = FontWeight.w400,
         double height = 1.4,
+        String fontFamily = AppConstants.fontFamilySatoshi,
         double letterSpacing = 0}) {
     return TextStyle(
         color: color,
@@ -73,7 +78,7 @@ abstract class Styles {
         height: height,
         letterSpacing: letterSpacing,
         overflow: TextOverflow.ellipsis,
-        fontFamily: AppConstants.fontFamilyGilroy,
+        fontFamily: fontFamily,
         fontWeight: weight);
   }
 
