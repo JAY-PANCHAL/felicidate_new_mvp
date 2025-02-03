@@ -10,5 +10,6 @@ abstract class Routes {
    static const phoneLoginScreen = '/PhoneLoginScreen';
    static const phoneOtpScreen = '/PhoneOtpScreen';
 
+ static const dashboard= '/dashboard';
 
 }

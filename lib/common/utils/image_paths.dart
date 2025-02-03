@@ -9,6 +9,15 @@ class AppSvgIcons {
 
 
 
+
+
+  static const String expert = 'assets/icons/svgIcons/expert.svg';
+  static const String profile = 'assets/icons/svgIcons/fill.svg';
+  static const String home = 'assets/icons/svgIcons/home.svg';
+  static const String talk = 'assets/icons/svgIcons/talk.svg';
+  static const String trip = 'assets/icons/svgIcons/trip.svg';
+
+
 }
 
 class AppPngIcons {

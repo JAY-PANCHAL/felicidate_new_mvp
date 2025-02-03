@@ -4,6 +4,7 @@ import '../main.dart';
 import '../ui/screens/auth/login_screen.dart';
 import '../ui/screens/auth/phoneLogin/phoneOtp/phone_otp_screen.dart';
 import '../ui/screens/auth/phoneLogin/phone_login_screen.dart';
+import '../ui/screens/dashboard/dashboard_Screen.dart';
 
 part 'app_routes.dart';
 
@@ -30,6 +31,9 @@ class AppPages {
         name: Routes.phoneOtpScreen,
         page: () => PhoneOtpScreen(),
         transition: Transition.rightToLeft),
-
+    GetPage(
+        name: Routes.dashboard,
+        page: () => Dashboard(),
+        transition: Transition.rightToLeft),
   ];
 }
