@@ -104,14 +104,12 @@ class Strings {
   static const String deviceRegistrationTokenK = 'device_registration_token';
 
 
-  static const String errorEmail = "Please enter email";
-  static const String validEmail = "Please enter valid email";
+
   static const String validPhone = "Please enter valid phone number";
   static const String validPhoneCode = "Phone number must start with \"971\"";
   static const String otpDoesntMatch = "Otp doesn't match";
   static const String validOtp = "Please enter valid otp";
 
-  static const String errorName = "Please enter your name";
   static const String errorRQuantity = "Please enter required quantity";
   static const String errorVisitedWith = "Please enter visited with";
   static const String errorRemarks = "Please enter remarks";
@@ -141,5 +139,24 @@ class Strings {
   static const startedWithYourNumber = 'Let’s get started with your number? ';
   static const errorPhone = "Please enter phone number";
   static const messageNumber = "We’ll send you a code to verify it’s you, message and data rates may apply";
-
+  static const sFor = "for";
+  static const didNotGetOtp = "Didn’t get anything? No worries, ";
+  static const sendOtpAgain = "Send OTP again.";
+  static const weAreLoading = "We’re Loading\nyour wellbeing";
+  static const tellMoreAboutYou = "Tell us a bit more about you...";
+  static const weSupportBothListeners = "We support both listeners and those who want to talk. Help us assist you better by filling this out:";
+  static const yourName = "Your Name";
+  static const errorName = "Please enter your name";
+  static const yourEmailID = "Your Email ID";
+  static const String errorEmail = "Please enter email";
+  static const String validEmail = "Please enter valid email";
+  static const String notSendYouAnyPromotionalMails = "Don’t worry, we’ll not send you any promotional mails, promise!";
+  static const String oldYouAre = "How old are you?";
+  static const String errorAge = "Please enter age.";
+  static const String location = "Location";
+  static const String errorLocation = "Please enter location.";
+  static const txtContinue = 'Continue';
+  static const isThereAnything = 'Is there anything particular you want help with?';
+  static const weCanConnectYouWithTheRightPerson = 'Tell us what’s on your mind so that we can connect you with the right person';
+  static const thisHelpsUsWith = 'This helps us with finding a right match';
 }

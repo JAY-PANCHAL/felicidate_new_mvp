@@ -13,6 +13,7 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import '../../../../../common/utils/app_constants.dart';
 
 import '../../../../../common/utils/strings.dart';
+import '../../../../../routes/app_pages.dart';
 import '../../../../widget/image_view.dart';
 
 
@@ -53,7 +54,7 @@ class PhoneOtpScreenState extends State<PhoneOtpScreen> {
           backgroundColor: WHITE,
           floatingActionButton: AppConstants.CommonFloatButton(
               onTap: (){
-
+                Get.toNamed(Routes.oneOnboardingScreen);
               }
           ),
           body: SafeArea(
@@ -79,7 +80,25 @@ class PhoneOtpScreenState extends State<PhoneOtpScreen> {
                     children: [
                       SizedBox(height: 25.h,),
                       Text(Strings.startedWithYourNumber,style: Styles.textFontBold(size: 30,color: BLUE_COLOR),),
-                      SizedBox(height: 50.h,),
+                      SizedBox(height: 20.h,),
+                      Text.rich(
+                        TextSpan(
+                            children: [
+                              TextSpan(text: Strings.sFor,style: Styles.textFontMedium(size: 16,color: GREY_COLOR),),
+                              TextSpan(text: phoneOtpController.number.value,style: Styles.textFontMedium(size: 16),),
+                            ]
+                        ),
+                      ),
+                      SizedBox(height: 20.h,),
+                      otpWidget(),
+                      Text.rich(
+                        TextSpan(
+                            children: [
+                              TextSpan(text: Strings.didNotGetOtp,style: Styles.textFontMedium(size: 14,color: GREY_COLOR),),
+                              TextSpan(text: Strings.sendOtpAgain,style: TextStyle(fontSize: 14,fontWeight: FontWeight.w700,color: BLUE_COLOR,fontFamily: AppConstants.fontFamilySatoshi,decoration: TextDecoration.underline),),
+                            ]
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -89,6 +108,74 @@ class PhoneOtpScreenState extends State<PhoneOtpScreen> {
         ),
       );
     });
+  }
+
+  Widget otpWidget(){
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: List.generate(4, (index) {
+        return SizedBox(
+          width: 65.sp,
+          height: 70.sp,
+          child: TextField(
+            autofocus: index == 0, // Focus on the first field
+            keyboardType: TextInputType.number,
+            maxLength: 1,
+            textAlign: TextAlign.center,
+            decoration: InputDecoration(
+              counterText: '', // Hides the counter
+              filled: true,
+              fillColor: WHITE,
+              focusColor: WHITE,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8.0),
+                borderSide: const BorderSide(
+                    color: DIVIDER_COLOR,
+                    width: 1
+                ),
+              ),
+
+              disabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8.0),
+                borderSide: const BorderSide(
+                  color: DIVIDER_COLOR, // Color when focused
+                  width: 1,
+                ),
+              ),
+
+              errorBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8.0),
+                borderSide: const BorderSide(
+                  color: RED, // Color when focused
+                  width: 1,
+                ),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8.0),
+                borderSide: const BorderSide(
+                  color: PRIMARY_COLOR, // Color when focused
+                  width: 1,
+                ),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8.0),
+                borderSide: const BorderSide(
+                  color: DIVIDER_COLOR,
+                  width: 1,
+                ),
+              ),
+            ),
+            onChanged: (value) {
+              if (value.isNotEmpty && index < 3) {
+                FocusScope.of(context).nextFocus();
+              } else if (value.isEmpty && index > 0) {
+                FocusScope.of(context).previousFocus();
+              }
+            },
+          ),
+        );
+      }),
+    );
   }
 
 

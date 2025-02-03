@@ -1,10 +1,12 @@
 import 'package:felicidade/common/utils/Styles.dart';
+import 'package:felicidade/common/utils/image_paths.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../ui/widget/constants/app_colors.dart';
+import '../ui/widget/image_view.dart';
 
 class CustomTextField extends StatefulWidget {
   final TextEditingController? controller;
@@ -40,6 +42,7 @@ class CustomTextField extends StatefulWidget {
   final Color? cursorColor;
   final double? cursorHeight;
   final String? titleLabel;
+  final String? suffixIcon;
   final LabeledGlobalKey? labelKey;
 
   final Function(PointerDownEvent)? onTapOutside;
@@ -79,6 +82,7 @@ class CustomTextField extends StatefulWidget {
     this.cursorColor,
     this.cursorHeight,
     this.titleLabel,
+    this.suffixIcon,
     this.onTapOutside,
   });
 
@@ -121,7 +125,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
             child: Text(
               widget.titleLabel!,
               textAlign: TextAlign.start,
-              style: Styles.textFontSemiBold(size: 16),
+              style: Styles.textFontMedium(size: 16),
             ),
           ),
         buildSimpleTextField(),
@@ -130,88 +134,117 @@ class _CustomTextFieldState extends State<CustomTextField> {
   }
 
   Widget buildSimpleTextField() {
-    return TextFormField(
-      key: widget.labelKey,
-      controller: widget.controller,
-      focusNode: _focusNode,
-      decoration: widget.decoration ?? InputDecoration(
-        filled: true,
-        fillColor: WHITE,
-        focusColor: WHITE,
-        contentPadding: EdgeInsets.only(left: 15,top: 10),
-        errorMaxLines: 2,
-        hintText: "",
-        hintStyle: Styles.textFontRegular(size: 16,color: GREY_COLOR),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8.0),
-          borderSide: const BorderSide(
+    return Container(
+      // decoration: BoxDecoration(
+      //   boxShadow: [
+      //     BoxShadow(
+      //       color: GREY_COLOR.withOpacity(0.12), // Shadow color
+      //       spreadRadius: 0, // Slight spread to keep the shadow subtle
+      //       blurRadius: 2, // Increased blur for a softer shadow
+      //       offset: Offset(0, 4), // Shadow appears below (positive y-axis)
+      //     ),
+      //   ],
+      // ),
+      child: TextFormField(
+        key: widget.labelKey,
+        controller: widget.controller,
+        focusNode: _focusNode,
+        decoration: widget.decoration ?? InputDecoration(
+          filled: true,
+          fillColor: WHITE,
+          focusColor: WHITE,
+          contentPadding: EdgeInsets.only(left: 15,top: 10),
+          errorMaxLines: 2,
+          hintText: "",
+          hintStyle: Styles.textFontRegular(size: 16,color: GREY_COLOR),
+          suffixIcon:
+          widget.suffixIcon!=null?
+          Padding(
+            padding: EdgeInsets.only(right: 12.w),
+            child: ImageView(
+              // width: 20.sp,
+              // height: 20.sp,
+              boxFit: BoxFit.contain,
+              image: widget.suffixIcon??"",
+              imageType: ImageType.svg,
+            ),
+          ):null,
+          suffixIconConstraints: BoxConstraints(minWidth: 30.sp,minHeight: 30.sp,maxWidth: 30.sp,maxHeight: 30.sp),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8.0),
+            borderSide: const BorderSide(
+                color: DIVIDER_COLOR,
+                width: 1
+            ),
+          ),
+
+          disabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8.0),
+            borderSide: const BorderSide(
+              color: DIVIDER_COLOR, // Color when focused
+              width: 1,
+            ),
+          ),
+
+          errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8.0),
+            borderSide: const BorderSide(
+              color: RED, // Color when focused
+              width: 1,
+            ),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8.0),
+            borderSide: const BorderSide(
+              color: PRIMARY_COLOR, // Color when focused
+              width: 1,
+            ),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8.0),
+            borderSide: const BorderSide(
               color: DIVIDER_COLOR,
-              width: 1
+              width: 1,
+            ),
           ),
         ),
-
-        disabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8.0),
-          borderSide: const BorderSide(
-            color: DIVIDER_COLOR, // Color when focused
-            width: 1,
-          ),
-        ),
-
-        errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8.0),
-          borderSide: const BorderSide(
-            color: RED, // Color when focused
-            width: 1,
-          ),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8.0),
-          borderSide: const BorderSide(
-            color: PRIMARY_COLOR, // Color when focused
-            width: 1,
-          ),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8.0),
-          borderSide: const BorderSide(
-            color: DIVIDER_COLOR,
-            width: 1,
-          ),
-        ),
+        keyboardType: widget.keyboardType,
+        cursorHeight: widget.cursorHeight ?? 19.h,
+        onTapOutside: widget.onTapOutside,
+        validator: (val) {
+          final validationError = widget.validator?.call(val ?? '');
+          setState(() {
+            _errorText = validationError;
+          });
+          return validationError;
+        },
+        textAlignVertical: TextAlignVertical.center,
+        textAlign: widget.textAlign,
+        textDirection: widget.textDirection,
+        textCapitalization: widget.textCapitalization,
+        autofocus: widget.autofocus,
+        readOnly: widget.readOnly,
+        showCursor: widget.showCursor,
+        obscuringCharacter: widget.obscuringCharacter,
+        obscureText: widget.obscureText,
+        autocorrect: widget.autocorrect,
+        enableSuggestions: widget.enableSuggestions,
+        maxLines: widget.maxLines,
+        minLines: widget.minLines,
+        expands: widget.expands,
+        maxLength: widget.maxLength,
+        onChanged: widget.onChanged,
+        onTap: widget.onTap,
+        onEditingComplete: widget.onEditingComplete,
+        onFieldSubmitted: widget.onFieldSubmitted,
+        inputFormatters: widget.inputFormatters,
+        enabled: widget.enabled ?? true,
+        cursorColor: widget.cursorColor ?? BLACK,
       ),
-      keyboardType: widget.keyboardType,
-      cursorHeight: widget.cursorHeight ?? 19.h,
-      onTapOutside: widget.onTapOutside,
-      validator: (val) {
-        final validationError = widget.validator?.call(val ?? '');
-        setState(() {
-          _errorText = validationError;
-        });
-        return validationError;
-      },
-      textAlignVertical: TextAlignVertical.center,
-      textAlign: widget.textAlign,
-      textDirection: widget.textDirection,
-      textCapitalization: widget.textCapitalization,
-      autofocus: widget.autofocus,
-      readOnly: widget.readOnly,
-      showCursor: widget.showCursor,
-      obscuringCharacter: widget.obscuringCharacter,
-      obscureText: widget.obscureText,
-      autocorrect: widget.autocorrect,
-      enableSuggestions: widget.enableSuggestions,
-      maxLines: widget.maxLines,
-      minLines: widget.minLines,
-      expands: widget.expands,
-      maxLength: widget.maxLength,
-      onChanged: widget.onChanged,
-      onTap: widget.onTap,
-      onEditingComplete: widget.onEditingComplete,
-      onFieldSubmitted: widget.onFieldSubmitted,
-      inputFormatters: widget.inputFormatters,
-      enabled: widget.enabled ?? true,
-      cursorColor: widget.cursorColor ?? BLACK,
     );
   }
 }
+
+
+
+

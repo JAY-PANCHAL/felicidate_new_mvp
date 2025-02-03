@@ -70,6 +70,7 @@ class LoginScreenState extends State<LoginScreen> {
                     CommonButton(icon: AppSvgIcons.phoneIcon,text1: "",text2: Strings.useMobileNumber,
                         onTap: (){
                       Get.toNamed(Routes.phoneLoginScreen);
+                      // Get.toNamed(Routes.twoOnboardingScreen);
                         }),
                     SizedBox(height: 35.h,),
                   ],

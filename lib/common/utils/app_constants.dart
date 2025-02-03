@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:felicidade/common/utils/storage_service.dart';
 import 'package:felicidade/common/utils/strings.dart';
+import 'package:felicidade/ui/widget/constants/app_colors.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'package:flutter/cupertino.dart';
@@ -59,6 +60,24 @@ class AppConstants {
   }
 
   static loader(context) {
+    FocusManager.instance.primaryFocus?.unfocus();
+    return GestureDetector(
+      onTap: () {},
+      child: Container(
+        height: 1.sh,
+        width: 1.sw,
+        child: Container(
+          decoration: BoxDecoration(
+            color: WHITE,
+            image: DecorationImage(image: AssetImage(AppPngIcons.loadingScreenIcon),fit: BoxFit.cover)
+          ),
+        )
+      ),
+    );
+  }
+
+
+  static loaderCircular(context) {
     return GestureDetector(
       onTap: () {},
       child: Container(
@@ -302,6 +321,52 @@ class AppConstants {
         boxFit: BoxFit.contain,
         image: AppSvgIcons.icFloatButtonIcon,
         imageType: ImageType.svg,
+      ),
+    );
+  }
+
+  static CommonProgressIndicator({Color color = DIVIDER_COLOR ,double value = 0.0}){
+    return  ClipRRect(
+      borderRadius: BorderRadius.circular(8.0), // Set border radius here
+      child: LinearProgressIndicator(
+        value: value, // Set progress value here (0.0 to 1.0)
+        minHeight: 7.0, // Height of the progress bar
+        backgroundColor: LIGHT_GREY_COLOR,
+        valueColor: AlwaysStoppedAnimation<Color>(color),
+      ),
+    );
+  }
+
+  static CommonButtom({String? text, onTap}){
+    return GestureDetector(
+      onTap: (){
+        onTap();
+      },
+      child: Container(
+        height: 45.h,
+        width: 1.sw,
+        margin: EdgeInsets.symmetric(horizontal: 25.w,vertical: 10.h),
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.centerLeft,
+              end: Alignment.centerRight,
+              colors: [
+                PRIMARY_COLOR_GRA1,
+                PRIMARY_COLOR_GRA2,
+              ],
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: GREY_COLOR.withOpacity(0.2), // Shadow color
+                spreadRadius: 0, // Slight spread to keep the shadow subtle
+                blurRadius: 2, // Increased blur for a softer shadow
+                offset: Offset(0, 4), // Shadow appears below (positive y-axis)
+              ),
+            ],
+            borderRadius: BorderRadius.circular(30)
+        ),
+        child: Text(text??"",style: Styles.textFontMedium(size: 16),),
       ),
     );
   }

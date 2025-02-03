@@ -70,12 +70,22 @@ class MyAppState extends State<MyApp> {
     ScreenUtil.init(context);
     // _notificationService.initialize();
 
-    return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(useMaterial3: false),
-      initialRoute: Routes.root,
-      getPages: AppPages.routes,
-      title: Strings.appName,
+    return GestureDetector(
+      onTap: (){
+        FocusScopeNode currentFocus = FocusScope.of(context);
+
+        if (!currentFocus.hasPrimaryFocus &&
+            currentFocus.focusedChild != null) {
+          FocusManager.instance.primaryFocus?.unfocus();
+        }
+      },
+      child: GetMaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(useMaterial3: false),
+        initialRoute: Routes.root,
+        getPages: AppPages.routes,
+        title: Strings.appName,
+      ),
     );
   }
 }
