@@ -53,7 +53,7 @@ class PhoneLoginScreenState extends State<PhoneLoginScreen> {
           floatingActionButton: AppConstants.CommonFloatButton(
             onTap: (){
               if (phoneLoginController.formKey.currentState!.validate()) {
-                Get.toNamed(Routes.phoneOtpScreen,arguments: phoneLoginController.number.text);
+                Get.toNamed(Routes.phoneOtpScreen,arguments: " ${phoneLoginController.preNum.value} ${phoneLoginController.number.text}");
               }
             }
           ),

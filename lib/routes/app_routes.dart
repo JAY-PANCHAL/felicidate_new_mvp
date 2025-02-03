@@ -9,6 +9,9 @@ abstract class Routes {
   // static const login = '/login';
    static const phoneLoginScreen = '/PhoneLoginScreen';
    static const phoneOtpScreen = '/PhoneOtpScreen';
+   static const oneOnboardingScreen = '/OneOnboardingScreen';
+   static const twoOnboardingScreen = '/TwoOnboardingScreen';
+   static const threeOnboardingScreen = '/ThreeOnboardingScreen';
 
 
 }

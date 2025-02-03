@@ -7,6 +7,11 @@ const Color BLUE_COLOR = Color(0xFF0170A3);
 const Color LIGHT_BLUE1= Color(0xFFE7F7FF);
 const Color LIGHT_BLUE2 = Color(0xFFA8E2FF);
 const Color DARK_GREY = Color(0xFF6F6F6F);
+const Color BLACK_COLOR2 = Color(0xFF2A2A2A);
+const Color GRAY_COLOR_LIGHT = Color(0xFFD5DEE2);
+const Color PRIMARY_COLOR_GRA1 =  Color(0xFFFFC7D3);
+const Color PRIMARY_COLOR_GRA2 = Color(0xFFFFE8ED);
+const Color RED_DARK = Color(0xFFBD0730);
 
 
 const Color LIGHT_BLACK = Color(0xFF2C3125);
@@ -17,8 +22,9 @@ const Color DETAILS_COLOR = Color(0xFF61DEA9);
 const Color BLUE_COLOR2 = Color(0xFF67A2DA);
 const Color LIGHT_GREEN = Color(0xFFF2F5EF);
 const Color DIVIDER_COLOR = Color(0xFFC1C7BC);
+const Color DIVIDER_COLOR2 = Color(0xFFDADADA);
 const Color LIGHT_GREY_COLOR = Color(0xffF7F9FA);
-const Color GRAY_COLOR_LIGHT = Color(0xFFD5DEE2);
+
 const Color LIGHT_GREY_COLOR2 = Color(0xffd2d9dc);
 
 
