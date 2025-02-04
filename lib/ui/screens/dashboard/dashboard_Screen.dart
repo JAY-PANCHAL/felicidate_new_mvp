@@ -1,15 +1,28 @@
+import 'package:felicidade/ui/screens/dashboard/profile/profile_screen.dart';
+import 'package:felicidade/ui/widget/constants/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:felicidade/common/utils/image_paths.dart';
 
-class Dashboard extends StatefulWidget {
+import '../../widget/image_view.dart';
+import 'dashboard_controller.dart';
+
+class DashboardScreen extends StatefulWidget {
+  const DashboardScreen({super.key});
+
   @override
-  State<Dashboard> createState() => _DashboardState();
+  State<DashboardScreen> createState() => _DashboardScreenState();
 }
 
-class _DashboardState extends State<Dashboard> {
+class _DashboardScreenState extends State<DashboardScreen> {
   late PersistentTabController _controller;
+
+  final DashboardController dashboardController = Get.put(DashboardController());
+
 
   @override
   void initState() {
@@ -22,40 +35,115 @@ class _DashboardState extends State<Dashboard> {
       PersistentTabConfig(
         screen: HomeScreen(),
         item: ItemConfig(
-          inactiveIcon: SvgPicture.asset(AppSvgIcons.home, color: Colors.grey),
-          icon: SvgPicture.asset(AppSvgIcons.home, color: Colors.pink),
+          inactiveIcon: ImageView(
+            width: 33.sp,
+            height: 33.sp,
+            boxFit: BoxFit.contain,
+            image: AppSvgIcons.home,
+            color: GREY_COLOR,
+            imageType: ImageType.svg,
+          ),
+          icon: ImageView(
+            width: 33.sp,
+            height: 33.sp,
+            boxFit: BoxFit.contain,
+            image: AppSvgIcons.home,
+            color: PINK,
+            imageType: ImageType.svg,
+          ),
           title: "Home",
         ),
       ),
       PersistentTabConfig(
         screen: TalkScreen(),
         item: ItemConfig(
-          inactiveIcon: SvgPicture.asset(AppSvgIcons.talk, color: Colors.grey),
-          icon: SvgPicture.asset(AppSvgIcons.talk, color: Colors.pink),
+          inactiveIcon: ImageView(
+            width: 33.sp,
+            height: 33.sp,
+            boxFit: BoxFit.contain,
+            image: AppSvgIcons.talk,
+            color: GREY_COLOR,
+            imageType: ImageType.svg,
+          ),
+          icon: ImageView(
+            width: 33.sp,
+            height: 33.sp,
+            boxFit: BoxFit.contain,
+            image: AppSvgIcons.talk,
+            // color: DETAILS_COLOR,
+            color: PINK,
+            imageType: ImageType.svg,
+          ),
+
           title: "Talk",
         ),
       ),
       PersistentTabConfig(
         screen: ExpertScreen(),
         item: ItemConfig(
-          inactiveIcon: SvgPicture.asset(AppSvgIcons.expert, color: Colors.grey),
-          icon: SvgPicture.asset(AppSvgIcons.expert, color: Colors.pink),
+          inactiveIcon: ImageView(
+            width: 33.sp,
+            height: 33.sp,
+            boxFit: BoxFit.contain,
+            image: AppSvgIcons.expert,
+            color: GREY_COLOR,
+            imageType: ImageType.svg,
+          ),
+          icon: ImageView(
+            width: 33.sp,
+            height: 33.sp,
+            boxFit: BoxFit.contain,
+            image: AppSvgIcons.expert,
+            // color: BLUE_COLOR2,
+            color: PINK,
+            imageType: ImageType.svg,
+          ),
           title: "Expert",
         ),
       ),
       PersistentTabConfig(
         screen: TripScreen(),
         item: ItemConfig(
-          inactiveIcon: SvgPicture.asset(AppSvgIcons.trip, color: Colors.grey),
-          icon: SvgPicture.asset(AppSvgIcons.trip, color: Colors.pink),
+          inactiveIcon: ImageView(
+            width: 33.sp,
+            height: 33.sp,
+            boxFit: BoxFit.contain,
+            image: AppSvgIcons.trip,
+            color: GREY_COLOR,
+            imageType: ImageType.svg,
+          ),
+          icon: ImageView(
+            width: 33.sp,
+            height: 33.sp,
+            boxFit: BoxFit.contain,
+            image: AppSvgIcons.trip,
+            // color: YELLOW_COLOR,
+            color: PINK,
+            imageType: ImageType.svg,
+          ),
           title: "Trip",
         ),
       ),
       PersistentTabConfig(
         screen: ProfileScreen(),
         item: ItemConfig(
-          inactiveIcon: SvgPicture.asset(AppSvgIcons.profile, color: Colors.grey),
-          icon: SvgPicture.asset(AppSvgIcons.profile, color: Colors.pink),
+          inactiveIcon: ImageView(
+            width: 33.sp,
+            height: 33.sp,
+            boxFit: BoxFit.contain,
+            image: AppSvgIcons.profile,
+            color: GREY_COLOR,
+            imageType: ImageType.svg,
+          ),
+          icon: ImageView(
+            width: 33.sp,
+            height: 33.sp,
+            boxFit: BoxFit.contain,
+            image: AppSvgIcons.profile,
+            // color: BUTTON_COLOR,
+            color: PINK,
+            imageType: ImageType.svg,
+          ),
           title: "Profile",
         ),
       ),
@@ -64,16 +152,12 @@ class _DashboardState extends State<Dashboard> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Persistent Bottom Navigation Bar Demo',
-      debugShowCheckedModeBanner: false,
-      home: PersistentTabView(
+    return PersistentTabView(
+      controller: _controller,
+      tabs: _tabs(),
+      navBarBuilder: (navBarConfig) => CustomBottomNavBar(
         controller: _controller,
-        tabs: _tabs(),
-        navBarBuilder: (navBarConfig) => CustomBottomNavBar(
-          controller: _controller,
-          items: _tabs().map((tab) => tab.item).toList(),
-        ),
+        items: _tabs().map((tab) => tab.item).toList(),
       ),
     );
   }
@@ -139,11 +223,3 @@ class TripScreen extends StatelessWidget {
   }
 }
 
-class ProfileScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(child: Text("Profile Screen")),
-    );
-  }
-}

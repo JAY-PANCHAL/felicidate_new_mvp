@@ -19,6 +19,10 @@ class AppSvgIcons {
   static const String iconB2Icon7 = 'assets/icons/svgIcons/onB2_icon7.svg';
   static const String iconB2Icon8 = 'assets/icons/svgIcons/onB2_icon8.svg';
 
+  static const String iconB3Icon1 = 'assets/icons/svgIcons/onB3_icon1.svg';
+  static const String iconB3Icon2 = 'assets/icons/svgIcons/onB3_icon2.svg';
+  static const String iconB3Icon3 = 'assets/icons/svgIcons/onB3_icon3.svg';
+
 
 
   static const String expert = 'assets/icons/svgIcons/expert.svg';
@@ -26,6 +30,9 @@ class AppSvgIcons {
   static const String home = 'assets/icons/svgIcons/home.svg';
   static const String talk = 'assets/icons/svgIcons/talk.svg';
   static const String trip = 'assets/icons/svgIcons/trip.svg';
+  static const String logOutIcon = 'assets/icons/svgIcons/log_out_icon.svg';
+  static const String lanuageIcon = 'assets/icons/svgIcons/lanuage_icon.svg';
+  static const String countryIcon = 'assets/icons/svgIcons/country_icon.svg';
 
 
 }

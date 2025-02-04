@@ -36,7 +36,7 @@ class AppPages {
         transition: Transition.rightToLeft),
     GetPage(
         name: Routes.dashboard,
-        page: () => Dashboard(),
+        page: () => DashboardScreen(),
         transition: Transition.rightToLeft),
     GetPage(
         name: Routes.oneOnboardingScreen,

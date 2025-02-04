@@ -159,4 +159,11 @@ class Strings {
   static const isThereAnything = 'Is there anything particular you want help with?';
   static const weCanConnectYouWithTheRightPerson = 'Tell us what’s on your mind so that we can connect you with the right person';
   static const thisHelpsUsWith = 'This helps us with finding a right match';
+  static const youAreReadyToShine = "You're ready to shine, let's begin your wellbeing journey!";
+  static const logoutSignOut = "Logout/Signout";
+  static const logoutOfOurApp = "Logout of our app";
+  static const language = "Language";
+  static const english = "English";
+  static const country = "Country";
+  static const india = "India";
 }

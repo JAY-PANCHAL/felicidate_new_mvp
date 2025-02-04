@@ -337,6 +337,40 @@ class AppConstants {
     );
   }
 
+
+  static Widget CommonProgressIndicator2({
+    LinearGradient gradient = const LinearGradient(
+      colors: [Color(0xFF86D8FF), Color(0xFFFF9FB2), Color(0xFFFFD18E)],
+      begin: Alignment.centerLeft,
+      end: Alignment.centerRight,
+    ),
+    double value = 0.0,
+  }) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(8.0), // Set border radius here
+      child: Stack(
+        children: [
+          // Background gradient layer
+          Container(
+            height: 7.0, // Height of the progress bar
+            decoration: BoxDecoration(
+              gradient: gradient, // Apply gradient to the background
+            ),
+          ),
+          // Foreground progress indicator layer
+          LinearProgressIndicator(
+            value: value, // Set progress value here (0.0 to 1.0)
+            minHeight: 7.0, // Height of the progress bar
+            backgroundColor: Colors.transparent, // Keep background transparent to show gradient
+            valueColor: AlwaysStoppedAnimation<Color>(Colors.white.withOpacity(0.8)), // Optional glow
+          ),
+        ],
+      ),
+    );
+  }
+
+
+
   static CommonButtom({String? text, onTap}){
     return GestureDetector(
       onTap: (){

@@ -13,6 +13,7 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 import '../../../../../common/utils/app_constants.dart';
 import '../../../../../common/utils/strings.dart';
+import '../../../../../routes/app_pages.dart';
 import '../../../../widget/image_view.dart';
 
 
@@ -152,26 +153,33 @@ class TwoOnboardingScreenState extends State<TwoOnboardingScreen> {
               AppSvgIcons.iconB2Icon8,
 
             ];
-            return Padding(
-              padding: EdgeInsets.only(top: 8.h,bottom: 8.h),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SizedBox(width: 10.w,),
-                  ImageView(
-                    width: 25.sp,
-                    height: 25.sp,
-                    boxFit: BoxFit.contain,
-                    image: sListIcon[index],
-                    imageType: ImageType.svg,
-                  ),
-                  SizedBox(width: 10.w,),
-                  SizedBox(
-                      width: 1.sw * 0.75,
-                      child: Text(sList[index],style: Styles.textFontMedium(size: 14,color: DARK_GREY),))
+            return GestureDetector(
+              onTap: (){
+                Get.toNamed(Routes.threeOnboardingScreen);
+              },
+              child: Container(
+                child: Padding(
+                  padding: EdgeInsets.only(top: 8.h,bottom: 8.h),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      SizedBox(width: 10.w,),
+                      ImageView(
+                        width: 25.sp,
+                        height: 25.sp,
+                        boxFit: BoxFit.contain,
+                        image: sListIcon[index],
+                        imageType: ImageType.svg,
+                      ),
+                      SizedBox(width: 10.w,),
+                      SizedBox(
+                          width: 1.sw * 0.75,
+                          child: Text(sList[index],style: Styles.textFontMedium(size: 14,color: DARK_GREY),))
 
-                ],
+                    ],
+                  ),
+                ),
               ),
             );
           },
