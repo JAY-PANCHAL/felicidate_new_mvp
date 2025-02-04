@@ -33,6 +33,9 @@ class AppSvgIcons {
   static const String logOutIcon = 'assets/icons/svgIcons/log_out_icon.svg';
   static const String lanuageIcon = 'assets/icons/svgIcons/lanuage_icon.svg';
   static const String countryIcon = 'assets/icons/svgIcons/country_icon.svg';
+  static const String expertMainIcon = 'assets/icons/svgIcons/expert_main_icon.svg';
+  static const String tripMainIcon = 'assets/icons/svgIcons/trip_main_icon.svg';
+  static const String notifyMeIcon = 'assets/icons/svgIcons/notify_me_icon.svg';
 
 
 }
@@ -41,6 +44,8 @@ class AppPngIcons {
 
   static const String loginBack = 'assets/icons/pngIcons/login_back.png';
   static const String loadingScreenIcon = 'assets/icons/pngIcons/loading_screen_icon.png';
+  static const String expertBackIcon = 'assets/icons/svgIcons/expert_back.png';
+  static const String tripBackIcon = 'assets/icons/svgIcons/trip_back.png';
 
 
 

@@ -82,4 +82,19 @@ abstract class Styles {
         fontWeight: weight);
   }
 
+  static TextStyle textFontBoldHeight(
+      {Color color = BLACK,
+        required double size,
+        String fontFamily = AppConstants.fontFamilySatoshi,
+        double height = 1.2,
+        double letterSpacing = 0}) {
+    return TextStyle(
+        color: color,
+        fontSize: size.sp,
+         height: height,
+        letterSpacing: letterSpacing,
+        fontFamily: fontFamily,
+        fontWeight: FontWeight.w700);
+  }
+
 }

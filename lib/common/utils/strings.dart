@@ -166,4 +166,10 @@ class Strings {
   static const english = "English";
   static const country = "Country";
   static const india = "India";
+  static const NotifyMe = "Notify me";
+  static const home = "Home";
+  static const talk = "Talk";
+  static const expert = "Expert";
+  static const trip = "Trip";
+  static const profile = "Profile";
 }

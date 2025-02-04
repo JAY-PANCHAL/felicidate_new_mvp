@@ -8,7 +8,7 @@ import '../../../../../controller/base_controller.dart';
 
 
 
-class ExpertController extends BaseController {
+class TripController extends BaseController {
 
 
 

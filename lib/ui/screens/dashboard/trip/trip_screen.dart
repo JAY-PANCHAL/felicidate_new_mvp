@@ -11,17 +11,17 @@ import '../../../../../common/utils/app_constants.dart';
 import '../../../../common/utils/Styles.dart';
 import '../../../../common/utils/strings.dart';
 import '../../../widget/image_view.dart';
-import 'expert_controller.dart';
+import 'trip_controller.dart';
 
-class ExpertScreen extends StatefulWidget {
-  const ExpertScreen({super.key});
+class TripScreen extends StatefulWidget {
+  const TripScreen({super.key});
 
   @override
-  State<StatefulWidget> createState() => ExpertScreenState();
+  State<StatefulWidget> createState() => TripScreenState();
 }
 
-class ExpertScreenState extends State<ExpertScreen> {
-  final ExpertController expertController = Get.put(ExpertController());
+class TripScreenState extends State<TripScreen> {
+  final TripController tripController = Get.put(TripController());
 
   @override
   void initState() {
@@ -31,7 +31,7 @@ class ExpertScreenState extends State<ExpertScreen> {
   @override
   void dispose() {
     super.dispose();
-    Get.delete<ExpertController>();
+    Get.delete<TripController>();
   }
 
 
@@ -44,7 +44,7 @@ class ExpertScreenState extends State<ExpertScreen> {
         color: Colors.black.withOpacity(0.6),
         dismissible: false,
         progressIndicator: AppConstants.loader(context),
-        inAsyncCall: expertController.isLoading.value,
+        inAsyncCall: tripController.isLoading.value,
         child: Scaffold(
           backgroundColor: WHITE,
           body: SafeArea(
@@ -58,7 +58,7 @@ class ExpertScreenState extends State<ExpertScreen> {
                       width: 1.sw,
                       margin: EdgeInsets.only(bottom: 10.h),
                       decoration: BoxDecoration(
-                        image: DecorationImage(image: AssetImage(AppPngIcons.expertBackIcon),fit: BoxFit.fill)
+                        image: DecorationImage(image: AssetImage(AppPngIcons.tripBackIcon),fit: BoxFit.fill)
                       ),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -69,13 +69,13 @@ class ExpertScreenState extends State<ExpertScreen> {
                             width: 80.sp,
                             height: 80.sp,
                             boxFit: BoxFit.contain,
-                            image: AppSvgIcons.expertMainIcon,
+                            image: AppSvgIcons.tripMainIcon,
                             imageType: ImageType.svg,
                           ),
                           SizedBox(height: 15.h,),
                           Padding(
                             padding: EdgeInsets.symmetric(horizontal: 20.w),
-                            child: Text("We’re coming to you with our experts!!",style: Styles.textFontBoldHeight(
+                            child: Text("We’re coming to you Freak my trip!!",style: Styles.textFontBoldHeight(
                                 size: 28,
                                 color: BLUE_COLOR3,
                                 fontFamily: AppConstants.fontFamilyOgg),
@@ -84,7 +84,7 @@ class ExpertScreenState extends State<ExpertScreen> {
                           SizedBox(height: 15.h,),
                           Padding(
                             padding: EdgeInsets.symmetric(horizontal: 20.w),
-                            child: Text("We’re going to launch fel-expert\nsoon. Stay tune.",style: Styles.textFontRegular(
+                            child: Text("We’re going to launch Freak my trip\nsoon. Stay tune.",style: Styles.textFontRegular(
                                 size: 18,),
                               textAlign: TextAlign.center,),
                           ),

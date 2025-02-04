@@ -1,4 +1,5 @@
 import 'package:felicidade/ui/screens/dashboard/profile/profile_screen.dart';
+import 'package:felicidade/ui/screens/dashboard/trip/trip_screen.dart';
 import 'package:felicidade/ui/widget/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,8 +9,10 @@ import 'package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:felicidade/common/utils/image_paths.dart';
 
+import '../../../common/utils/strings.dart';
 import '../../widget/image_view.dart';
 import 'dashboard_controller.dart';
+import 'expert/expert_screen.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -51,7 +54,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             color: PINK,
             imageType: ImageType.svg,
           ),
-          title: "Home",
+          title: Strings.home,
         ),
       ),
       PersistentTabConfig(
@@ -70,12 +73,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
             height: 33.sp,
             boxFit: BoxFit.contain,
             image: AppSvgIcons.talk,
-            // color: DETAILS_COLOR,
-            color: PINK,
+            color: DETAILS_COLOR,
+            // color: PINK,
             imageType: ImageType.svg,
           ),
 
-          title: "Talk",
+          title:Strings.talk,
         ),
       ),
       PersistentTabConfig(
@@ -94,11 +97,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
             height: 33.sp,
             boxFit: BoxFit.contain,
             image: AppSvgIcons.expert,
-            // color: BLUE_COLOR2,
-            color: PINK,
+            color: BLUE_COLOR2,
+            // color: PINK,
             imageType: ImageType.svg,
           ),
-          title: "Expert",
+          title: Strings.expert
         ),
       ),
       PersistentTabConfig(
@@ -117,11 +120,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
             height: 33.sp,
             boxFit: BoxFit.contain,
             image: AppSvgIcons.trip,
-            // color: YELLOW_COLOR,
-            color: PINK,
+            color: YELLOW_COLOR,
+            // color: PINK,
             imageType: ImageType.svg,
           ),
-          title: "Trip",
+          title: Strings.trip,
         ),
       ),
       PersistentTabConfig(
@@ -140,11 +143,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
             height: 33.sp,
             boxFit: BoxFit.contain,
             image: AppSvgIcons.profile,
-            // color: BUTTON_COLOR,
-            color: PINK,
+            color: BUTTON_COLOR,
+            // color: PINK,
             imageType: ImageType.svg,
           ),
-          title: "Profile",
+          title: Strings.profile,
         ),
       ),
     ];
@@ -205,21 +208,7 @@ class TalkScreen extends StatelessWidget {
   }
 }
 
-class ExpertScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(child: Text("Expert Screen")),
-    );
-  }
-}
 
-class TripScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(child: Text("Trip Screen")),
-    );
-  }
-}
+
+
 
