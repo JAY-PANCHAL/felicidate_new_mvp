@@ -136,12 +136,7 @@ class ThreeOnboardingScreenState extends State<ThreeOnboardingScreen> {
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               boxShadow: [
-                BoxShadow(
-                  color: GREY_COLOR.withOpacity(0.2), // Shadow color
-                  spreadRadius: 0, // Slight spread to keep the shadow subtle
-                  blurRadius: 10, // Increased blur for a softer shadow
-                  offset: Offset(0, 0), // Shadow appears below (positive y-axis)
-                ),
+                AppConstants().commonBoxShadow(),
               ],
             ),
             child: ImageView(

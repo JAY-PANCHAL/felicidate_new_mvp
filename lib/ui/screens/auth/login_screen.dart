@@ -69,8 +69,8 @@ class LoginScreenState extends State<LoginScreen> {
                     CommonButton(icon: AppSvgIcons.facBookIcon,text1: Strings.signIn,text2: " ${Strings.withFacebook}", onTap: (){}),
                     CommonButton(icon: AppSvgIcons.phoneIcon,text1: "",text2: Strings.useMobileNumber,
                         onTap: (){
-                      Get.toNamed(Routes.phoneLoginScreen);
-                      // Get.toNamed(Routes.dashboard);
+                      // Get.toNamed(Routes.phoneLoginScreen);
+                      Get.toNamed(Routes.dashboard);
                         }),
                     SizedBox(height: 35.h,),
                   ],

@@ -13,6 +13,7 @@ import '../../../common/utils/strings.dart';
 import '../../widget/image_view.dart';
 import 'dashboard_controller.dart';
 import 'expert/expert_screen.dart';
+import 'home/home_screen.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -190,14 +191,7 @@ class CustomBottomNavBar extends StatelessWidget {
   }
 }
 
-class HomeScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(child: Text("Home Screen")),
-    );
-  }
-}
+
 
 class TalkScreen extends StatelessWidget {
   @override

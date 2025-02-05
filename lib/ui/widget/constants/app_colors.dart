@@ -13,7 +13,15 @@ const Color GRAY_COLOR_LIGHT = Color(0xFFD5DEE2);
 const Color PRIMARY_COLOR_GRA1 =  Color(0xFFFFC7D3);
 const Color PRIMARY_COLOR_GRA2 = Color(0xFFFFE8ED);
 const Color PRIMARY_COLOR_GRA3 = Color(0xFFFDEEF3);
+
 const Color RED_DARK = Color(0xFFBD0730);
+const Color HOME_RED_LIGHT = Color(0xFFFF88A3);
+const Color HOME_RED_LIGHT2 = Color(0xFFFFE0E7);
+
+const Color HOME_BLUE_COLOR = Color(0xFF006E91);
+const Color BLUE_COLOR3 = Color(0xFF07A5D7);
+
+
 
 
 const Color LIGHT_BLACK = Color(0xFF2C3125);
@@ -22,7 +30,7 @@ const Color ROSE_TAUPE_COLOR = Color(0xFF965454);
 const Color RED_COLOR = Color(0xFFE46B62);
 const Color DETAILS_COLOR = Color(0xFF61DEA9);
 const Color BLUE_COLOR2 = Color(0xFF00B3FF);
-const Color BLUE_COLOR3 = Color(0xFF07A5D7);
+
 const Color LIGHT_GREEN = Color(0xFFF2F5EF);
 const Color DIVIDER_COLOR = Color(0xFFC1C7BC);
 const Color DIVIDER_COLOR2 = Color(0xFFDADADA);

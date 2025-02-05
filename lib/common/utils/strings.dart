@@ -172,4 +172,9 @@ class Strings {
   static const expert = "Expert";
   static const trip = "Trip";
   static const profile = "Profile";
+  static const helloUser = "Hello, User";
+  static const howAreYouFeeling = "How are you feeling?";
+  static const recentlyTalkedWith = "Recently Talked with";
+  static const feliFriend = "Feli-Friend";
+  static const callNow = "Call now";
 }

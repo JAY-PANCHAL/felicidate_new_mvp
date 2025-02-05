@@ -38,6 +38,13 @@ class AppSvgIcons {
   static const String notifyMeIcon = 'assets/icons/svgIcons/notify_me_icon.svg';
 
 
+  static const String fe1Icon = 'assets/icons/svgIcons/fe1.svg';
+  static const String fe2Icon = 'assets/icons/svgIcons/fe2.svg';
+  static const String fe3Icon = 'assets/icons/svgIcons/fe3.svg';
+  static const String fe4Icon = 'assets/icons/svgIcons/fe4.svg';
+  static const String fe5Icon = 'assets/icons/svgIcons/fe5.svg';
+
+
 }
 
 class AppPngIcons {

@@ -405,4 +405,25 @@ class AppConstants {
     );
   }
 
+
+
+
+// Common BoxShadow utility
+  BoxShadow commonBoxShadow({
+    Color color = GREY_COLOR, // Default shadow color
+    double blurRadius = 10.0,  // Default blur radius
+    double spreadRadius = 0.0, // Default spread radius
+    Offset offset = const Offset(0, 0), // Default offset
+  }) {
+    return BoxShadow(
+      color: color.withOpacity(0.2), // Adjust transparency
+      blurRadius: blurRadius,
+      spreadRadius: spreadRadius,
+      offset: offset,
+    );
+  }
+
+
+
+
 }
