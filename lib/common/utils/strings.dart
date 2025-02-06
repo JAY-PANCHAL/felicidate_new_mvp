@@ -177,4 +177,10 @@ class Strings {
   static const recentlyTalkedWith = "Recently Talked with";
   static const feliFriend = "Feli-Friend";
   static const callNow = "Call now";
+  static const itFree = "It’s Free";
+  static const talkWithSomeone = "Talk with\nsomeone";
+  static const writeYourThoughtsDown = "Write your thoughts down";
+  static const comingSoon = "Coming soon";
+  static const bookCallWithExperts = "Book a call\nwith experts";
+  static const startFreakingYourTrip = "Start Freaking\nyour trip";
 }

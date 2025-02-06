@@ -44,6 +44,11 @@ class AppSvgIcons {
   static const String fe4Icon = 'assets/icons/svgIcons/fe4.svg';
   static const String fe5Icon = 'assets/icons/svgIcons/fe5.svg';
 
+  static const String talkIcon = 'assets/icons/svgIcons/talk_iocn.svg';
+  static const String writeYourIcon = 'assets/icons/svgIcons/write_your_icon.svg';
+  static const String bookCallIcon = 'assets/icons/svgIcons/book_call_icon.svg';
+  static const String startTripIconIcon = 'assets/icons/svgIcons/start_trip_icon.svg';
+
 
 }
 
