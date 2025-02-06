@@ -22,6 +22,9 @@ const Color HOME_BLUE_COLOR = Color(0xFF006E91);
 const Color BLUE_COLOR3 = Color(0xFF07A5D7);
 
 
+const Color COFFIE_COLOR = Color(0xFFC28000);
+
+
 
 
 const Color LIGHT_BLACK = Color(0xFF2C3125);
@@ -37,6 +40,7 @@ const Color DIVIDER_COLOR2 = Color(0xFFDADADA);
 const Color LIGHT_GREY_COLOR = Color(0xffF7F9FA);
 
 const Color LIGHT_GREY_COLOR2 = Color(0xffd2d9dc);
+const Color LIGHT_GREY_COLOR3 = Color(0xffEBEBEB);
 
 
 const Color ACCENT_COLOR = Color(0xFF84C043);

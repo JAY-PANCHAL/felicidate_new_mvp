@@ -47,34 +47,32 @@ class LoginScreenState extends State<LoginScreen> {
         inAsyncCall: loginController.isLoading.value,
         child: Scaffold(
           backgroundColor: WHITE,
-          body: SafeArea(
-            child: Container(
-              width: 1.sw,
-              height: 1.sh,
-              decoration: BoxDecoration(
-                image: DecorationImage(image: AssetImage(AppPngIcons.loginBack),fit: BoxFit.cover),
-              ),
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 23.w),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    SizedBox(height: 35.h,),
-                    Text(Strings.felicidade,style: Styles.textFontBold(size: 50,color: WHITE,fontFamily: AppConstants.fontFamilyOgg),),
-                    SizedBox(height: 10.h,),
-                    Text(Strings.findYourTribe,style: Styles.textFontBold(size: 24,color: WHITE),textAlign: TextAlign.center,),
-                    Spacer(),
-                    CommonButton(icon: AppSvgIcons.googleSvg,text1: Strings.continueAs,text2: " Rohit Kadam",onTap: (){}),
-                    CommonButton(icon: AppSvgIcons.facBookIcon,text1: Strings.signIn,text2: " ${Strings.withFacebook}", onTap: (){}),
-                    CommonButton(icon: AppSvgIcons.phoneIcon,text1: "",text2: Strings.useMobileNumber,
-                        onTap: (){
-                      Get.toNamed(Routes.phoneLoginScreen);
-                      // Get.toNamed(Routes.dashboard);
-                        }),
-                    SizedBox(height: 35.h,),
-                  ],
-                ),
+          body: Container(
+            width: 1.sw,
+            height: 1.sh,
+            decoration: BoxDecoration(
+              image: DecorationImage(image: AssetImage(AppPngIcons.loginBack),fit: BoxFit.cover),
+            ),
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 23.w),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(height: 50.h,),
+                  Text(Strings.felicidade,style: Styles.textFontBold(size: 50,color: WHITE,fontFamily: AppConstants.fontFamilyOgg),),
+                  SizedBox(height: 10.h,),
+                  Text(Strings.findYourTribe,style: Styles.textFontBold(size: 24,color: WHITE),textAlign: TextAlign.center,),
+                  Spacer(),
+                  CommonButton(icon: AppSvgIcons.googleSvg,text1: Strings.continueAs,text2: " Rohit Kadam",onTap: (){}),
+                  CommonButton(icon: AppSvgIcons.facBookIcon,text1: Strings.signIn,text2: " ${Strings.withFacebook}", onTap: (){}),
+                  CommonButton(icon: AppSvgIcons.phoneIcon,text1: "",text2: Strings.useMobileNumber,
+                      onTap: (){
+                    Get.toNamed(Routes.phoneLoginScreen);
+                    // Get.toNamed(Routes.dashboard);
+                      }),
+                  SizedBox(height: 35.h,),
+                ],
               ),
             ),
           ),

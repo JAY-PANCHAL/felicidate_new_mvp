@@ -183,4 +183,7 @@ class Strings {
   static const comingSoon = "Coming soon";
   static const bookCallWithExperts = "Book a call\nwith experts";
   static const startFreakingYourTrip = "Start Freaking\nyour trip";
+  static const yourRecentJournalEntries = "Your recent Journal Entries";
+  static const findExpertsToTalk = "Find experts to talk to for all your queries";
+  static const readMore = "Read more";
 }

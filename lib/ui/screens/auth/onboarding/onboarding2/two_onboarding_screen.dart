@@ -83,34 +83,32 @@ class TwoOnboardingScreenState extends State<TwoOnboardingScreen> {
               ],
             ),
           ),
-          body: SafeArea(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 15.w),
-              child: Column(
-                children: [
-                  SizedBox(height: 20.h,),
-                  AppConstants.CommonProgressIndicator(value: 0.68,color: RED_DARK),
-                  SizedBox(height: 20.h,),
-                  Expanded(
-                    child: SingleChildScrollView(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(Strings.isThereAnything,style: Styles.textFontBold(size: 28,color: RED_DARK),),
-                          SizedBox(height: 13.h,),
-                          Text(Strings.weCanConnectYouWithTheRightPerson,style: Styles.textFontMedium(size: 13,color: GREY_COLOR),),
-                          SizedBox(height: 15.h,),
-                          commonList(),
+          body: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 15.w),
+            child: Column(
+              children: [
+                SizedBox(height: 45.h,),
+                AppConstants.CommonProgressIndicator(value: 0.68,color: RED_DARK),
+                SizedBox(height: 20.h,),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(Strings.isThereAnything,style: Styles.textFontBold(size: 28,color: RED_DARK),),
+                        SizedBox(height: 13.h,),
+                        Text(Strings.weCanConnectYouWithTheRightPerson,style: Styles.textFontMedium(size: 13,color: GREY_COLOR),),
+                        SizedBox(height: 15.h,),
+                        commonList(),
 
-                         
 
-                        ],
-                      ),
+
+                      ],
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),

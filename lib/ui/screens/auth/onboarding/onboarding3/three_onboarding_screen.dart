@@ -56,68 +56,66 @@ class ThreeOnboardingScreenState extends State<ThreeOnboardingScreen> {
         child: Scaffold(
           backgroundColor: WHITE,
           // bottomNavigationBar:
-          body: SafeArea(
-            child: Container(
-              height: 1.sh,
-              width: 1.sw,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    Color(0xFFFFFCDF),
-                    Color(0xFFF9FDFF),
-                    Color(0xFFFFF5F8),
-                  ],
-                ),
+          body: Container(
+            height: 1.sh,
+            width: 1.sw,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  Color(0xFFFFFCDF),
+                  Color(0xFFF9FDFF),
+                  Color(0xFFFFF5F8),
+                ],
               ),
-              child: Column(
-                children: [
-                  SizedBox(height: 20.h,),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 15.w),
-                    child: AppConstants.CommonProgressIndicator2(),
-                  ),
-                  SizedBox(height: 20.h,),
-                  Expanded(
-                    child: SingleChildScrollView(
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 15.w),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                          GradientText(
-                          text: Strings.youAreReadyToShine,
-                          style: Styles.textFontBold(size: 28,),
-                          gradient: LinearGradient(
-                            colors: [Color(0xFF86D8FF), Color(0xFFFF9FB2), Color(0xFFFFD18E)],
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                          ),
-                          ),
-                            SizedBox(height: 13.h,),
-                            Text(Strings.weCanConnectYouWithTheRightPerson,style: Styles.textFontMedium(size: 13,color: GREY_COLOR),),
-                            SizedBox(height: 35.h,),
-
-                            CommonWidget(icon: AppSvgIcons.iconB3Icon1, text: "Talk to people who understand you."),
-                            CommonWidget(icon: AppSvgIcons.iconB3Icon2, text: "Get expert advice from professionals."),
-                            CommonWidget(icon: AppSvgIcons.iconB3Icon3, text: "Go on trips and meet exciting new people.")
-
-
-                          ],
+            ),
+            child: Column(
+              children: [
+                SizedBox(height: 45.h,),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 15.w),
+                  child: AppConstants.CommonProgressIndicator2(),
+                ),
+                SizedBox(height: 20.h,),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 15.w),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                        GradientText(
+                        text: Strings.youAreReadyToShine,
+                        style: Styles.textFontBold(size: 28,),
+                        gradient: LinearGradient(
+                          colors: [Color(0xFF86D8FF), Color(0xFFFF9FB2), Color(0xFFFFD18E)],
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
                         ),
+                        ),
+                          SizedBox(height: 13.h,),
+                          Text(Strings.weCanConnectYouWithTheRightPerson,style: Styles.textFontMedium(size: 13,color: GREY_COLOR),),
+                          SizedBox(height: 35.h,),
+
+                          CommonWidget(icon: AppSvgIcons.iconB3Icon1, text: "Talk to people who understand you."),
+                          CommonWidget(icon: AppSvgIcons.iconB3Icon2, text: "Get expert advice from professionals."),
+                          CommonWidget(icon: AppSvgIcons.iconB3Icon3, text: "Go on trips and meet exciting new people.")
+
+
+                        ],
                       ),
                     ),
                   ),
-                  AppConstants.CommonButtom(
-                      text: Strings.txtContinue,
-                      onTap: (){
-                        Get.offNamedUntil(Routes.dashboard,(route) => false);
-                      }
-                  ),
-                ],
-              ),
+                ),
+                AppConstants.CommonButtom(
+                    text: Strings.txtContinue,
+                    onTap: (){
+                      Get.offNamedUntil(Routes.dashboard,(route) => false);
+                    }
+                ),
+              ],
             ),
           ),
         ),

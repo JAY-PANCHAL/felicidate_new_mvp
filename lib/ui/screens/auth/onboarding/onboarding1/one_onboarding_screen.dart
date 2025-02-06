@@ -65,44 +65,42 @@ class OneOnboardingScreenState extends State<OneOnboardingScreen> {
 
               }
           ),
-          body: SafeArea(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 15.w),
-              child: Column(
-                children: [
-                  SizedBox(height: 20.h,),
-                  AppConstants.CommonProgressIndicator(value: 0.32),
-                  SizedBox(height: 20.h,),
-                  Expanded(
-                    child: SingleChildScrollView(
-                      child: Form(
-                        key: oneOnboardingController.formKey,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(Strings.tellMoreAboutYou,style: Styles.textFontBold(size: 30,color: DARK_GREY),),
-                            SizedBox(height: 13.h,),
-                            Text(Strings.weSupportBothListeners,style: Styles.textFontMedium(size: 13,color: GREY_COLOR),),
-                            SizedBox(height: 35 .h,),
-                            nameWidget(),
-                            SizedBox(height: 13.h,),
-                            emailWidget(),
-                            SizedBox(height: 4.h,),
-                            Text(Strings.notSendYouAnyPromotionalMails,style: Styles.textFontMedium(size: 10,color: DARK_GREY),),
-                            SizedBox(height: 13.h,),
-                            ageWidget(),
-                            SizedBox(height: 13.h,),
-                            locationWidget(),
-                            SizedBox(height: 13.h,),
+          body: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 15.w),
+            child: Column(
+              children: [
+                SizedBox(height: 45.h,),
+                AppConstants.CommonProgressIndicator(value: 0.32),
+                SizedBox(height: 20.h,),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Form(
+                      key: oneOnboardingController.formKey,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(Strings.tellMoreAboutYou,style: Styles.textFontBold(size: 30,color: DARK_GREY),),
+                          SizedBox(height: 13.h,),
+                          Text(Strings.weSupportBothListeners,style: Styles.textFontMedium(size: 13,color: GREY_COLOR),),
+                          SizedBox(height: 35 .h,),
+                          nameWidget(),
+                          SizedBox(height: 13.h,),
+                          emailWidget(),
+                          SizedBox(height: 4.h,),
+                          Text(Strings.notSendYouAnyPromotionalMails,style: Styles.textFontMedium(size: 10,color: DARK_GREY),),
+                          SizedBox(height: 13.h,),
+                          ageWidget(),
+                          SizedBox(height: 13.h,),
+                          locationWidget(),
+                          SizedBox(height: 13.h,),
 
-                          ],
-                        ),
+                        ],
                       ),
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),

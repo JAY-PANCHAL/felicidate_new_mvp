@@ -57,50 +57,48 @@ class PhoneOtpScreenState extends State<PhoneOtpScreen> {
                 Get.toNamed(Routes.oneOnboardingScreen);
               }
           ),
-          body: SafeArea(
-            child: Container(
-              width: 1.sw,
-              height: 1.sh,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    LIGHT_BLUE2,
-                    LIGHT_BLUE1,
-                  ],
-                ),
+          body: Container(
+            width: 1.sw,
+            height: 1.sh,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  LIGHT_BLUE2,
+                  LIGHT_BLUE1,
+                ],
               ),
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20.w),
-                child: SingleChildScrollView(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(height: 25.h,),
-                      Text(Strings.startedWithYourNumber,style: Styles.textFontBold(size: 30,color: BLUE_COLOR),),
-                      SizedBox(height: 20.h,),
-                      Text.rich(
-                        TextSpan(
-                            children: [
-                              TextSpan(text: Strings.sFor,style: Styles.textFontMedium(size: 16,color: GREY_COLOR),),
-                              TextSpan(text: phoneOtpController.number.value,style: Styles.textFontMedium(size: 16),),
-                            ]
-                        ),
+            ),
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20.w),
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(height: 45.h,),
+                    Text(Strings.startedWithYourNumber,style: Styles.textFontBold(size: 30,color: BLUE_COLOR),),
+                    SizedBox(height: 20.h,),
+                    Text.rich(
+                      TextSpan(
+                          children: [
+                            TextSpan(text: Strings.sFor,style: Styles.textFontMedium(size: 16,color: GREY_COLOR),),
+                            TextSpan(text: phoneOtpController.number.value,style: Styles.textFontMedium(size: 16),),
+                          ]
                       ),
-                      SizedBox(height: 20.h,),
-                      otpWidget(),
-                      Text.rich(
-                        TextSpan(
-                            children: [
-                              TextSpan(text: Strings.didNotGetOtp,style: Styles.textFontMedium(size: 14,color: GREY_COLOR),),
-                              TextSpan(text: Strings.sendOtpAgain,style: TextStyle(fontSize: 14,fontWeight: FontWeight.w700,color: BLUE_COLOR,fontFamily: AppConstants.fontFamilySatoshi,decoration: TextDecoration.underline),),
-                            ]
-                        ),
+                    ),
+                    SizedBox(height: 20.h,),
+                    otpWidget(),
+                    Text.rich(
+                      TextSpan(
+                          children: [
+                            TextSpan(text: Strings.didNotGetOtp,style: Styles.textFontMedium(size: 14,color: GREY_COLOR),),
+                            TextSpan(text: Strings.sendOtpAgain,style: TextStyle(fontSize: 14,fontWeight: FontWeight.w700,color: BLUE_COLOR,fontFamily: AppConstants.fontFamilySatoshi,decoration: TextDecoration.underline),),
+                          ]
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ),

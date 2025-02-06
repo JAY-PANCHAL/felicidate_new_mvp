@@ -47,44 +47,52 @@ class HomeScreenState extends State<HomeScreen> {
         inAsyncCall: homeController.isLoading.value,
         child: Scaffold(
           backgroundColor: WHITE,
-          body: SafeArea(
-            child: Container(
-              height: 1.sh,
-              width: 1.sw,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    Color(0xFFFFF5F8),
-                    Color(0xFFF5FBFD),
-                    Color(0xFFF8F6E6),
-                  ],
-                ),
+          body: Container(
+            height: 1.sh,
+            width: 1.sw,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  Color(0xFFFFF5F8),
+                  Color(0xFFF5FBFD),
+                  Color(0xFFF8F6E6),
+                ],
               ),
-              child: SingleChildScrollView(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 15.w),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(height: 20.h,),
-                      Text(Strings.helloUser,style: Styles.textFontBold(size: 26,fontFamily: AppConstants.fontFamilyOgg,)),
-                      SizedBox(height: 20.h,),
-                      feelingWidget(),
-                      SizedBox(height: 20.h,),
-                      feturesWidget(),
-                      SizedBox(height: 20.h,),
-                      Text(Strings.recentlyTalkedWith,style: Styles.textFontMedium(size: 16,)),
-                      SizedBox(height: 10.h,),
-                      recentlyTalkedWith(),
-                      SizedBox(height: 10.h,),
+            ),
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 15.w),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(height: 40.h,),
+                    Text(Strings.helloUser,style: Styles.textFontBold(size: 26,fontFamily: AppConstants.fontFamilyOgg,)),
+                    SizedBox(height: 20.h,),
+                    feelingWidget(),
+                    SizedBox(height: 20.h,),
+                    feturesWidget(),
+                    SizedBox(height: 20.h,),
+                    Text(Strings.recentlyTalkedWith,style: Styles.textFontMedium(size: 16,)),
+                    SizedBox(height: 10.h,),
+                    recentlyTalkedWith(),
+                    SizedBox(height: 20.h,),
+                    Text(Strings.yourRecentJournalEntries,style: Styles.textFontMedium(size: 16,)),
+                    SizedBox(height: 3.h,),
+                    Text(Strings.findExpertsToTalk,style: Styles.textFontRegular(size: 10,)),
+                    SizedBox(height: 10.h,),
+
+                    yourRecentJournal(),
+                    SizedBox(height: 10.h,),
+                    yourRecentJournalList(),
+
+                    SizedBox(height: 80.h,),
 
 
 
-                    ],
-                  ),
+                  ],
                 ),
               ),
             ),
@@ -183,7 +191,7 @@ class HomeScreenState extends State<HomeScreen> {
                   child: Text(Strings.feliFriend,style: Styles.textFontBold(size: 10,color:HOME_RED_LIGHT  ),),
                 ),
                 SizedBox(height: 8.h,),
-                Text("Rohit Kadam",style: Styles.textFontBold(size: 17,color:RED_DARK  ),),
+                Text("Rohit Kadam",style: Styles.textFontMedium(size: 17,color:RED_DARK  ),),
                 // SizedBox(height: 10.h,),
                 Text("Lorem ipsum dolor sit amet consectetur. Magnis id.",style: Styles.textFontRegular(size: 10),),
                 SizedBox(height: 5.h,),
@@ -440,5 +448,89 @@ class HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  Widget yourRecentJournal(){
+    return  SizedBox(
+      height: 32.h,
+      child: ListView.separated(
+        itemCount: 3,
+        shrinkWrap: true,
+        scrollDirection: Axis.horizontal,
+        itemBuilder: (BuildContext context, int index) {
+          return  Container(
+            height: 32.h,
+            alignment: Alignment.center,
+            padding: EdgeInsets.symmetric(horizontal: 15.w),
+            decoration: BoxDecoration(
+              color: index== 0 ? LIGHT_GREY_COLOR3 : WHITE,
+              boxShadow: [
+                AppConstants().commonBoxShadow(color: GRAY_COLOR_LIGHT)
+              ],
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Text("${24+index}th Sep 2025",style: Styles.textFontMedium(size: 12),),
+          );
+        },
+        separatorBuilder: (BuildContext context, int index) {
+          return SizedBox(width: 10.w,);
+        },),
+    );
+  }
+
+
+  Widget yourRecentJournalList(){
+    return SizedBox(
+      height: 1.sh * 0.24,
+      child: ListView.separated(
+        itemCount: 3,
+        shrinkWrap: true,
+        scrollDirection: Axis.horizontal,
+        itemBuilder: (BuildContext context, int index) {
+          return Container(
+            width: 1.sw * 0.42,
+            padding: EdgeInsets.symmetric(horizontal: 13.w,vertical: 13.h),
+            decoration: BoxDecoration(
+              color: WHITE,
+              borderRadius: BorderRadius.circular(16),
+              boxShadow: [
+                AppConstants().commonBoxShadow(color: LIGHT_GREY_COLOR2)
+              ],
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+
+                Text("Day one in my",style: Styles.textFontMedium(size: 16,),),
+                SizedBox(height: 3.h,),
+                Text("Lorem ipsum dolor sit amet consectetur. Enim phasellus nulla parturient ",style: Styles.textFontRegular(size: 10),),
+
+
+
+                Spacer(),
+
+                Container(
+                  width: 1.sw,
+                  padding: EdgeInsets.symmetric(vertical: 8.h),
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    color: LIGHT_GREY_COLOR3,
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: Text(Strings.readMore,style: Styles.textFontRegular(size: 10,),),
+                ),
+                // SizedBox(height: 8.h,),
+
+
+              ],
+            ),
+          );
+        },
+        separatorBuilder: (BuildContext context, int index) {
+          return SizedBox(width: 10.w,);
+        },
+      ),
+    );
+  }
 
 }
