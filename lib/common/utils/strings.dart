@@ -186,4 +186,7 @@ class Strings {
   static const yourRecentJournalEntries = "Your recent Journal Entries";
   static const findExpertsToTalk = "Find experts to talk to for all your queries";
   static const readMore = "Read more";
+  static const talkToANewFeliFriend = "Talk to a new Feli-Friend, it’s free!";
+  static const yourFavourite = "Your Favourite";
+  static const talkWithOurExperts= "Talk with our experts!";
 }

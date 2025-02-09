@@ -1,4 +1,5 @@
 import 'package:felicidade/ui/screens/dashboard/profile/profile_screen.dart';
+import 'package:felicidade/ui/screens/dashboard/talk/talk_screen.dart';
 import 'package:felicidade/ui/screens/dashboard/trip/trip_screen.dart';
 import 'package:felicidade/ui/widget/constants/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -193,14 +194,6 @@ class CustomBottomNavBar extends StatelessWidget {
 
 
 
-class TalkScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(child: Text("Talk Screen")),
-    );
-  }
-}
 
 
 

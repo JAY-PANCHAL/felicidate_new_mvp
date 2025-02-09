@@ -48,6 +48,7 @@ class AppSvgIcons {
   static const String writeYourIcon = 'assets/icons/svgIcons/write_your_icon.svg';
   static const String bookCallIcon = 'assets/icons/svgIcons/book_call_icon.svg';
   static const String startTripIconIcon = 'assets/icons/svgIcons/start_trip_icon.svg';
+  static const String callTalkIcon = 'assets/icons/svgIcons/call_talk_icon.svg';
 
 
 }
@@ -58,6 +59,8 @@ class AppPngIcons {
   static const String loadingScreenIcon = 'assets/icons/pngIcons/loading_screen_icon.png';
   static const String expertBackIcon = 'assets/icons/svgIcons/expert_back.png';
   static const String tripBackIcon = 'assets/icons/svgIcons/trip_back.png';
+  static const String talkBackIcon = 'assets/icons/pngIcons/talk_back_icon.png';
+  static const String manImage = 'assets/icons/pngIcons/man_image.png';
 
 
 
