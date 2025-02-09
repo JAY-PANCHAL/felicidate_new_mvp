@@ -1,5 +1,16 @@
+import '../../common/utils/shared_pref_utils.dart';
+
 class Endpoints {
   Endpoints._();
+
+
+  static Map<String, dynamic> getCommonParam() {
+    Map<String, dynamic> params = {
+      KEY_DEVICE_ID: getDeviceId(),
+    };
+    return params;
+  }
+
   // base url uat
    //static const String baseUrl = ""; //UAT
 //base url live

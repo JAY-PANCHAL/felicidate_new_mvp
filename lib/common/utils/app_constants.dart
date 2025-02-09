@@ -49,6 +49,32 @@ class AppConstants {
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
+
+  static showGetSnackBar(titleText, message, color) {
+    Get.closeCurrentSnackbar();
+    if (Get.isSnackbarOpen == true) {
+      Get.closeAllSnackbars();
+    }
+
+    return Get.snackbar(
+      'Success',
+      message,
+      duration: const Duration(seconds: 3),
+      snackPosition: SnackPosition.BOTTOM,
+      backgroundColor: color,
+      colorText: Colors.white,
+      titleText: Text(
+        titleText,
+        style: Styles.textFontMedium(size: 12,color: WHITE),
+      ),
+      messageText: Text(
+        message,
+        style: Styles.textFontMedium(size: 10,color: WHITE),
+      ),
+    );
+  }
+
+
   static String getDeviceType() {
     //1 for iOS, 2 for Android
     if (Platform.isIOS) {

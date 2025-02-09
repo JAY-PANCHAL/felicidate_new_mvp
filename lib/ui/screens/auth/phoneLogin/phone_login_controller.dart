@@ -1,14 +1,24 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:felicidade/common/dependency_injection.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../common/service_locator.dart';
+import '../../../../common/utils/app_constants.dart';
 import '../../../../controller/base_controller.dart';
+import '../../../../network/api/Felicidade_repository.dart';
+import '../../../../network/constant/endpoints.dart';
+import '../../../widget/constants/app_colors.dart';
 
 
 
 class PhoneLoginController extends BaseController {
+
+
+  final repository = getIt.get<FelicidadeRepository>();
+
 
   final formKey = GlobalKey<FormState>();
 
@@ -49,5 +59,42 @@ class PhoneLoginController extends BaseController {
 
 
 
+  Future<void> apiCallForLogin(context) async {
+    isLoading.value = true;
+
+
+    Map<String, dynamic> params = Endpoints.getCommonParam();
+    params['email'] = "";
+    params['password'] = "";
+
+    await repository.loginRequested(params, context).then((value) async {
+      isLoading.value = false;
+      var data = jsonDecode(value);
+      if (data != null) {
+        // LoginModel model = LoginModel.fromJson(data);
+        // if (model.status == AppConstants.status200) {
+        //   await setUser(model);
+        //   await SpUtil.putString(ACCESS_TOKEN, model.data?.accessToken??"");
+        //   // print('==> Auth token : ${model.data?.accessToken}');
+        //   // AppConstants.showToast(model.message,context);
+        //   if(model.data?.subscriptionData?.id==null){
+        //     Get.offNamedUntil(Routes.accountSubscriptionScreen,(route) => false);
+        //   }
+        //   else{
+        //     Get.offNamedUntil(Routes.telepecasScreen,(route) => false);
+        //   }
+        // }
+      }
+    }, onError: (e) {
+      isLoading.value = false;
+      if (e.toString().contains("noInternet")) {
+        AppConstants.showSnackBar(e, context, () {
+          apiCallForLogin(context);
+        });
+      } else {
+        AppConstants.showGetSnackBar("Hold Up!", e,RED);
+      }
+    });
+  }
 
 }
