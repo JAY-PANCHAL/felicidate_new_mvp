@@ -9,7 +9,10 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import '../../../../../common/utils/app_constants.dart';
 import '../../../../common/utils/Styles.dart';
 import '../../../../common/utils/image_paths.dart';
+import '../../../../common/utils/shared_pref_utils.dart';
 import '../../../../common/utils/strings.dart';
+import '../../../../routes/app_pages.dart';
+import '../../../widget/common_widgets.dart';
 import '../../../widget/image_view.dart';
 
 
@@ -155,33 +158,46 @@ class ProfileScreenState extends State<ProfileScreen> {
                     ),
                   ),
                   Spacer(),
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 15.w,vertical: 12.h),
-                    decoration: BoxDecoration(
-                        borderRadius:BorderRadius.circular(16),
-                        color: LIGHT_GREEN
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        ImageView(
-                          width: 25.sp,
-                          height: 25.sp,
-                          boxFit: BoxFit.contain,
-                          image: AppSvgIcons.logOutIcon,
-                          imageType: ImageType.svg,
-                        ),
-                        SizedBox(width: 13.w,),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(Strings.logoutSignOut,style: Styles.textFontBold(size: 16),),
-                            Text(Strings.logoutOfOurApp,style: Styles.textFontRegular(size: 16,color: DIVIDER_COLOR),),
-                          ],
-                        )
-                      ],
+                  GestureDetector(
+                    onTap: (){
+                      showConfirmAlertDialog(
+                          Strings.logoutMessage,
+                          Strings.yes,
+                          Strings.no,
+                          context: context,
+                          positiveButtonClick: () {
+                        onLogout();
+                        Get.offNamedUntil(Routes.splash, (route) => false);
+                      });
+                    },
+                    child: Container(
+                      padding: EdgeInsets.symmetric(horizontal: 15.w,vertical: 12.h),
+                      decoration: BoxDecoration(
+                          borderRadius:BorderRadius.circular(16),
+                          color: LIGHT_GREEN
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          ImageView(
+                            width: 25.sp,
+                            height: 25.sp,
+                            boxFit: BoxFit.contain,
+                            image: AppSvgIcons.logOutIcon,
+                            imageType: ImageType.svg,
+                          ),
+                          SizedBox(width: 13.w,),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(Strings.logoutSignOut,style: Styles.textFontBold(size: 16),),
+                              Text(Strings.logoutOfOurApp,style: Styles.textFontRegular(size: 16,color: DIVIDER_COLOR),),
+                            ],
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ],

@@ -15,10 +15,10 @@ class   FelicidadeRepository {
   FelicidadeRepository(this.oeHealthApi);
 
 
-  Future<String> loginRequested(params, context) async {
+  Future<String> loginMobileRequested(params, context) async {
     try {
       final response = await oeHealthApi.loadPostData(
-          Endpoints.login,params, context);
+          Endpoints.loginMobile,params, context);
       return response;
     } on DioException catch (e) {
       final errorMessage = DioExceptions.fromDioError(e).toString();

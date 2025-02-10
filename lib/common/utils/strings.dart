@@ -6,8 +6,7 @@ class Strings {
 
 
   //change scope mode
-  static const String yes = 'Yes';
-  static const String no = 'No';
+
   static const dayFormat = 'dd';
 
   //validation
@@ -189,4 +188,7 @@ class Strings {
   static const talkToANewFeliFriend = "Talk to a new Feli-Friend, it’s free!";
   static const yourFavourite = "Your Favourite";
   static const talkWithOurExperts= "Talk with our experts!";
+  static const String yes = 'Yes';
+  static const String no = 'No';
+  static const String logoutMessage = 'Do you want to logout?';
 }

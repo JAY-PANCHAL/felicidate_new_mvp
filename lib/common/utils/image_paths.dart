@@ -50,6 +50,9 @@ class AppSvgIcons {
   static const String startTripIconIcon = 'assets/icons/svgIcons/start_trip_icon.svg';
   static const String callTalkIcon = 'assets/icons/svgIcons/call_talk_icon.svg';
 
+  static final String icClose = 'assets/icons/svgIcons/ic_close.svg';
+
+
 
 }
 

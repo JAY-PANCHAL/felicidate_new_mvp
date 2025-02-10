@@ -67,7 +67,7 @@ class PhoneLoginController extends BaseController {
     params['email'] = "";
     params['password'] = "";
 
-    await repository.loginRequested(params, context).then((value) async {
+    await repository.loginMobileRequested(params, context).then((value) async {
       isLoading.value = false;
       var data = jsonDecode(value);
       if (data != null) {

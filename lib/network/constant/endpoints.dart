@@ -14,7 +14,7 @@ class Endpoints {
   // base url uat
    //static const String baseUrl = ""; //UAT
 //base url live
-    static const String baseUrl = "";//Live
+    static const String baseUrl = "https://hkdbrothers.com/felicidade/api/talker";//Live
 
   static const int receiveTimeout = 15; //15000;
   // connectTimeout
@@ -24,9 +24,6 @@ class Endpoints {
 
 
   static const String languageCode = 'en';
-  static const String login = '/user/login';
-  static const String token = '/request/token';
-  static const String getUser ="/get-user-details/";
-
+  static const String loginMobile = '/mobile-login';
 
 }
