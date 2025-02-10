@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 
 import '../../../../common/service_locator.dart';
 import '../../../../common/utils/app_constants.dart';
+import '../../../../common/utils/strings.dart';
 import '../../../../controller/base_controller.dart';
 import '../../../../network/api/Felicidade_repository.dart';
 import '../../../../network/constant/endpoints.dart';
@@ -87,7 +88,7 @@ class PhoneLoginController extends BaseController {
       }
     }, onError: (e) {
       isLoading.value = false;
-      if (e.toString().contains("noInternet")) {
+      if (e.toString().contains(Strings.noInternet)) {
         AppConstants.showSnackBar(e, context, () {
           apiCallForLogin(context);
         });

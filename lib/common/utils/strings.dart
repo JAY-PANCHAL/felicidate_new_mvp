@@ -191,4 +191,5 @@ class Strings {
   static const String yes = 'Yes';
   static const String no = 'No';
   static const String logoutMessage = 'Do you want to logout?';
+  static const String noInternet = 'No Internet';
 }
