@@ -9,9 +9,9 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import '../../../../../common/utils/app_constants.dart';
 import '../../../../common/utils/Styles.dart';
 import '../../../../common/utils/strings.dart';
+import '../../../../routes/app_pages.dart';
 import '../../../widget/image_view.dart';
 import 'home_conroller.dart';
-
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -33,8 +33,6 @@ class HomeScreenState extends State<HomeScreen> {
     super.dispose();
     Get.delete<HomeController>();
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -68,30 +66,58 @@ class HomeScreenState extends State<HomeScreen> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(height: 40.h,),
-                    Text(Strings.helloUser,style: Styles.textFontBold(size: 26,fontFamily: AppConstants.fontFamilyOgg,)),
-                    SizedBox(height: 20.h,),
+                    SizedBox(
+                      height: 40.h,
+                    ),
+                    Text(Strings.helloUser,
+                        style: Styles.textFontBold(
+                          size: 26,
+                          fontFamily: AppConstants.fontFamilyOgg,
+                        )),
+                    SizedBox(
+                      height: 20.h,
+                    ),
                     feelingWidget(),
-                    SizedBox(height: 20.h,),
+                    SizedBox(
+                      height: 20.h,
+                    ),
                     feturesWidget(),
-                    SizedBox(height: 20.h,),
-                    Text(Strings.recentlyTalkedWith,style: Styles.textFontMedium(size: 16,)),
-                    SizedBox(height: 10.h,),
+                    SizedBox(
+                      height: 20.h,
+                    ),
+                    Text(Strings.recentlyTalkedWith,
+                        style: Styles.textFontMedium(
+                          size: 16,
+                        )),
+                    SizedBox(
+                      height: 10.h,
+                    ),
                     recentlyTalkedWith(),
-                    SizedBox(height: 20.h,),
-                    Text(Strings.yourRecentJournalEntries,style: Styles.textFontMedium(size: 16,)),
-                    SizedBox(height: 3.h,),
-                    Text(Strings.findExpertsToTalk,style: Styles.textFontRegular(size: 10,)),
-                    SizedBox(height: 10.h,),
-
+                    SizedBox(
+                      height: 20.h,
+                    ),
+                    Text(Strings.yourRecentJournalEntries,
+                        style: Styles.textFontMedium(
+                          size: 16,
+                        )),
+                    SizedBox(
+                      height: 3.h,
+                    ),
+                    Text(Strings.findExpertsToTalk,
+                        style: Styles.textFontRegular(
+                          size: 10,
+                        )),
+                    SizedBox(
+                      height: 10.h,
+                    ),
                     yourRecentJournal(),
-                    SizedBox(height: 10.h,),
+                    SizedBox(
+                      height: 10.h,
+                    ),
                     yourRecentJournalList(),
-
-                    SizedBox(height: 80.h,),
-
-
-
+                    SizedBox(
+                      height: 80.h,
+                    ),
                   ],
                 ),
               ),
@@ -99,27 +125,29 @@ class HomeScreenState extends State<HomeScreen> {
           ),
         ),
       );
-    }
-    );
+    });
   }
 
-  Widget feelingWidget(){
+  Widget feelingWidget() {
     return Container(
       width: 1.sw,
-      padding: EdgeInsets.symmetric(vertical: 7.h,horizontal: 10.w),
+      padding: EdgeInsets.symmetric(vertical: 7.h, horizontal: 10.w),
       decoration: BoxDecoration(
         color: WHITE,
         borderRadius: BorderRadius.circular(10),
-        boxShadow: [
-          AppConstants().commonBoxShadow()
-        ],
+        boxShadow: [AppConstants().commonBoxShadow()],
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(Strings.howAreYouFeeling,style: Styles.textFontBold(size: 14,)),
-          SizedBox(height: 10.h,),
+          Text(Strings.howAreYouFeeling,
+              style: Styles.textFontBold(
+                size: 14,
+              )),
+          SizedBox(
+            height: 10.h,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -130,32 +158,27 @@ class HomeScreenState extends State<HomeScreen> {
               commonFeeling(icon: AppSvgIcons.fe5Icon),
             ],
           ),
-
         ],
       ),
     );
   }
 
-
-  Widget commonFeeling({String? icon}){
+  Widget commonFeeling({String? icon}) {
     return Container(
-      decoration: BoxDecoration(
-        boxShadow: [
-          AppConstants().commonBoxShadow(blurRadius: 5,color: DIVIDER_COLOR2)
-        ]
-      ),
+      decoration: BoxDecoration(boxShadow: [
+        AppConstants().commonBoxShadow(blurRadius: 5, color: DIVIDER_COLOR2)
+      ]),
       child: ImageView(
         width: 55.sp,
         height: 55.sp,
         boxFit: BoxFit.contain,
-        image: icon??AppSvgIcons.fe1Icon,
+        image: icon ?? AppSvgIcons.fe1Icon,
         imageType: ImageType.svg,
       ),
     );
   }
 
-
-  Widget recentlyTalkedWith(){
+  Widget recentlyTalkedWith() {
     return SizedBox(
       height: 1.sh * 0.316,
       child: ListView.separated(
@@ -165,7 +188,7 @@ class HomeScreenState extends State<HomeScreen> {
         itemBuilder: (BuildContext context, int index) {
           return Container(
             width: 1.sw * 0.42,
-            padding: EdgeInsets.symmetric(horizontal: 13.w,vertical: 13.h),
+            padding: EdgeInsets.symmetric(horizontal: 13.w, vertical: 13.h),
             decoration: BoxDecoration(
               color: WHITE,
               borderRadius: BorderRadius.circular(16),
@@ -179,26 +202,42 @@ class HomeScreenState extends State<HomeScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  padding: EdgeInsets.symmetric(horizontal: 12.w,vertical: 6.h),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
                   decoration: BoxDecoration(
                       color: WHITE,
-                      boxShadow: [
-                        AppConstants().commonBoxShadow()
-                      ],
+                      boxShadow: [AppConstants().commonBoxShadow()],
                       borderRadius: BorderRadius.circular(5),
-                      border: Border.all(color: HOME_RED_LIGHT,width: 0.5)
+                      border: Border.all(color: HOME_RED_LIGHT, width: 0.5)),
+                  child: Text(
+                    Strings.feliFriend,
+                    style: Styles.textFontBold(size: 10, color: HOME_RED_LIGHT),
                   ),
-                  child: Text(Strings.feliFriend,style: Styles.textFontBold(size: 10,color:HOME_RED_LIGHT  ),),
                 ),
-                SizedBox(height: 8.h,),
-                Text("Rohit Kadam",style: Styles.textFontMedium(size: 17,color:RED_DARK  ),),
+                SizedBox(
+                  height: 8.h,
+                ),
+                Text(
+                  "Rohit Kadam",
+                  style: Styles.textFontMedium(size: 17, color: RED_DARK),
+                ),
                 // SizedBox(height: 10.h,),
-                Text("Lorem ipsum dolor sit amet consectetur. Magnis id.",style: Styles.textFontRegular(size: 10),),
-                SizedBox(height: 5.h,),
+                Text(
+                  "Lorem ipsum dolor sit amet consectetur. Magnis id.",
+                  style: Styles.textFontRegular(size: 10),
+                ),
+                SizedBox(
+                  height: 5.h,
+                ),
 
-                Text("24th Sep 2024  12:00 Min",style: Styles.textFontMedium(size: 10,color:RED_DARK  ),),
+                Text(
+                  "24th Sep 2024  12:00 Min",
+                  style: Styles.textFontMedium(size: 10, color: RED_DARK),
+                ),
 
-                SizedBox(height: 25.h,),
+                SizedBox(
+                  height: 25.h,
+                ),
 
                 Container(
                   width: 1.sw,
@@ -208,9 +247,14 @@ class HomeScreenState extends State<HomeScreen> {
                     color: HOME_RED_LIGHT2,
                     borderRadius: BorderRadius.circular(15),
                   ),
-                  child: Text(Strings.callNow,style: Styles.textFontRegular(size: 10,color: RED_DARK  ),),
+                  child: Text(
+                    Strings.callNow,
+                    style: Styles.textFontRegular(size: 10, color: RED_DARK),
+                  ),
                 ),
-                SizedBox(height: 8.h,),
+                SizedBox(
+                  height: 8.h,
+                ),
                 Container(
                   width: 1.sw,
                   padding: EdgeInsets.symmetric(vertical: 8.h),
@@ -218,23 +262,26 @@ class HomeScreenState extends State<HomeScreen> {
                   decoration: BoxDecoration(
                       color: WHITE,
                       borderRadius: BorderRadius.circular(15),
-                      border: Border.all(color: RED_DARK,width: 0.5)
+                      border: Border.all(color: RED_DARK, width: 0.5)),
+                  child: Text(
+                    Strings.feliFriend,
+                    style: Styles.textFontRegular(size: 10, color: RED_DARK),
                   ),
-                  child: Text(Strings.feliFriend,style: Styles.textFontRegular(size: 10,color:RED_DARK  ),),
                 ),
-
               ],
             ),
           );
         },
         separatorBuilder: (BuildContext context, int index) {
-          return SizedBox(width: 10.w,);
+          return SizedBox(
+            width: 10.w,
+          );
         },
       ),
     );
   }
 
-  Widget feturesWidget(){
+  Widget feturesWidget() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -265,25 +312,40 @@ class HomeScreenState extends State<HomeScreen> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: 10.h,),
+                  SizedBox(
+                    height: 10.h,
+                  ),
                   Align(
                     alignment: Alignment.topRight,
                     child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: 12.w,vertical: 4.h),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 12.w, vertical: 4.h),
                       decoration: BoxDecoration(
                           color: WHITE,
-                          boxShadow: [
-                            AppConstants().commonBoxShadow()
-                          ],
+                          boxShadow: [AppConstants().commonBoxShadow()],
                           borderRadius: BorderRadius.circular(5),
-                          border: Border.all(color: HOME_RED_LIGHT,width: 0.5)
+                          border:
+                              Border.all(color: HOME_RED_LIGHT, width: 0.5)),
+                      child: Text(
+                        Strings.itFree,
+                        style: Styles.textFontBold(
+                            size: 10, color: HOME_RED_LIGHT),
                       ),
-                      child: Text(Strings.itFree  ,style: Styles.textFontBold(size: 10,color:HOME_RED_LIGHT  ),),
                     ),
                   ),
-                  SizedBox(height: 15.h,),
-                  Text(Strings.talkWithSomeone,style: Styles.textFontBoldHeight(size: 18,color: RED_DARK ,fontFamily: AppConstants.fontFamilyOgg),),
-                  SizedBox(height: 5.h,),
+                  SizedBox(
+                    height: 15.h,
+                  ),
+                  Text(
+                    Strings.talkWithSomeone,
+                    style: Styles.textFontBoldHeight(
+                        size: 18,
+                        color: RED_DARK,
+                        fontFamily: AppConstants.fontFamilyOgg),
+                  ),
+                  SizedBox(
+                    height: 5.h,
+                  ),
                   ImageView(
                     width: 90.sp,
                     height: 90.sp,
@@ -294,42 +356,61 @@ class HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
-            SizedBox(height: 12.h,),
-            Container(
-              width: 1.sw * 0.44,
-              height: 1.sh * 0.25,
-              padding: EdgeInsets.symmetric(horizontal: 13.w),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-                boxShadow: [
-                  AppConstants().commonBoxShadow(color: LIGHT_GREY_COLOR2)
-                ],
-                gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    WHITE,
-                    WHITE,
-                    LIGHT_GREY_COLOR2,
+            SizedBox(
+              height: 12.h,
+            ),
+            InkWell(
+              onTap: () {
+                Get.toNamed(Routes.journalingDashboard);
+              },
+              child: Container(
+                width: 1.sw * 0.44,
+                height: 1.sh * 0.25,
+                padding: EdgeInsets.symmetric(horizontal: 13.w),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                  boxShadow: [
+                    AppConstants().commonBoxShadow(color: LIGHT_GREY_COLOR2)
+                  ],
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      WHITE,
+                      WHITE,
+                      LIGHT_GREY_COLOR2,
+                    ],
+                  ),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      height: 10.h,
+                    ),
+                    ImageView(
+                      width: 90.sp,
+                      height: 90.sp,
+                      boxFit: BoxFit.contain,
+                      image: AppSvgIcons.writeYourIcon,
+                      imageType: ImageType.svg,
+                    ),
+                    SizedBox(
+                      height: 10.h,
+                    ),
+                    Text(
+                      Strings.writeYourThoughtsDown,
+                      style: Styles.textFontBoldHeight(
+                          size: 18,
+                          color: BLACK_COLOR3,
+                          fontFamily: AppConstants.fontFamilyOgg),
+                    ),
+                    SizedBox(
+                      height: 10.h,
+                    ),
                   ],
                 ),
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(height: 10.h,),
-                  ImageView(
-                    width: 90.sp,
-                    height: 90.sp,
-                    boxFit: BoxFit.contain,
-                    image: AppSvgIcons.writeYourIcon,
-                    imageType: ImageType.svg,
-                  ),
-                  SizedBox(height: 10.h,),
-                  Text(Strings.writeYourThoughtsDown,style: Styles.textFontBoldHeight(size: 18,color: BLACK_COLOR3 ,fontFamily: AppConstants.fontFamilyOgg),),
-                  SizedBox(height: 10.h,),
-                ],
               ),
             )
           ],
@@ -360,23 +441,29 @@ class HomeScreenState extends State<HomeScreen> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: 10.h,),
+                  SizedBox(
+                    height: 10.h,
+                  ),
                   Align(
                     alignment: Alignment.topRight,
                     child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: 12.w,vertical: 4.h),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 12.w, vertical: 4.h),
                       decoration: BoxDecoration(
                           color: WHITE,
-                          boxShadow: [
-                            AppConstants().commonBoxShadow()
-                          ],
+                          boxShadow: [AppConstants().commonBoxShadow()],
                           borderRadius: BorderRadius.circular(5),
-                          border: Border.all(color: BLUE_COLOR3,width: 0.5)
+                          border: Border.all(color: BLUE_COLOR3, width: 0.5)),
+                      child: Text(
+                        Strings.comingSoon,
+                        style:
+                            Styles.textFontBold(size: 10, color: BLUE_COLOR3),
                       ),
-                      child: Text(Strings.comingSoon  ,style: Styles.textFontBold(size: 10,color:BLUE_COLOR3  ),),
                     ),
                   ),
-                  SizedBox(height: 15.h,),
+                  SizedBox(
+                    height: 15.h,
+                  ),
                   ImageView(
                     width: 65.sp,
                     height: 65.sp,
@@ -384,18 +471,26 @@ class HomeScreenState extends State<HomeScreen> {
                     image: AppSvgIcons.bookCallIcon,
                     imageType: ImageType.svg,
                   ),
-                  SizedBox(height: 10.h,),
-                  Text(Strings.bookCallWithExperts,style: Styles.textFontBoldHeight(size: 18,color: BLUE_COLOR3 ,fontFamily: AppConstants.fontFamilyOgg),),
-
+                  SizedBox(
+                    height: 10.h,
+                  ),
+                  Text(
+                    Strings.bookCallWithExperts,
+                    style: Styles.textFontBoldHeight(
+                        size: 18,
+                        color: BLUE_COLOR3,
+                        fontFamily: AppConstants.fontFamilyOgg),
+                  ),
                 ],
               ),
             ),
-            SizedBox(height: 12.h,),
+            SizedBox(
+              height: 12.h,
+            ),
             Container(
               width: 1.sw * 0.44,
               height: 1.sh * 0.28,
               padding: EdgeInsets.symmetric(horizontal: 13.w),
-
               decoration: BoxDecoration(
                 boxShadow: [
                   AppConstants().commonBoxShadow(color: LIGHT_GREY_COLOR2)
@@ -414,23 +509,35 @@ class HomeScreenState extends State<HomeScreen> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: 10.h,),
+                  SizedBox(
+                    height: 10.h,
+                  ),
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: 12.w,vertical: 4.h),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 12.w, vertical: 4.h),
                     decoration: BoxDecoration(
                         color: WHITE,
-                        boxShadow: [
-                          AppConstants().commonBoxShadow()
-                        ],
+                        boxShadow: [AppConstants().commonBoxShadow()],
                         borderRadius: BorderRadius.circular(5),
-                        border: Border.all(color: YELLOW_COLOR,width: 0.5)
+                        border: Border.all(color: YELLOW_COLOR, width: 0.5)),
+                    child: Text(
+                      Strings.comingSoon,
+                      style: Styles.textFontBold(size: 10, color: YELLOW_COLOR),
                     ),
-                    child: Text(Strings.comingSoon  ,style: Styles.textFontBold(size: 10,color:YELLOW_COLOR  ),),
                   ),
-                  SizedBox(height: 15.h,),
-                  Text(Strings.startFreakingYourTrip,style: Styles.textFontBoldHeight(size: 18,color: YELLOW_COLOR ,fontFamily: AppConstants.fontFamilyOgg),),
-                  SizedBox(height: 10.h,),
-
+                  SizedBox(
+                    height: 15.h,
+                  ),
+                  Text(
+                    Strings.startFreakingYourTrip,
+                    style: Styles.textFontBoldHeight(
+                        size: 18,
+                        color: YELLOW_COLOR,
+                        fontFamily: AppConstants.fontFamilyOgg),
+                  ),
+                  SizedBox(
+                    height: 10.h,
+                  ),
                   ImageView(
                     width: 65.sp,
                     height: 65.sp,
@@ -438,7 +545,6 @@ class HomeScreenState extends State<HomeScreen> {
                     image: AppSvgIcons.startTripIconIcon,
                     imageType: ImageType.svg,
                   ),
-
                 ],
               ),
             ),
@@ -448,36 +554,41 @@ class HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget yourRecentJournal(){
-    return  SizedBox(
+  Widget yourRecentJournal() {
+    return SizedBox(
       height: 32.h,
       child: ListView.separated(
         itemCount: 3,
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,
         itemBuilder: (BuildContext context, int index) {
-          return  Container(
+          return Container(
             height: 32.h,
             alignment: Alignment.center,
             padding: EdgeInsets.symmetric(horizontal: 15.w),
             decoration: BoxDecoration(
-              color: index== 0 ? LIGHT_GREY_COLOR3 : WHITE,
+              color: index == 0 ? LIGHT_GREY_COLOR3 : WHITE,
               boxShadow: [
                 AppConstants().commonBoxShadow(color: GRAY_COLOR_LIGHT)
               ],
               borderRadius: BorderRadius.circular(8),
             ),
-            child: Text("${24+index}th Sep 2025",style: Styles.textFontMedium(size: 12),),
+            child: Text(
+              "${24 + index}th Sep 2025",
+              style: Styles.textFontMedium(size: 12),
+            ),
           );
         },
         separatorBuilder: (BuildContext context, int index) {
-          return SizedBox(width: 10.w,);
-        },),
+          return SizedBox(
+            width: 10.w,
+          );
+        },
+      ),
     );
   }
 
-
-  Widget yourRecentJournalList(){
+  Widget yourRecentJournalList() {
     return SizedBox(
       height: 1.sh * 0.24,
       child: ListView.separated(
@@ -487,7 +598,7 @@ class HomeScreenState extends State<HomeScreen> {
         itemBuilder: (BuildContext context, int index) {
           return Container(
             width: 1.sw * 0.42,
-            padding: EdgeInsets.symmetric(horizontal: 13.w,vertical: 13.h),
+            padding: EdgeInsets.symmetric(horizontal: 13.w, vertical: 13.h),
             decoration: BoxDecoration(
               color: WHITE,
               borderRadius: BorderRadius.circular(16),
@@ -500,12 +611,19 @@ class HomeScreenState extends State<HomeScreen> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-
-                Text("Day one in my",style: Styles.textFontMedium(size: 16,),),
-                SizedBox(height: 3.h,),
-                Text("Lorem ipsum dolor sit amet consectetur. Enim phasellus nulla parturient ",style: Styles.textFontRegular(size: 10),),
-
-
+                Text(
+                  "Day one in my",
+                  style: Styles.textFontMedium(
+                    size: 16,
+                  ),
+                ),
+                SizedBox(
+                  height: 3.h,
+                ),
+                Text(
+                  "Lorem ipsum dolor sit amet consectetur. Enim phasellus nulla parturient ",
+                  style: Styles.textFontRegular(size: 10),
+                ),
 
                 Spacer(),
 
@@ -517,20 +635,24 @@ class HomeScreenState extends State<HomeScreen> {
                     color: LIGHT_GREY_COLOR3,
                     borderRadius: BorderRadius.circular(15),
                   ),
-                  child: Text(Strings.readMore,style: Styles.textFontRegular(size: 10,),),
+                  child: Text(
+                    Strings.readMore,
+                    style: Styles.textFontRegular(
+                      size: 10,
+                    ),
+                  ),
                 ),
                 // SizedBox(height: 8.h,),
-
-
               ],
             ),
           );
         },
         separatorBuilder: (BuildContext context, int index) {
-          return SizedBox(width: 10.w,);
+          return SizedBox(
+            width: 10.w,
+          );
         },
       ),
     );
   }
-
 }

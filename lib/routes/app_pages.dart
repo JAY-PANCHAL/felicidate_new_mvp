@@ -1,3 +1,5 @@
+import 'package:felicidade/ui/screens/dashboard/journaling/create_story_screen.dart';
+import 'package:felicidade/ui/screens/dashboard/journaling/journaling_dashboard.dart';
 import 'package:get/get.dart';
 
 import '../main.dart';
@@ -51,6 +53,15 @@ class AppPages {
     GetPage(
         name: Routes.threeOnboardingScreen,
         page: () => ThreeOnboardingScreen(),
+        transition: Transition.rightToLeft),
+
+    GetPage(
+        name: Routes.journalingDashboard,
+        page: () => JournalingDashboard(),
+        transition: Transition.rightToLeft),
+    GetPage(
+        name: Routes.createNewStoryScreen,
+        page: () => CreateNewStoryScreen(),
         transition: Transition.rightToLeft),
   ];
 }

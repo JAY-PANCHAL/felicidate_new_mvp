@@ -12,7 +12,9 @@ abstract class Routes {
    static const oneOnboardingScreen = '/OneOnboardingScreen';
    static const twoOnboardingScreen = '/TwoOnboardingScreen';
    static const threeOnboardingScreen = '/ThreeOnboardingScreen';
-
+  static const journalingDashboard ="/JournalingDashboard";
  static const dashboard= '/dashboard';
 
+
+  static const createNewStoryScreen= "/CreateNewStoryScreen";
 }

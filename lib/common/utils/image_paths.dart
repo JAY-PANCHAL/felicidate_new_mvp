@@ -51,6 +51,7 @@ class AppSvgIcons {
   static const String callTalkIcon = 'assets/icons/svgIcons/call_talk_icon.svg';
 
   static final String icClose = 'assets/icons/svgIcons/ic_close.svg';
+  static final String icCreateNote = 'assets/icons/svgIcons/createnote.svg';
 
 
 

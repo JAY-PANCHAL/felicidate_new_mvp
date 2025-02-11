@@ -192,4 +192,12 @@ class Strings {
   static const String no = 'No';
   static const String logoutMessage = 'Do you want to logout?';
   static const String noInternet = 'No Internet';
+
+
+
+  static const forAddingYourMoments = "For adding all your \nmoments";
+  static const createAnewStory = "Create a new story";
+  static const createJournalEntry = "Create Journal Entry";
+  static const feelingsLongText = "Feelings are something you have \n not something you are";
+
 }

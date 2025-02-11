@@ -1,7 +1,10 @@
 import 'dart:async';
-import '../../../controller/base_controller.dart';
 
-class LoginController extends BaseController {
+import '../../../../controller/base_controller.dart';
+
+
+
+class JournalingDashboardController extends BaseController {
 // --------------- Repository -------------
 
 
