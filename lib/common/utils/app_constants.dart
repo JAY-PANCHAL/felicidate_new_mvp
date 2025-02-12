@@ -146,8 +146,8 @@ class AppConstants {
       toastLength: Toast.LENGTH_SHORT,
       gravity: ToastGravity.CENTER,
       timeInSecForIosWeb: 1,
-      backgroundColor: Colors.black,
-      textColor: Colors.white,
+      backgroundColor: BLUE_COLOR3,
+      textColor: WHITE,
       fontSize: 15.0);
 
   static String convertiEnDateEtHeure(n) {
