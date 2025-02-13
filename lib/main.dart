@@ -11,26 +11,26 @@ import 'common/utils/color_constants.dart';
 import 'common/utils/storage_service.dart';
 import 'common/utils/strings.dart';
 
-final GlobalKey<NavigatorState> navigatorKey =
+/*final GlobalKey<NavigatorState> navigatorKey =
     GlobalKey<NavigatorState>(debugLabel: "navigator");
 
 FlutterSecureStorage? storage;
 StorageService storageService = StorageService();
-/*Future<void> backgroundHandler(RemoteMessage message) async {
+*/ /*Future<void> backgroundHandler(RemoteMessage message) async {
   print('Handling a background message ${message.messageId}');
-}*/
+}*/ /*
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  /* await Firebase.initializeApp(
-*/ /*
+  */ /* await Firebase.initializeApp(
+*/ /* */ /*
     options: DefaultFirebaseOptions.currentPlatform,
-*/ /*
+*/ /* */ /*
 
   );
   NotificationHelper().initNotification(navigatorKey);
   FirebaseMessaging.onBackgroundMessage(backgroundHandler);
-*/
+*/ /*
   // await DependencyInjection.init();
   setup();
   // Get.put(StorageService());
@@ -57,8 +57,8 @@ class MyApp extends StatefulWidget {
 }
 
 class MyAppState extends State<MyApp> {
-/*  final PushNotificationService _notificationService =
-      PushNotificationService();*/
+*/ /*  final PushNotificationService _notificationService =
+      PushNotificationService();*/ /*
 
   @override
   void initState() {
@@ -88,16 +88,84 @@ class MyAppState extends State<MyApp> {
       ),
     );
   }
+}*/
+
+import 'package:felicidade/routes/app_pages.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:zego_uikit_prebuilt_call/zego_uikit_prebuilt_call.dart';
+import 'package:zego_uikit_signaling_plugin/zego_uikit_signaling_plugin.dart';
+import 'common/dependency_injection.dart';
+import 'common/service_locator.dart';
+import 'common/utils/color_constants.dart';
+import 'common/utils/storage_service.dart';
+import 'common/utils/strings.dart';
+import 'common/zego_constants.dart';
+
+final GlobalKey<NavigatorState> navigatorKey =
+GlobalKey<NavigatorState>(debugLabel: "navigator");
+
+FlutterSecureStorage? storage;
+StorageService storageService = StorageService();
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  setup();
+  final prefs = await SharedPreferences.getInstance();
+  final cacheUserID = prefs.get(cacheUserIDKey) as String? ?? '';
+  if (cacheUserID.isNotEmpty) {
+    currentUser.id = cacheUserID;
+    currentUser.name = 'user_$cacheUserID';
+  }
+
+  ZegoUIKitPrebuiltCallInvitationService().setNavigatorKey(navigatorKey);
+
+  ZegoUIKit().initLog().then((value) {
+    ZegoUIKitPrebuiltCallInvitationService().useSystemCallingUI(
+      [ZegoUIKitSignalingPlugin()],
+    );
+
+    runApp(MyApp());
+  });
 }
 
-/*
-
-class MyHttpOverrides extends HttpOverrides {
+class MyApp extends StatelessWidget {
   @override
-  HttpClient createHttpClient(SecurityContext context) {
-    return super.createHttpClient(context)
-      ..badCertificateCallback =
-          (X509Certificate cert, String host, int port) => true;
+  Widget build(BuildContext context) {
+    ScreenUtil.init(context);
+    return GestureDetector(
+      onTap: () {
+        FocusScopeNode currentFocus = FocusScope.of(context);
+        if (!currentFocus.hasPrimaryFocus &&
+            currentFocus.focusedChild != null) {
+          FocusManager.instance.primaryFocus?.unfocus();
+        }
+      },
+      child: GetMaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(useMaterial3: false,
+            scaffoldBackgroundColor: const Color(0xFFEFEFEF)),
+        initialRoute: Routes.root,
+        getPages: AppPages.routes,
+        title: Strings.appName,
+        navigatorKey: navigatorKey,
+        builder: (context, child) {
+          return Stack(
+            children: [
+              child!,
+              ZegoUIKitPrebuiltCallMiniOverlayPage(
+                contextQuery: () {
+                  return navigatorKey.currentState!.context;
+                },
+              ),
+            ],
+          );
+        },
+      ),
+    );
   }
 }
-*/

@@ -20,7 +20,7 @@ class CreateNewStoryScreen extends StatefulWidget {
 
 class CreateNewStoryScreenState extends State<CreateNewStoryScreen> {
   final JournalingDashboardController jdController =
-      Get.put(JournalingDashboardController());
+  Get.put(JournalingDashboardController());
 
   final TextEditingController titleController = TextEditingController();
   final TextEditingController summaryController = TextEditingController();
@@ -63,65 +63,65 @@ class CreateNewStoryScreenState extends State<CreateNewStoryScreen> {
                 ),
                 child: SingleChildScrollView(
                     child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 15.w),
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          height: 50.h,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                      padding: EdgeInsets.symmetric(horizontal: 15.w),
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(Strings.createJournalEntry,
-                                textAlign: TextAlign.center,
+                            SizedBox(
+                              height: 50.h,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(Strings.createJournalEntry,
+                                    textAlign: TextAlign.center,
+                                    style: Styles.textFontMedium(
+                                      fontFamily: AppConstants.fontFamilyOgg,
+                                      size: 22,
+                                    )),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 40.h,
+                            ),
+                            Text("Title for your thought",
                                 style: Styles.textFontMedium(
                                   fontFamily: AppConstants.fontFamilyOgg,
-                                  size: 22,
+                                  size: 12,
                                 )),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 40.h,
-                        ),
-                        Text("Title for your thought",
-                            style: Styles.textFontMedium(
-                              fontFamily: AppConstants.fontFamilyOgg,
-                              size: 12,
-                            )),
-                        SizedBox(height: 8),
-                        TextFormField(
-                          controller: titleController,
-                          decoration: InputDecoration(
-                            hintText: "Enter title",
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(12),
+                            SizedBox(height: 8),
+                            TextFormField(
+                              controller: titleController,
+                              decoration: InputDecoration(
+                                hintText: "Enter title",
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                              ),
                             ),
-                          ),
-                        ),
-                        SizedBox(height: 16),
-                        Text("Write your thoughts here (summary)",
-                            style: Styles.textFontMedium(
-                              fontFamily: AppConstants.fontFamilyOgg,
-                              size: 12,
-                            )),
-                        SizedBox(height: 8),
-                        TextFormField(
-                          controller: summaryController,
-                          maxLines: 4,
-                          decoration: InputDecoration(
-                            hintText: "Write your thoughts...",
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(12),
+                            SizedBox(height: 16),
+                            Text("Write your thoughts here (summary)",
+                                style: Styles.textFontMedium(
+                                  fontFamily: AppConstants.fontFamilyOgg,
+                                  size: 12,
+                                )),
+                            SizedBox(height: 8),
+                            TextFormField(
+                              controller: summaryController,
+                              maxLines: 4,
+                              decoration: InputDecoration(
+                                hintText: "Write your thoughts...",
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                              ),
                             ),
-                          ),
-                        ),
-                        SizedBox(height: 50.h),
-                        AppConstants.CommonButtom(
-                            text: Strings.txtContinue, onTap: () {})
-                      ]),
-                ))),
+                            SizedBox(height: 50.h),
+                            AppConstants.CommonButtom(
+                                text: Strings.txtContinue, onTap: () {})
+                          ]),
+                    ))),
           ));
     });
   }
