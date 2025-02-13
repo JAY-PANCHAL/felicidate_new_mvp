@@ -54,7 +54,13 @@ class PhoneOtpScreenState extends State<PhoneOtpScreen> {
           backgroundColor: WHITE,
           floatingActionButton: AppConstants.CommonFloatButton(
               onTap: (){
-                Get.toNamed(Routes.oneOnboardingScreen);
+                if(phoneOtpController.isOtpFilled()){
+                  AppConstants.showToast(Strings.validOtp);
+                }
+                else{
+                  phoneOtpController.apiCallForVerifyOtp(context);
+                }
+
               }
           ),
           body: Container(
@@ -84,18 +90,24 @@ class PhoneOtpScreenState extends State<PhoneOtpScreen> {
                       TextSpan(
                           children: [
                             TextSpan(text: Strings.sFor,style: Styles.textFontMedium(size: 16,color: GREY_COLOR),),
-                            TextSpan(text: phoneOtpController.number.value,style: Styles.textFontMedium(size: 16),),
+                            TextSpan(text: '${phoneOtpController.preNum.value} ${phoneOtpController.number.value}',style: Styles.textFontMedium(size: 16),),
                           ]
                       ),
                     ),
                     SizedBox(height: 20.h,),
                     otpWidget(),
-                    Text.rich(
-                      TextSpan(
-                          children: [
-                            TextSpan(text: Strings.didNotGetOtp,style: Styles.textFontMedium(size: 14,color: GREY_COLOR),),
-                            TextSpan(text: Strings.sendOtpAgain,style: TextStyle(fontSize: 14,fontWeight: FontWeight.w700,color: BLUE_COLOR,fontFamily: AppConstants.fontFamilySatoshi,decoration: TextDecoration.underline),),
-                          ]
+                    GestureDetector(
+                      onTap: (){
+                        phoneOtpController.apiCallForResendOtp(context);
+                      },
+                      child: Text.rich(
+                        TextSpan(
+                            children: [
+                              TextSpan(text: Strings.didNotGetOtp,style: Styles.textFontMedium(size: 14,color: GREY_COLOR),),
+                              TextSpan(
+                                text: Strings.sendOtpAgain,style: TextStyle(fontSize: 14,fontWeight: FontWeight.w700,color: BLUE_COLOR,fontFamily: AppConstants.fontFamilySatoshi,decoration: TextDecoration.underline),),
+                            ]
+                        ),
                       ),
                     ),
                   ],
@@ -116,7 +128,8 @@ class PhoneOtpScreenState extends State<PhoneOtpScreen> {
           width: 65.sp,
           height: 70.sp,
           child: TextField(
-            autofocus: index == 0, // Focus on the first field
+            // autofocus: index == 0, // Focus on the first field
+            controller: phoneOtpController.otpController[index],
             keyboardType: TextInputType.number,
             maxLength: 1,
             textAlign: TextAlign.center,
@@ -169,6 +182,7 @@ class PhoneOtpScreenState extends State<PhoneOtpScreen> {
               } else if (value.isEmpty && index > 0) {
                 FocusScope.of(context).previousFocus();
               }
+              print("dsdd=${value}");
             },
           ),
         );

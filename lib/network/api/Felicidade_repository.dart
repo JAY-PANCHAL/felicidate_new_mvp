@@ -15,10 +15,32 @@ class   FelicidadeRepository {
   FelicidadeRepository(this.oeHealthApi);
 
 
-  Future<String> loginMobileRequested(params, context) async {
+  Future<String> signInRequested(params, context) async {
     try {
       final response = await oeHealthApi.loadPostData(
-          Endpoints.loginMobile,params, context);
+          Endpoints.signIn,params, context);
+      return response;
+    } on DioException catch (e) {
+      final errorMessage = DioExceptions.fromDioError(e).toString();
+      throw errorMessage;
+    }
+  }
+
+  Future<String> resendOtpRequested(params, context) async {
+    try {
+      final response = await oeHealthApi.loadPostData(
+          Endpoints.resendOtp,params, context);
+      return response;
+    } on DioException catch (e) {
+      final errorMessage = DioExceptions.fromDioError(e).toString();
+      throw errorMessage;
+    }
+  }
+
+  Future<String> verifyOtpRequested(params, context) async {
+    try {
+      final response = await oeHealthApi.loadPostData(
+          Endpoints.verifyOtp,params, context);
       return response;
     } on DioException catch (e) {
       final errorMessage = DioExceptions.fromDioError(e).toString();

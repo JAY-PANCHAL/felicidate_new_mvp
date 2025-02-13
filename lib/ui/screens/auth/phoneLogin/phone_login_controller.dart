@@ -11,6 +11,8 @@ import '../../../../common/utils/strings.dart';
 import '../../../../controller/base_controller.dart';
 import '../../../../network/api/Felicidade_repository.dart';
 import '../../../../network/constant/endpoints.dart';
+import '../../../../network/model/login_model.dart';
+import '../../../../routes/app_pages.dart';
 import '../../../widget/constants/app_colors.dart';
 
 
@@ -60,40 +62,36 @@ class PhoneLoginController extends BaseController {
 
 
 
-  Future<void> apiCallForLogin(context) async {
+  Future<void> apiCallForSignIn(context) async {
     isLoading.value = true;
 
 
     Map<String, dynamic> params = Endpoints.getCommonParam();
-    params['email'] = "";
-    params['password'] = "";
+    params['provider_type'] = "mobile";
+    params['mobile_number'] = number.text;
 
-    await repository.loginMobileRequested(params, context).then((value) async {
+    await repository.signInRequested(params, context).then((value) async {
       isLoading.value = false;
       var data = jsonDecode(value);
       if (data != null) {
-        // LoginModel model = LoginModel.fromJson(data);
-        // if (model.status == AppConstants.status200) {
-        //   await setUser(model);
-        //   await SpUtil.putString(ACCESS_TOKEN, model.data?.accessToken??"");
-        //   // print('==> Auth token : ${model.data?.accessToken}');
-        //   // AppConstants.showToast(model.message,context);
-        //   if(model.data?.subscriptionData?.id==null){
-        //     Get.offNamedUntil(Routes.accountSubscriptionScreen,(route) => false);
-        //   }
-        //   else{
-        //     Get.offNamedUntil(Routes.telepecasScreen,(route) => false);
-        //   }
-        // }
+        LoginModel model = LoginModel.fromJson(data);
+        if (model.status == true) {
+          AppConstants.showToast(model.message??"");
+          Get.toNamed(Routes.phoneOtpScreen,arguments: {
+            'preNum': " ${preNum.value}",
+            'number': number.text,
+          });
+
+        }
       }
     }, onError: (e) {
       isLoading.value = false;
       if (e.toString().contains(Strings.noInternet)) {
-        AppConstants.showSnackBar(e, context, () {
-          apiCallForLogin(context);
+        AppConstants.showSnackBar(e.toString(), context, () {
+          apiCallForSignIn(context);
         });
       } else {
-        AppConstants.showGetSnackBar("Hold Up!", e,RED);
+        AppConstants.showGetSnackBar("Hold Up!", e.toString(),RED);
       }
     });
   }

@@ -107,7 +107,7 @@ class Strings {
   static const String validPhone = "Please enter valid phone number";
   static const String validPhoneCode = "Phone number must start with \"971\"";
   static const String otpDoesntMatch = "Otp doesn't match";
-  static const String validOtp = "Please enter valid otp";
+
 
   static const String errorRQuantity = "Please enter required quantity";
   static const String errorVisitedWith = "Please enter visited with";
@@ -199,5 +199,6 @@ class Strings {
   static const createAnewStory = "Create a new story";
   static const createJournalEntry = "Create Journal Entry";
   static const feelingsLongText = "Feelings are something you have \n not something you are";
+  static const String validOtp = "Please enter valid otp";
 
 }
