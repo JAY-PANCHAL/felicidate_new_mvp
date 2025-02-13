@@ -17,9 +17,11 @@ class FelicidadeApi {
   Future<String> loadPostData(endpoint, body, context) async {
     var encodeData = json.encode(body);
     var reqData = encodeData;
+    final Map<String, dynamic> header = new Map<String, dynamic>();
+    header["Authorization"] = 'Bearer 156|c8XTsQF6ApkNUVSYdfNEFWZZiTcZU38QfnCKiVSBcbeea0f7';
     try {
       final String response = await dioClient.post(endpoint, data: reqData,
-          options: Options(headers: {'auth': await getToken()}));
+          options: Options(headers:header));
       var finalresponse = response;
       return finalresponse;
     } catch (e) {
@@ -31,13 +33,12 @@ class FelicidadeApi {
     // if (Environment().config!.httpLogs) {
     //   log("RequestData==>${body.toString()}");
     // }
-
+    final Map<String, dynamic> header = new Map<String, dynamic>();
+    header["Authorization"] = 'Bearer 156|c8XTsQF6ApkNUVSYdfNEFWZZiTcZU38QfnCKiVSBcbeea0f7';
     try {
       final String response = await dioClient.post(endpoint,
           data: body,
-          options: Options(headers: {
-            'auth': await getToken()
-          }));
+          options: Options(headers: header));
       var finalresponse = response;
       // if (Environment().config?.httpLogs == true) {
       //   if (Environment().config!.httpLogs) {
@@ -51,11 +52,11 @@ class FelicidadeApi {
   }
 
   Future<String> loadGetData(endpoint) async {
+    final Map<String, dynamic> header = new Map<String, dynamic>();
+    header["Authorization"] = 'Bearer 156|c8XTsQF6ApkNUVSYdfNEFWZZiTcZU38QfnCKiVSBcbeea0f7';
     try {
       final String response =
-      await dioClient.get(endpoint, options: Options(headers: {
-        'auth': await getToken()
-      }));
+      await dioClient.get(endpoint, options: Options(headers : header));
       var finalresponse = response;
       return finalresponse;
     } catch (e) {

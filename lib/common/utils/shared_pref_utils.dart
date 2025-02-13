@@ -97,7 +97,9 @@ Future<String?> getToken() async {
   }
 }
 
-
+Future<void> setToken(String token) async {
+  await SpUtil.putString(ACCESS_TOKEN, token);
+}
 
 Future<void> setDeviceModel(String token) async {
   await SpUtil.putString(KEY_DEVICE_MODEL, token);

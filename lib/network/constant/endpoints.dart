@@ -27,5 +27,7 @@ class Endpoints {
   static const String signIn = '/signin';
   static const String resendOtp = '/resend-otp';
   static const String verifyOtp = '/verify-otp';
+  static const String createNewJournal = '/talker/create_new_journal';
+  static const String getJournalEntries = '/talker/get_journal_entries';
 
 }

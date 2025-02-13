@@ -60,11 +60,11 @@ class AppSvgIcons {
 class AppPngIcons {
 
   static const String loginBack = 'assets/icons/pngIcons/login_back.png';
-  static const String loadingScreenIcon = 'assets/icons/pngIcons/loading_screen_icon.png';
   static const String expertBackIcon = 'assets/icons/svgIcons/expert_back.png';
   static const String tripBackIcon = 'assets/icons/svgIcons/trip_back.png';
   static const String talkBackIcon = 'assets/icons/pngIcons/talk_back_icon.png';
   static const String manImage = 'assets/icons/pngIcons/man_image.png';
+  static const String loaderText = 'assets/icons/pngIcons/loader_text.png';
 
 
 

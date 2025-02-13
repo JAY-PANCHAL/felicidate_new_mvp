@@ -27,6 +27,7 @@ class JournalingDashboardState extends State<JournalingDashboard> {
 
   @override
   void initState() {
+    jdController.apiCallForGetJournalEntries(context);
     super.initState();
   }
 
@@ -82,7 +83,11 @@ class JournalingDashboardState extends State<JournalingDashboard> {
                         ),
                         InkWell(
                           onTap: (){
-                            Get.toNamed(Routes.createNewStoryScreen);
+                            Get.toNamed(Routes.createNewStoryScreen)?.then((val){
+                              if(val=='update'){
+                                jdController.apiCallForGetJournalEntries(context);
+                              }
+                            });
                           },
                           child: Container(
                               padding: EdgeInsets.symmetric(
@@ -124,9 +129,65 @@ class JournalingDashboardState extends State<JournalingDashboard> {
                                 ],
                               )),
                         ),
-                        SizedBox(
-                          height: 100.h,
+
+                        SizedBox(height: 25.h,),
+
+                        Container(
+                          height: 1.sh * 0.4,
+                          child: ListView.separated(itemCount: jdController.mMyDiaries.length,
+                            shrinkWrap: true,
+                            reverse: true,
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (BuildContext context, int index) {
+                            var data = jdController.mMyDiaries[index];
+                            return Container(
+                              height: 1.sh * 0.4,
+                              width: 1.sw * 0.58,
+                              padding: EdgeInsets.symmetric(vertical: 15.h,horizontal: 15.w),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                boxShadow: [
+                                  AppConstants().commonBoxShadow(color: GRAY_COLOR_LIGHT)
+                                ],
+                                gradient:
+                                index%2==0?
+                                LinearGradient(
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                  colors: [
+                                    WHITE,
+                                    Color(0xFFF3F3F3),
+                                  ],
+                                ):LinearGradient(
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                  colors: [
+
+                                    Color(0xFFE0F8FF),
+                                    WHITE,
+                                  ],
+                                ),
+                              ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(AppConstants().formatDateTimeString(data.createdAt??""),style: Styles.textFontBold(size: 10,color:  index%2==0?BLACK:HOME_BLUE_COLOR),),
+                                  Spacer(),
+                                  Text(data.journalDescription??"",style: Styles.textFontBoldHeight(size: 22,fontFamily: AppConstants.fontFamilyOgg,color: index%2==0?BLACK:HOME_BLUE_COLOR),),
+                                  SizedBox(height: 10.h,),
+                                  Text("${Strings.anxious} • ${data.journalTitle??""}",style: Styles.textFontBoldHeight(size: 10,color: index%2==0?BLACK:HOME_BLUE_COLOR),),
+                                  SizedBox(height: 3.h,),
+
+                                ],
+                              ),
+                            );
+                            },
+                            separatorBuilder: (BuildContext context, int index) {
+                            return SizedBox(width: 15.w,);
+                            },),
                         ),
+                        SizedBox(height: 25.h,),
                         Container(
                           padding: EdgeInsets.symmetric(
                               horizontal: 15.w, vertical: 25.h),

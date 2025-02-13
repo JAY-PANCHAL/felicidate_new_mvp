@@ -49,4 +49,26 @@ class   FelicidadeRepository {
   }
 
 
+  Future<String> createNewJournalRequested(params, context) async {
+    try {
+      final response = await oeHealthApi.loadPostData(
+          Endpoints.createNewJournal,params, context);
+      return response;
+    } on DioException catch (e) {
+      final errorMessage = DioExceptions.fromDioError(e).toString();
+      throw errorMessage;
+    }
+  }
+
+  Future<String> getJournalEntriesRequested(params, context) async {
+    try {
+      final response = await oeHealthApi.loadPostData(
+          Endpoints.getJournalEntries,params, context);
+      return response;
+    } on DioException catch (e) {
+      final errorMessage = DioExceptions.fromDioError(e).toString();
+      throw errorMessage;
+    }
+  }
+
 }

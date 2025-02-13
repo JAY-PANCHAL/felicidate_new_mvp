@@ -94,8 +94,20 @@ class AppConstants {
         width: 1.sw,
         child: Container(
           decoration: BoxDecoration(
-            color: WHITE,
-            image: DecorationImage(image: AssetImage(AppPngIcons.loadingScreenIcon),fit: BoxFit.cover)
+            color: WHITE.withOpacity(0.7),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              ImageView(
+                width: 280.w,
+                height: 180.h,
+                boxFit: BoxFit.contain,
+                image: AppPngIcons.loaderText,
+                imageType: ImageType.asset,
+              ),
+            ],
           ),
         )
       ),
@@ -449,9 +461,45 @@ class AppConstants {
     );
   }
 
+  String getCurrentDate() {
+    DateTime now = DateTime.now();
+    return "${now.year}-${now.month.toString().padLeft(2, '0')}-${now.day.toString().padLeft(2, '0')}";
+  }
+
+  String formatDateTimeString(String dateTimeString) {
+    try{
+      // Parse string to DateTime
+      DateTime dateTime = DateFormat("yyyy-MM-dd HH:mm:ss").parse(dateTimeString);
+
+      // Months list
+      const List<String> months = [
+        "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+      ];
+
+      // Get day with suffix (1st, 2nd, 3rd, etc.)
+      int day = dateTime.day;
+      String suffix = "th";
+      if (day % 10 == 1 && day != 11) suffix = "st";
+      if (day % 10 == 2 && day != 12) suffix = "nd";
+      if (day % 10 == 3 && day != 13) suffix = "rd";
+
+      // Get formatted hour in 12-hour format
+      int hour = dateTime.hour;
+      String period = hour >= 12 ? "pm" : "am";
+      int formattedHour = hour % 12 == 0 ? 12 : hour % 12;
+
+      // Get formatted date
+      String formattedDate =
+          "${day}$suffix ${months[dateTime.month - 1]} • $formattedHour $period";
+      return formattedDate;
+    }
+    catch(e){
+      return "";
+    }
 
 
-
+  }
 
 
 }

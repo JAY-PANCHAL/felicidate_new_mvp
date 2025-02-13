@@ -200,5 +200,8 @@ class Strings {
   static const createJournalEntry = "Create Journal Entry";
   static const feelingsLongText = "Feelings are something you have \n not something you are";
   static const String validOtp = "Please enter valid otp";
+  static const String errorTitle = "Please enter title";
+  static const String errorThoughts = "Please enter your thoughts";
+  static const String anxious = "Anxious";
 
 }

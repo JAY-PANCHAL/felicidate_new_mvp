@@ -8,8 +8,10 @@ import 'package:get/get.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import '../../../../../common/utils/app_constants.dart';
 import '../../../../common/utils/Styles.dart';
+import '../../../../common/utils/app_valid.dart';
 import '../../../../common/utils/strings.dart';
 import '../../../widget/image_view.dart';
+import 'create_story_controller.dart';
 
 class CreateNewStoryScreen extends StatefulWidget {
   const CreateNewStoryScreen({super.key});
@@ -19,11 +21,10 @@ class CreateNewStoryScreen extends StatefulWidget {
 }
 
 class CreateNewStoryScreenState extends State<CreateNewStoryScreen> {
-  final JournalingDashboardController jdController =
-  Get.put(JournalingDashboardController());
+  final CreateStoryController createStoryController =
+  Get.put(CreateStoryController());
 
-  final TextEditingController titleController = TextEditingController();
-  final TextEditingController summaryController = TextEditingController();
+
 
   @override
   void initState() {
@@ -33,7 +34,7 @@ class CreateNewStoryScreenState extends State<CreateNewStoryScreen> {
   @override
   void dispose() {
     super.dispose();
-    Get.delete<JournalingDashboardController>();
+    Get.delete<CreateStoryController>();
   }
 
   @override
@@ -44,7 +45,7 @@ class CreateNewStoryScreenState extends State<CreateNewStoryScreen> {
           color: Colors.black.withOpacity(0.6),
           dismissible: false,
           progressIndicator: AppConstants.loader(context),
-          inAsyncCall: jdController.isLoading.value,
+          inAsyncCall: createStoryController.isLoading.value,
           child: Scaffold(
             backgroundColor: WHITE,
             body: Container(
@@ -62,65 +63,74 @@ class CreateNewStoryScreenState extends State<CreateNewStoryScreen> {
                   ),
                 ),
                 child: SingleChildScrollView(
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 15.w),
-                      child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                              height: 50.h,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(Strings.createJournalEntry,
-                                    textAlign: TextAlign.center,
-                                    style: Styles.textFontMedium(
-                                      fontFamily: AppConstants.fontFamilyOgg,
-                                      size: 22,
-                                    )),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 40.h,
-                            ),
-                            Text("Title for your thought",
-                                style: Styles.textFontMedium(
-                                  fontFamily: AppConstants.fontFamilyOgg,
-                                  size: 12,
-                                )),
-                            SizedBox(height: 8),
-                            TextFormField(
-                              controller: titleController,
-                              decoration: InputDecoration(
-                                hintText: "Enter title",
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(12),
+                    child: Form(
+                      key: createStoryController.formKey,
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 15.w),
+                        child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                height: 50.h,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(Strings.createJournalEntry,
+                                      textAlign: TextAlign.center,
+                                      style: Styles.textFontMedium(
+                                        fontFamily: AppConstants.fontFamilyOgg,
+                                        size: 22,
+                                      )),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 40.h,
+                              ),
+                              Text("Title for your thought",
+                                  style: Styles.textFontMedium(
+                                    fontFamily: AppConstants.fontFamilyOgg,
+                                    size: 12,
+                                  )),
+                              SizedBox(height: 8),
+                              TextFormField(
+                                controller: createStoryController.titleController,
+                                decoration: InputDecoration(
+                                  hintText: "Enter title",
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                ),
+                                validator: (value) => commonValidation(value,Strings.errorTitle),
+                              ),
+                              SizedBox(height: 16),
+                              Text("Write your thoughts here (summary)",
+                                  style: Styles.textFontMedium(
+                                    fontFamily: AppConstants.fontFamilyOgg,
+                                    size: 12,
+                                  )),
+                              SizedBox(height: 8),
+                              TextFormField(
+                                controller: createStoryController.summaryController,
+                                maxLines: 4,
+                                validator: (value) => commonValidation(value,Strings.errorThoughts),
+                                decoration: InputDecoration(
+                                  hintText: "Write your thoughts...",
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
                                 ),
                               ),
-                            ),
-                            SizedBox(height: 16),
-                            Text("Write your thoughts here (summary)",
-                                style: Styles.textFontMedium(
-                                  fontFamily: AppConstants.fontFamilyOgg,
-                                  size: 12,
-                                )),
-                            SizedBox(height: 8),
-                            TextFormField(
-                              controller: summaryController,
-                              maxLines: 4,
-                              decoration: InputDecoration(
-                                hintText: "Write your thoughts...",
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(12),
-                                ),
-                              ),
-                            ),
-                            SizedBox(height: 50.h),
-                            AppConstants.CommonButtom(
-                                text: Strings.txtContinue, onTap: () {})
-                          ]),
+                              SizedBox(height: 50.h),
+                              AppConstants.CommonButtom(
+                                  text: Strings.txtContinue, onTap: () {
+                                if (createStoryController.formKey.currentState!.validate()) {
+                                  createStoryController.apiCallForCreateNewJournal(context);
+                                }
+                              })
+                            ]),
+                      ),
                     ))),
           ));
     });

@@ -54,6 +54,7 @@ class PhoneLoginController extends BaseController {
 
   @override
   Future<void> onInit() async {
+    isLoading.value = true;
     super.onInit();
 
 
