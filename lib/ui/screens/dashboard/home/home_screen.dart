@@ -164,16 +164,21 @@ class HomeScreenState extends State<HomeScreen> {
   }
 
   Widget commonFeeling({String? icon}) {
-    return Container(
-      decoration: BoxDecoration(boxShadow: [
-        AppConstants().commonBoxShadow(blurRadius: 5, color: DIVIDER_COLOR2)
-      ]),
-      child: ImageView(
-        width: 55.sp,
-        height: 55.sp,
-        boxFit: BoxFit.contain,
-        image: icon ?? AppSvgIcons.fe1Icon,
-        imageType: ImageType.svg,
+    return GestureDetector(
+      onTap: (){
+        homeController.saveFeelingsApiCall(context, icon??"");
+      },
+      child: Container(
+        decoration: BoxDecoration(boxShadow: [
+          AppConstants().commonBoxShadow(blurRadius: 5, color: DIVIDER_COLOR2)
+        ]),
+        child: ImageView(
+          width: 55.sp,
+          height: 55.sp,
+          boxFit: BoxFit.contain,
+          image: icon ?? AppSvgIcons.fe1Icon,
+          imageType: ImageType.svg,
+        ),
       ),
     );
   }

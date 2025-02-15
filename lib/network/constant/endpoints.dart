@@ -29,5 +29,5 @@ class Endpoints {
   static const String verifyOtp = '/verify-otp';
   static const String createNewJournal = '/talker/create_new_journal';
   static const String getJournalEntries = '/talker/get_journal_entries';
-
+  static const String saveFeelings = "/talker/save_feeling";
 }
