@@ -1,9 +1,9 @@
 // Package imports:
 import 'package:felicidade/common/util.dart';
 import 'package:felicidade/common/zego_constants.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shared_preferences/shared_preferences.dart';/*
 import 'package:zego_uikit_prebuilt_call/zego_uikit_prebuilt_call.dart';
-import 'package:zego_uikit_signaling_plugin/zego_uikit_signaling_plugin.dart';
+import 'package:zego_uikit_signaling_plugin/zego_uikit_signaling_plugin.dart';*/
 
 /// local virtual login
 Future<void> login({
@@ -23,12 +23,17 @@ Future<void> logout() async {
   prefs.remove(cacheUserIDKey);
 }
 
+/*
 /// on user login
 void onUserLogin() {
   /// 4/5. initialized ZegoUIKitPrebuiltCallInvitationService when account is logged in or re-logged in
   ZegoUIKitPrebuiltCallInvitationService().init(
-    appID: yourAppID /*input your AppID*/,
-    appSign: yourAppSign /*input your AppSign*/,
+    appID: yourAppID */
+/*input your AppID*//*
+,
+    appSign: yourAppSign */
+/*input your AppSign*//*
+,
     userID: currentUser.id,
     userName: currentUser.name,
     plugins: [ZegoUIKitSignalingPlugin()],
@@ -69,3 +74,4 @@ void onUserLogout() {
   /// 5/5. de-initialization ZegoUIKitPrebuiltCallInvitationService when account is logged out
   ZegoUIKitPrebuiltCallInvitationService().uninit();
 }
+*/
