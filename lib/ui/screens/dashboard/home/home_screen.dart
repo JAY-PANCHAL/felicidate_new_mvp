@@ -1,8 +1,10 @@
 import 'package:felicidade/common/utils/image_paths.dart';
+import 'package:felicidade/ui/screens/dashboard/journaling/journal_details_screen.dart';
 import 'package:felicidade/ui/widget/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
@@ -26,6 +28,7 @@ class HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
+    homeController.apiCallForGetJournalEntries(context);
   }
 
   @override
@@ -165,8 +168,8 @@ class HomeScreenState extends State<HomeScreen> {
 
   Widget commonFeeling({String? icon}) {
     return GestureDetector(
-      onTap: (){
-        homeController.saveFeelingsApiCall(context, icon??"");
+      onTap: () {
+        homeController.saveFeelingsApiCall(context, icon ?? "");
       },
       child: Container(
         decoration: BoxDecoration(boxShadow: [
@@ -559,6 +562,7 @@ class HomeScreenState extends State<HomeScreen> {
     );
   }
 
+/*
   Widget yourRecentJournal() {
     return SizedBox(
       height: 32.h,
@@ -592,15 +596,104 @@ class HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+*/
+  Widget yourRecentJournal() {
+    List<String> lastSevenDays = getLastSevenDays();
+
+    return /*SizedBox(
+      height: 32.h,
+      child: ListView.separated(
+        itemCount: lastSevenDays.length,
+        shrinkWrap: true,
+        scrollDirection: Axis.horizontal,
+        itemBuilder: (BuildContext context, int index) {
+          return Container(
+            height: 32.h,
+            alignment: Alignment.center,
+            padding: EdgeInsets.symmetric(horizontal: 15.w),
+            decoration: BoxDecoration(
+              color: index == 0 ? LIGHT_GREY_COLOR3 : WHITE,
+              boxShadow: [
+                AppConstants().commonBoxShadow(color: GRAY_COLOR_LIGHT)
+              ],
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Text(
+              lastSevenDays[index],
+              style: Styles.textFontMedium(size: 12),
+            ),
+          );
+        },
+        separatorBuilder: (BuildContext context, int index) {
+          return SizedBox(
+            width: 10.w,
+          );
+        },
+      ),
+    )*/
+        SizedBox(
+      height: 32.h,
+      child: ListView.separated(
+        itemCount: homeController.journalEntries.length,
+        shrinkWrap: true,
+        scrollDirection: Axis.horizontal,
+        itemBuilder: (BuildContext context, int index) {
+          return GestureDetector(
+            onTap: () async {
+              for (var entry in homeController.journalEntries) {
+                entry.isSelected = false;
+              }
+              homeController.journalEntries[index].isSelected = true;
+              homeController.selectedDate.value =
+                  homeController.journalEntries[index].date;
+              await homeController.apiCallForGetJournalEntries(context);
+            },
+            child: Container(
+              height: 32.h,
+              alignment: Alignment.center,
+              padding: EdgeInsets.symmetric(horizontal: 15.w),
+              decoration: BoxDecoration(
+                color: homeController.journalEntries[index].isSelected
+                    ? LIGHT_GREY_COLOR3
+                    : WHITE,
+                boxShadow: [
+                  AppConstants().commonBoxShadow(color: GRAY_COLOR_LIGHT)
+                ],
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Text(
+                homeController.journalEntries[index].date,
+                style: Styles.textFontMedium(size: 12),
+              ),
+            ),
+          );
+        },
+        separatorBuilder: (BuildContext context, int index) {
+          return SizedBox(width: 10.w);
+        },
+      ),
+    );
+    ;
+  }
+
+  List<String> getLastSevenDays() {
+    DateTime today = DateTime.now();
+    DateFormat dateFormat = DateFormat("d'th' MMM yyyy");
+
+    return List.generate(7, (index) {
+      DateTime date = today.subtract(Duration(days: index));
+      return dateFormat.format(date);
+    }).reversed.toList(); // Reverse to show the oldest first
+  }
 
   Widget yourRecentJournalList() {
     return SizedBox(
       height: 1.sh * 0.24,
       child: ListView.separated(
-        itemCount: 3,
+        itemCount: homeController.mMyDiaries.value.length,
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,
-        itemBuilder: (BuildContext context, int index) {
+        itemBuilder: (BuildContext context, int i) {
           return Container(
             width: 1.sw * 0.42,
             padding: EdgeInsets.symmetric(horizontal: 13.w, vertical: 13.h),
@@ -617,7 +710,7 @@ class HomeScreenState extends State<HomeScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Day one in my",
+                  homeController.mMyDiaries.value[i].journalTitle ?? "",
                   style: Styles.textFontMedium(
                     size: 16,
                   ),
@@ -626,24 +719,32 @@ class HomeScreenState extends State<HomeScreen> {
                   height: 3.h,
                 ),
                 Text(
-                  "Lorem ipsum dolor sit amet consectetur. Enim phasellus nulla parturient ",
+                  homeController.mMyDiaries.value[i].journalDescription ?? "",
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                   style: Styles.textFontRegular(size: 10),
                 ),
 
                 Spacer(),
 
-                Container(
-                  width: 1.sw,
-                  padding: EdgeInsets.symmetric(vertical: 8.h),
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    color: LIGHT_GREY_COLOR3,
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  child: Text(
-                    Strings.readMore,
-                    style: Styles.textFontRegular(
-                      size: 10,
+                GestureDetector(
+                  onTap: () {
+                    Get.to(JournalDetailsScreen(
+                        id: homeController.mMyDiaries.value[i].id ?? 0));
+                  },
+                  child: Container(
+                    width: 1.sw,
+                    padding: EdgeInsets.symmetric(vertical: 8.h),
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      color: LIGHT_GREY_COLOR3,
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: Text(
+                      Strings.readMore,
+                      style: Styles.textFontRegular(
+                        size: 10,
+                      ),
                     ),
                   ),
                 ),

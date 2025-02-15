@@ -83,5 +83,15 @@ class   FelicidadeRepository {
       throw errorMessage;
     }
   }
+  Future<String> getDiaryDetailsApi(params, context) async {
+    try {
+      final response = await felicidateApi.loadPostData(
+          Endpoints.getDiaryDetail,params, context);
+      return response;
+    } on DioException catch (e) {
+      final errorMessage = DioExceptions.fromDioError(e).toString();
+      throw errorMessage;
+    }
+  }
 
 }

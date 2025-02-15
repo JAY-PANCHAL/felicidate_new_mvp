@@ -30,4 +30,6 @@ class Endpoints {
   static const String createNewJournal = '/talker/create_new_journal';
   static const String getJournalEntries = '/talker/get_journal_entries';
   static const String saveFeelings = "/talker/save_feeling";
+
+  static const String getDiaryDetail = "/talker/get_diary_detail";
 }
