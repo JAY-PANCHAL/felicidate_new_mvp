@@ -48,6 +48,7 @@ class LoginScreenState extends State<LoginScreen> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _startScrolling();
     });
+    loginController.getCurrentLocation();
     super.initState();
   }
 

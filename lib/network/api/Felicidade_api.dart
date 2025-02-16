@@ -18,7 +18,8 @@ class FelicidadeApi {
     var encodeData = json.encode(body);
     var reqData = encodeData;
     final Map<String, dynamic> header = new Map<String, dynamic>();
-    header["Authorization"] = 'Bearer 156|c8XTsQF6ApkNUVSYdfNEFWZZiTcZU38QfnCKiVSBcbeea0f7';
+    var tocken = await getToken();
+    header["Authorization"] = 'Bearer $tocken';
     try {
       final String response = await dioClient.post(endpoint, data: reqData,
           options: Options(headers:header));
@@ -34,7 +35,8 @@ class FelicidadeApi {
     //   log("RequestData==>${body.toString()}");
     // }
     final Map<String, dynamic> header = new Map<String, dynamic>();
-    header["Authorization"] = 'Bearer 156|c8XTsQF6ApkNUVSYdfNEFWZZiTcZU38QfnCKiVSBcbeea0f7';
+    var tocken = await getToken();
+    header["Authorization"] = 'Bearer $tocken';
     try {
       final String response = await dioClient.post(endpoint,
           data: body,
@@ -53,7 +55,8 @@ class FelicidadeApi {
 
   Future<String> loadGetData(endpoint) async {
     final Map<String, dynamic> header = new Map<String, dynamic>();
-    header["Authorization"] = 'Bearer 156|c8XTsQF6ApkNUVSYdfNEFWZZiTcZU38QfnCKiVSBcbeea0f7';
+    var tocken = await getToken();
+    header["Authorization"] = 'Bearer $tocken';
     try {
       final String response =
       await dioClient.get(endpoint, options: Options(headers : header));

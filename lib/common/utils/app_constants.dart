@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:felicidade/common/utils/storage_service.dart';
 import 'package:felicidade/common/utils/strings.dart';
 import 'package:felicidade/ui/widget/constants/app_colors.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'package:flutter/cupertino.dart';
@@ -13,7 +14,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import '../../network/model/user_model.dart';
 import '../../routes/app_pages.dart';
 import '../../ui/widget/image_view.dart';
 import 'Styles.dart';
@@ -500,6 +500,19 @@ class AppConstants {
 
 
   }
+
+  Future<String?> getCityFromLatLong(double latitude, double longitude) async {
+    try {
+      List<Placemark> placemarks = await placemarkFromCoordinates(latitude, longitude);
+      if (placemarks.isNotEmpty) {
+        return placemarks.first.locality; // Returns the city name
+      }
+    } catch (e) {
+      print("Error fetching city: $e");
+    }
+    return "";
+  }
+
 
 
 }

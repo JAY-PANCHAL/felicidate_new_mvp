@@ -7,6 +7,8 @@ import 'package:get/get.dart';
 
 import '../../../../../common/service_locator.dart';
 import '../../../../../common/utils/app_constants.dart';
+import '../../../../../common/utils/shared_pref_utils.dart';
+import '../../../../../common/utils/sp_util.dart';
 import '../../../../../common/utils/strings.dart';
 import '../../../../../controller/base_controller.dart';
 import '../../../../../network/api/Felicidade_repository.dart';
@@ -57,8 +59,10 @@ class PhoneOtpController extends BaseController {
       if (data != null) {
         LoginModel model = LoginModel.fromJson(data);
         if (model.status == true) {
+          await SpUtil.putString(ACCESS_TOKEN, model.data?.token??"");
+          setUser(model.data?.user);
           AppConstants.showToast(model.message??"");
-
+          Get.toNamed(Routes.oneOnboardingScreen);
         }
       }
     }, onError: (e) {

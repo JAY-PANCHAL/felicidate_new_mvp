@@ -65,6 +65,7 @@ class AppPngIcons {
   static const String talkBackIcon = 'assets/icons/pngIcons/talk_back_icon.png';
   static const String manImage = 'assets/icons/pngIcons/man_image.png';
   static const String loaderText = 'assets/icons/pngIcons/loader_text.png';
+  static const String spashLogo = 'assets/icons/pngIcons/spash_logo.png';
 
 
 

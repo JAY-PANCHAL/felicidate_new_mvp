@@ -6,7 +6,6 @@ import '../dio/dio_exception.dart';
 import '../model/save_feelings_model.dart';
 import '../model/token_model.dart';
 
-import '../model/user_model.dart';
 import 'Felicidade_api.dart';
 
 class   FelicidadeRepository {

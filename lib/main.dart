@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'common/dependency_injection.dart';
 import 'common/service_locator.dart';
 import 'common/utils/color_constants.dart';
+import 'common/utils/sp_util.dart';
 import 'common/utils/storage_service.dart';
 import 'common/utils/strings.dart';
 
@@ -115,6 +116,11 @@ StorageService storageService = StorageService();
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  /// Shared Preferences
+  await SpUtil.getInstance();
+
+  /// secure storage
+  storage = const FlutterSecureStorage();
   setup();
   final prefs = await SharedPreferences.getInstance();
   final cacheUserID = prefs.get(cacheUserIDKey) as String? ?? '';

@@ -10,6 +10,7 @@ import '../ui/screens/auth/onboarding/onboarding3/three_onboarding_screen.dart';
 import '../ui/screens/auth/phoneLogin/phoneOtp/phone_otp_screen.dart';
 import '../ui/screens/auth/phoneLogin/phone_login_screen.dart';
 import '../ui/screens/dashboard/dashboard_Screen.dart';
+import '../ui/screens/splash/splash_screen.dart';
 
 part 'app_routes.dart';
 
@@ -17,13 +18,13 @@ class AppPages {
   static const initial = Routes.splash;
 
   static final routes = [
-    // GetPage(
-    //     name: Routes.splash,
-    //     page: () => Splash(),
-    //     transition: Transition.fade),
-
     GetPage(
         name: Routes.splash,
+        page: () => SplashScreen(),
+        transition: Transition.fade),
+
+    GetPage(
+        name: Routes.login,
         page: () => LoginScreen(),
         transition: Transition.rightToLeft),
 

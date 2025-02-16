@@ -3,9 +3,9 @@
 import 'dart:convert';
 
 import 'package:felicidade/common/utils/sp_util.dart';
-import 'package:felicidade/network/model/user_model.dart';
 
 import '../../main.dart';
+import '../../network/model/login_model.dart';
 
 
 const String KEY_SETTINGS = "settings";
@@ -25,11 +25,7 @@ const String KEY_DEVICE_ID = "device_id";
 
 
 
-/// User
-// Future<void> setUser(LoginResponse? user) async {
-//   return await storage?.write(key: KEY_USER, value: jsonEncode(user));
-// }
-Future<void> setUser(UserModel? user) async {
+Future<void> setUser(User? user) async {
   return await storage?.write(key: KEY_USER, value: jsonEncode(user));
 }
 
@@ -69,19 +65,20 @@ void setIsFirsTime(bool value) {
 
 
 
-Future<UserModel?> getUser() async {
+Future<User?> getUser() async {
   var temp = await storage?.containsKey(key: KEY_USER);
   if (temp == true) {
     String? data = await storage?.read(key: KEY_USER) ?? "";
     if (data == "" || (data == "null")) {
       return null;
     } else {
-      return UserModel.fromJson(jsonDecode(data));
+      return User.fromJson(jsonDecode(data));
     }
   } else {
     return null;
   }
 }
+
 
 
 
