@@ -28,11 +28,11 @@ class OneOnboardingController extends BaseController {
     if(data!=null){
 
     }
-    _getCurrentLocation();
+
 
     super.onInit();
   }
-  Future<void> _getCurrentLocation() async {
+  Future<void> getCurrentLocation() async {
     var status = await Permission.location.request();
 
     if (status.isGranted) {
@@ -43,7 +43,7 @@ class OneOnboardingController extends BaseController {
 
 
     } else if (status.isDenied) {
-      _getCurrentLocation();
+      getCurrentLocation();
     } else if (status.isPermanentlyDenied) {
       openAppSettings();
     }

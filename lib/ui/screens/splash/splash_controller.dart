@@ -33,7 +33,7 @@ class SplashController extends BaseController {
       if (loginData==null) {
         Get.offNamedUntil(Routes.login,(route) => false);
       } else {
-
+        print('location--${loginData.cityLocation??''}');
         if((loginData.cityLocation??"")==""){
           Get.offNamedUntil(Routes.oneOnboardingScreen,(route) => false);
         }

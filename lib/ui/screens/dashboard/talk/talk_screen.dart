@@ -53,7 +53,7 @@ class TalkScreenState extends State<TalkScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  height: 1.sh * 0.51,
+                  height: 1.sh * 0.55,
                   width: 1.sw,
                   margin: EdgeInsets.only(bottom: 10.h,),
                   decoration: BoxDecoration(
@@ -131,7 +131,7 @@ class TalkScreenState extends State<TalkScreen> {
 
   Widget recentlyTalkedWith(){
     return SizedBox(
-      height: 1.sh * 0.3,
+      height: 1.sh * 0.33,
       child: ListView.separated(
         itemCount: 3,
         shrinkWrap: true,

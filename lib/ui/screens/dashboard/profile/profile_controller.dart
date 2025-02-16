@@ -5,24 +5,27 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../../controller/base_controller.dart';
+import '../../../../common/utils/shared_pref_utils.dart';
+import '../../../../network/model/login_model.dart';
 
 
 
 class ProfileController extends BaseController {
 
-
+  var mLoginData = Rxn<User>();
 
 
   @override
   Future<void> onInit() async {
-    var data = Get.arguments;
-    if(data!=null){
-
-    }
+    getLoginUserData();
     super.onInit();
   }
 
+  getLoginUserData() async {
+    mLoginData.value = await getUser();
+    print('mLoginData.value--${mLoginData.value?.email??""}');
 
+  }
 
 
 }

@@ -59,6 +59,7 @@ class ProfileScreenState extends State<ProfileScreen> {
               padding: EdgeInsets.symmetric(horizontal: 15.w),
               child: Column(
                 children: [
+                  SizedBox(height: 15.h,),
                   Stack(
                     alignment: Alignment.centerRight,
                     children: [
@@ -92,8 +93,8 @@ class ProfileScreenState extends State<ProfileScreen> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text("Hi Rohit",style: Styles.textFontBold(size: 20,fontFamily: AppConstants.fontFamilyOgg,),),
-                                Text("rkadam0123@gmail.com",style: Styles.textFontRegular(size: 14,color: GREY_COLOR),),
+                                Text("Hi ${profileController.mLoginData.value?.name??''}",style: Styles.textFontBold(size: 20,fontFamily: AppConstants.fontFamilyOgg,),),
+                                Text(profileController.mLoginData.value?.email??'',style: Styles.textFontRegular(size: 14,color: GREY_COLOR),),
                               ],
                             )
                           ],

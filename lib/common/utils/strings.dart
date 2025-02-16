@@ -203,5 +203,8 @@ class Strings {
   static const String errorTitle = "Please enter title";
   static const String errorThoughts = "Please enter your thoughts";
   static const String anxious = "Anxious";
+  static const String validDate = "Please select valid date";
+  static const String help = "Help";
+  static const String errorHelp = "Please enter help";
 
 }

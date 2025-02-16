@@ -93,4 +93,15 @@ class   FelicidadeRepository {
     }
   }
 
+  Future<String> getInitialDetailsRequested(params, context) async {
+    try {
+      final response = await felicidateApi.loadPostData(
+          Endpoints.initialDetails,params, context);
+      return response;
+    } on DioException catch (e) {
+      final errorMessage = DioExceptions.fromDioError(e).toString();
+      throw errorMessage;
+    }
+  }
+
 }

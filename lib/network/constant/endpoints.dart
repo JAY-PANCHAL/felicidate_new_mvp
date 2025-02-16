@@ -6,7 +6,7 @@ class Endpoints {
 
   static Map<String, dynamic> getCommonParam() {
     Map<String, dynamic> params = {
-      KEY_DEVICE_ID: getDeviceId(),
+      // KEY_DEVICE_ID: getDeviceId(),
     };
     return params;
   }
@@ -32,4 +32,5 @@ class Endpoints {
   static const String saveFeelings = "/talker/save_feeling";
 
   static const String getDiaryDetail = "/talker/get_diary_detail";
+  static const String initialDetails = "/talker/initial-details";
 }

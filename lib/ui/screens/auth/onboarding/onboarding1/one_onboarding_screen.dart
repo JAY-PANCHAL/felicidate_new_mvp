@@ -34,6 +34,9 @@ class OneOnboardingScreenState extends State<OneOnboardingScreen> {
 
   @override
   void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      oneOnboardingController.getCurrentLocation();
+    });
     super.initState();
   }
 
@@ -59,9 +62,14 @@ class OneOnboardingScreenState extends State<OneOnboardingScreen> {
           bottomNavigationBar: AppConstants.CommonButtom(
               text: Strings.txtContinue,
               onTap: (){
-                // if (oneOnboardingController.formKey.currentState!.validate()) {
-                  Get.toNamed(Routes.twoOnboardingScreen);
-                // }
+                 if (oneOnboardingController.formKey.currentState!.validate()) {
+                  Get.toNamed(Routes.twoOnboardingScreen,arguments: {
+                    'name': oneOnboardingController.nameController.text,
+                    'email': oneOnboardingController.emailController.text,
+                    'age': oneOnboardingController.ageController.text,
+                    'location': oneOnboardingController.locationController.text,
+                  });
+                }
 
               }
           ),
@@ -130,12 +138,36 @@ class OneOnboardingScreenState extends State<OneOnboardingScreen> {
       controller: oneOnboardingController.ageController,
       validator: (value) => commonValidation(value,Strings.errorAge),
       keyboardType: TextInputType.number,
+      readOnly: true,
       inputFormatters: [
         FilteringTextInputFormatter.allow(RegExp(r'[1-9]')),
       ],
       titleLabel: Strings.oldYouAre,
       suffixIcon: AppSvgIcons.icCalenderIcon,
+      onTap: (){
+        selectDate(context);
+      },
     );
+  }
+
+  Future<void> selectDate(BuildContext context) async {
+    DateTime? pickedDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(1900),
+      lastDate: DateTime.now(),
+    );
+
+    if (pickedDate != null) {
+      int age = AppConstants().calculateAge(pickedDate);
+      if(age!=0){
+        oneOnboardingController.ageController.text = age.toString();
+      }
+      else{
+        AppConstants.showToast(Strings.validDate);
+      }
+
+    }
   }
 
 

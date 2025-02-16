@@ -100,13 +100,25 @@ class AppConstants {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              ImageView(
-                width: 280.w,
-                height: 180.h,
-                boxFit: BoxFit.contain,
-                image: AppPngIcons.loaderText,
-                imageType: ImageType.asset,
+              Stack(
+                alignment: Alignment.bottomCenter,
+                children:[ ImageView(
+                  width: 280.w,
+                  height: 180.h,
+                  boxFit: BoxFit.contain,
+                  image: AppPngIcons.loaderText,
+                  imageType: ImageType.asset,
+                ),
+                  Padding(
+                    padding:  EdgeInsets.only(bottom: 35.h),
+                    child: CircularProgressIndicator(
+                      backgroundColor: Colors.white,
+                      valueColor: AlwaysStoppedAnimation<Color>(PRIMARY_COLOR),
+                    ),
+                  ),
+                ]
               ),
+
             ],
           ),
         )
@@ -511,6 +523,19 @@ class AppConstants {
       print("Error fetching city: $e");
     }
     return "";
+  }
+
+  int calculateAge(DateTime selectedDate) {
+    DateTime today = DateTime.now();
+    int age = today.year - selectedDate.year;
+
+    // Adjust age if the birthday hasn't occurred yet this year
+    if (today.month < selectedDate.month ||
+        (today.month == selectedDate.month && today.day < selectedDate.day)) {
+      age--;
+    }
+
+    return age;
   }
 
 

@@ -11,6 +11,7 @@ import 'package:get/get.dart';
 
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
+import '../../../../../common/CommanTextField.dart';
 import '../../../../../common/utils/app_constants.dart';
 import '../../../../../common/utils/strings.dart';
 import '../../../../../routes/app_pages.dart';
@@ -54,62 +55,71 @@ class TwoOnboardingScreenState extends State<TwoOnboardingScreen> {
         inAsyncCall: twoOnboardingController.isLoading.value,
         child: Scaffold(
           backgroundColor: WHITE,
-          bottomNavigationBar: Container(
-            padding: EdgeInsets.symmetric(horizontal: 15.w,vertical: 8.h),
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.centerLeft,
-                end: Alignment.centerRight,
-                colors: [
-                  Color(0xFFFFF4F7),
-                  Color(0xFFE5F7FF),
-                ],
-              ),
-            ),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                ImageView(
-                  width: 60.sp,
-                  height: 60.sp,
-                  boxFit: BoxFit.contain,
-                  image: AppSvgIcons.onBord2ButtomIcon,
-                  imageType: ImageType.svg,
-                ),
-                SizedBox(width: 10.w,),
-                Text(Strings.thisHelpsUsWith,style: Styles.textFontMedium(size: 14),)
-              ],
-            ),
-          ),
-          body: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 15.w),
-            child: Column(
-              children: [
-                SizedBox(height: 45.h,),
-                AppConstants.CommonProgressIndicator(value: 0.68,color: RED_DARK),
-                SizedBox(height: 20.h,),
-                Expanded(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(Strings.isThereAnything,style: Styles.textFontBold(size: 28,color: RED_DARK),),
-                        SizedBox(height: 13.h,),
-                        Text(Strings.weCanConnectYouWithTheRightPerson,style: Styles.textFontMedium(size: 13,color: GREY_COLOR),),
-                        SizedBox(height: 15.h,),
-                        commonList(),
+          bottomNavigationBar: SizedBox(),
+          body: Column(
+            children: [
+              SizedBox(height: 45.h,),
+              Padding(padding: EdgeInsets.symmetric(horizontal: 15.w),
+              child:  AppConstants.CommonProgressIndicator(value: 0.68,color: RED_DARK),),
 
+              SizedBox(height: 20.h,),
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 15.w),
+                        child: Text(Strings.isThereAnything,style: Styles.textFontBold(size: 28,color: RED_DARK),),
+                      ),
+                      SizedBox(height: 13.h,),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 15.w),
+                        child: Text(Strings.weCanConnectYouWithTheRightPerson,style: Styles.textFontMedium(size: 13,color: GREY_COLOR),),
+                      ),
+                      SizedBox(height: 15.h,),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 15.w),
+                        child: commonList(),
+                      ),
+                      SizedBox(height: 35.h,),
+                      Container(
+                        width: 1.sw,
+                        padding: EdgeInsets.symmetric(horizontal: 15.w,vertical: 8.h),
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.centerLeft,
+                            end: Alignment.centerRight,
+                            colors: [
+                              Color(0xFFFFF4F7),
+                              Color(0xFFE5F7FF),
+                            ],
+                          ),
+                        ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            ImageView(
+                              width: 60.sp,
+                              height: 60.sp,
+                              boxFit: BoxFit.contain,
+                              image: AppSvgIcons.onBord2ButtomIcon,
+                              imageType: ImageType.svg,
+                            ),
+                            SizedBox(width: 10.w,),
+                            Text(Strings.thisHelpsUsWith,style: Styles.textFontMedium(size: 13),)
+                          ],
+                        ),
+                      ),
 
-
-                      ],
-                    ),
+                    ],
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       );
@@ -127,6 +137,7 @@ class TwoOnboardingScreenState extends State<TwoOnboardingScreen> {
         child: ListView.separated(
 
           shrinkWrap: true,
+          padding: EdgeInsets.zero,
           itemCount: 8,
           itemBuilder: (BuildContext context, int index) {
             List sList = [
@@ -153,30 +164,35 @@ class TwoOnboardingScreenState extends State<TwoOnboardingScreen> {
             ];
             return GestureDetector(
               onTap: (){
-                Get.toNamed(Routes.threeOnboardingScreen);
-              },
-              child: Container(
-                child: Padding(
-                  padding: EdgeInsets.only(top: 8.h,bottom: 8.h),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      SizedBox(width: 10.w,),
-                      ImageView(
-                        width: 25.sp,
-                        height: 25.sp,
-                        boxFit: BoxFit.contain,
-                        image: sListIcon[index],
-                        imageType: ImageType.svg,
-                      ),
-                      SizedBox(width: 10.w,),
-                      SizedBox(
-                          width: 1.sw * 0.75,
-                          child: Text(sList[index],style: Styles.textFontMedium(size: 14,color: DARK_GREY),))
+                if(sList[index]=='Something else'){
+                  enterSomeElseDialog();
+                }
+                else{
+                  twoOnboardingController.helpController.text = sList[index]??"";
+                  twoOnboardingController.apiCallForInitialDetails(context);
+                }
 
-                    ],
-                  ),
+              },
+              child: Padding(
+                padding: EdgeInsets.only(top: 8.h,bottom: 8.h),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    SizedBox(width: 10.w,),
+                    ImageView(
+                      width: 25.sp,
+                      height: 25.sp,
+                      boxFit: BoxFit.contain,
+                      image: sListIcon[index],
+                      imageType: ImageType.svg,
+                    ),
+                    SizedBox(width: 10.w,),
+                    SizedBox(
+                        width: 1.sw * 0.75,
+                        child: Text(sList[index],style: Styles.textFontMedium(size: 14,color: DARK_GREY),))
+
+                  ],
                 ),
               ),
             );
@@ -190,6 +206,52 @@ class TwoOnboardingScreenState extends State<TwoOnboardingScreen> {
   }
 
 
+  Widget helpWidget(){
+    return CustomTextField(
+      controller: twoOnboardingController.helpController,
+      validator: (value) => commonValidation(value,Strings.errorHelp),
+      titleLabel: Strings.help,
+    );
+  }
+
+  Future<void> enterSomeElseDialog() async {
+    return Get.dialog(
+        AlertDialog(
+            backgroundColor: WHITE,
+            title: Align(
+                alignment: Alignment.topRight,
+                child: GestureDetector(
+                    onTap: (){
+                      Get.back();
+                    },
+                    child: const Icon(Icons.close_sharp,color: BLACK,size: 25,))),
+            content: SingleChildScrollView(
+              child: Form(
+                key: twoOnboardingController.formKey,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    helpWidget(),
+                    SizedBox(height: 20.h,),
+                    AppConstants.CommonButtom(
+                        text: Strings.txtContinue,
+                        onTap: (){
+                          if (twoOnboardingController.formKey.currentState!.validate()) {
+                            Get.back();
+                            twoOnboardingController.apiCallForInitialDetails(context);
+                          }
+
+                        }
+                    ),
+                  ],
+                ),
+              ),
+            )
+        )
+    );
+  }
 
 
 }

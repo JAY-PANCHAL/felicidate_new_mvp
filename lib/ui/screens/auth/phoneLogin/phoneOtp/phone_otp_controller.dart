@@ -62,7 +62,13 @@ class PhoneOtpController extends BaseController {
           await SpUtil.putString(ACCESS_TOKEN, model.data?.token??"");
           setUser(model.data?.user);
           AppConstants.showToast(model.message??"");
-          Get.toNamed(Routes.oneOnboardingScreen);
+          var loginData = await getUser();
+          if((loginData?.cityLocation??"")==""){
+            Get.offNamedUntil(Routes.oneOnboardingScreen,(route) => false);
+          }
+          else{
+            Get.offNamedUntil(Routes.dashboard,(route) => false);
+          }
         }
       }
     }, onError: (e) {
