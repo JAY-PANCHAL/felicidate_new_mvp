@@ -72,7 +72,7 @@ class HomeScreenState extends State<HomeScreen> {
                     SizedBox(
                       height: 40.h,
                     ),
-                    Text(Strings.helloUser,
+                    Text("Hello ${homeController.mLoginData.value?.name??''}",
                         style: Styles.textFontBold(
                           size: 26,
                           fontFamily: AppConstants.fontFamilyOgg,

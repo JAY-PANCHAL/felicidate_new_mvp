@@ -10,31 +10,47 @@ import 'package:intl/intl.dart';
 
 import '../../../../../controller/base_controller.dart';
 import '../../../../common/utils/app_constants.dart';
+import '../../../../common/utils/shared_pref_utils.dart';
 import '../../../../common/utils/strings.dart';
 import '../../../../network/constant/endpoints.dart';
 import '../../../../network/model/journal_entries_model.dart';
+import '../../../../network/model/login_model.dart';
 import '../../../widget/constants/app_colors.dart';
 import 'home_screen.dart';
 
 class HomeController extends BaseController {
   var mMyDiaries = <MyDiaries>[].obs;
   List<JournalEntry> journalEntries = [];
-var selectedDate="".obs;
+  var selectedDate = "".obs;
+
+  var mLoginData = Rxn<User>();
+
+
+  getLoginUserData() async {
+    mLoginData.value = await getUser();
+    print('mLoginData.value--${mLoginData.value?.email??""}');
+
+  }
+
+
   @override
   Future<void> onInit() async {
     var data = Get.arguments;
     journalEntries = await getLastSevenDays();
+    getLoginUserData();
 
     if (data != null) {}
     super.onInit();
   }
+
   List<JournalEntry> getLastSevenDays() {
     DateTime today = DateTime.now();
     DateFormat dateFormat = DateFormat("d'th' MMM yyyy");
 
     return List.generate(7, (index) {
       DateTime date = today.subtract(Duration(days: index));
-      return JournalEntry(date: dateFormat.format(date), isSelected: index == 0);
+      return JournalEntry(
+          date: dateFormat.format(date), isSelected: index == 0);
     }).reversed.toList(); // Reverse to show the oldest first
   }
 
@@ -43,19 +59,17 @@ var selectedDate="".obs;
     var mood = "";
     if (icon == AppSvgIcons.fe1Icon) {
       mood = "Awsome";
-    } else  if (icon == AppSvgIcons.fe2Icon) {
+    } else if (icon == AppSvgIcons.fe2Icon) {
       mood = "Good";
-    } else  if (icon == AppSvgIcons.fe3Icon) {
+    } else if (icon == AppSvgIcons.fe3Icon) {
       mood = "Neutral";
-    } else  if (icon == AppSvgIcons.fe4Icon) {
+    } else if (icon == AppSvgIcons.fe4Icon) {
       mood = "Bad";
-    }else  {
+    } else {
       mood = "Terrible";
     }
 
-    var params = {
-      "todays_feeling":mood
-    };
+    var params = {"todays_feeling": mood};
 
     await repo.saveFeelingsApi(params, context).then((value) async {
       isLoading.value = false;
@@ -63,8 +77,8 @@ var selectedDate="".obs;
       if (data != null) {
         SaveFeelingsResponse model = SaveFeelingsResponse.fromJson(data);
         if (model.status == true) {
-          AppConstants.showGetSnackBar("Success!",model.message, BACK_BUTTON_ACCENT_COLOR);
-
+          AppConstants.showGetSnackBar(
+              "Success!", model.message, BACK_BUTTON_ACCENT_COLOR);
         }
       }
     }, onError: (e) {
@@ -84,7 +98,7 @@ var selectedDate="".obs;
 
     Map<String, dynamic> params = Endpoints.getCommonParam();
     // params['journal_entry_date'] = AppConstants().getCurrentDate();
-    params['journal_entry_date'] = ""/*selectedDate.value*/;
+    params['journal_entry_date'] = "" /*selectedDate.value*/;
 
     await repo.getJournalEntriesRequested(params, context).then((value) async {
       isLoading.value = false;
@@ -92,7 +106,7 @@ var selectedDate="".obs;
       if (data != null) {
         JournalEntriesModel model = JournalEntriesModel.fromJson(data);
         if (model.status == true) {
-          mMyDiaries.value = model.data?.myDiaries??[];
+          mMyDiaries.value = model.data?.myDiaries ?? [];
         }
       }
     }, onError: (e) {
@@ -102,12 +116,12 @@ var selectedDate="".obs;
           apiCallForGetJournalEntries(context);
         });
       } else {
-        AppConstants.showGetSnackBar("Hold Up!", e.toString(),RED);
+        AppConstants.showGetSnackBar("Hold Up!", e.toString(), RED);
       }
     });
   }
-
 }
+
 class JournalEntry {
   String date;
   bool isSelected;
