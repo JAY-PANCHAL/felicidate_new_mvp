@@ -88,7 +88,7 @@ class ThreeOnboardingScreenState extends State<ThreeOnboardingScreen> {
                         children: [
                         GradientText(
                         text: Strings.youAreReadyToShine,
-                        style: Styles.textFontBold(size: 28,),
+                        style: Styles.textFontBoldHeight(size: 32,),
                         gradient: LinearGradient(
                           colors: [Color(0xFF86D8FF), Color(0xFFFF9FB2), Color(0xFFFFD18E)],
                           begin: Alignment.topLeft,
@@ -96,7 +96,7 @@ class ThreeOnboardingScreenState extends State<ThreeOnboardingScreen> {
                         ),
                         ),
                           SizedBox(height: 13.h,),
-                          Text(Strings.weCanConnectYouWithTheRightPerson,style: Styles.textFontMedium(size: 13,color: GREY_COLOR),),
+                          Text(Strings.weCanConnectYouWithTheRightPerson,style: Styles.textFontMedium(size: 16,color: GREY_COLOR),),
                           SizedBox(height: 35.h,),
 
                           CommonWidget(icon: AppSvgIcons.iconB3Icon1, text: "Talk to people who understand you."),
@@ -110,7 +110,7 @@ class ThreeOnboardingScreenState extends State<ThreeOnboardingScreen> {
                   ),
                 ),
                 AppConstants.CommonButtom(
-                    text: Strings.txtContinue,
+                    text: Strings.txtContinueWellbeing,
                     onTap: (){
                       Get.offNamedUntil(Routes.dashboard,(route) => false);
                     }
@@ -138,8 +138,8 @@ class ThreeOnboardingScreenState extends State<ThreeOnboardingScreen> {
               ],
             ),
             child: ImageView(
-              width: 70.sp,
-              height: 70.sp,
+              width: 75.sp,
+              height: 75.sp,
               boxFit: BoxFit.contain,
               image: icon??"",
               imageType: ImageType.svg,
@@ -148,7 +148,7 @@ class ThreeOnboardingScreenState extends State<ThreeOnboardingScreen> {
           SizedBox(width: 19.w,),
           SizedBox(
               width: 1.sw * 0.65,
-              child: Text(text??"",style: Styles.textFontMedium(size: 18),)),
+              child: Text(text??"",style: Styles.textFontMedium(size: 20),)),
         ],
       ),
     );

@@ -149,6 +149,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
         key: widget.labelKey,
         controller: widget.controller,
         focusNode: _focusNode,
+        style: Styles.textFontRegular(size: 16),
         decoration: widget.decoration ?? InputDecoration(
           filled: true,
           fillColor: WHITE,

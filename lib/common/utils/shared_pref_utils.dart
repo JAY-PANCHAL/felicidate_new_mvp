@@ -86,8 +86,8 @@ Future<User?> getUser() async {
 /// JWT Token
 
 Future<String?> getToken() async {
-  var user = SpUtil.getString(ACCESS_TOKEN);
-  if (user != null) {
+  String user = SpUtil.getString(ACCESS_TOKEN);
+  if (user != "") {
     return user;
   } else {
     return "";

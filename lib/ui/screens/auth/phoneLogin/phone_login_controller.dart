@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 
 import '../../../../common/service_locator.dart';
 import '../../../../common/utils/app_constants.dart';
+import '../../../../common/utils/shared_pref_utils.dart';
 import '../../../../common/utils/strings.dart';
 import '../../../../controller/base_controller.dart';
 import '../../../../network/api/Felicidade_repository.dart';
@@ -69,6 +70,7 @@ class PhoneLoginController extends BaseController {
     Map<String, dynamic> params = Endpoints.getCommonParam();
     params['provider_type'] = "mobile";
     params['mobile_number'] = number.text;
+    params['signature_hash'] = getDeviceId();
 
     await repository.signInRequested(params, context).then((value) async {
       isLoading.value = false;

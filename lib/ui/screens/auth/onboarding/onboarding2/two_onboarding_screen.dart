@@ -55,7 +55,38 @@ class TwoOnboardingScreenState extends State<TwoOnboardingScreen> {
         inAsyncCall: twoOnboardingController.isLoading.value,
         child: Scaffold(
           backgroundColor: WHITE,
-          bottomNavigationBar: SizedBox(),
+          bottomNavigationBar: Container(
+            width: 1.sw,
+            padding: EdgeInsets.symmetric(horizontal: 15.w,vertical: 8.h),
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+                colors: [
+                  Color(0xFFFFF4F7),
+                  Color(0xFFE5F7FF),
+                ],
+              ),
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                ImageView(
+                  width: 60.sp,
+                  height: 60.sp,
+                  boxFit: BoxFit.contain,
+                  image: AppSvgIcons.onBord2ButtomIcon,
+                  imageType: ImageType.svg,
+                ),
+                SizedBox(width: 10.w,),
+                Container(
+                  width: 1.sw * 0.7,
+                    child: Text(Strings.thisHelpsUsWith,style: Styles.textFontMedium(size: 16),))
+              ],
+            ),
+          ),
           body: Column(
             children: [
               SizedBox(height: 45.h,),
@@ -71,49 +102,20 @@ class TwoOnboardingScreenState extends State<TwoOnboardingScreen> {
                     children: [
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 15.w),
-                        child: Text(Strings.isThereAnything,style: Styles.textFontBold(size: 28,color: RED_DARK),),
+                        child: Text(Strings.isThereAnything,style: Styles.textFontBoldHeight(size: 32,color: RED_DARK),),
                       ),
-                      SizedBox(height: 13.h,),
+                      SizedBox(height: 15.h,),
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 15.w),
-                        child: Text(Strings.weCanConnectYouWithTheRightPerson,style: Styles.textFontMedium(size: 13,color: GREY_COLOR),),
+                        child: Text(Strings.weCanConnectYouWithTheRightPerson,style: Styles.textFontMedium(size: 16,color: GREY_COLOR),),
                       ),
                       SizedBox(height: 15.h,),
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 15.w),
                         child: commonList(),
                       ),
-                      SizedBox(height: 35.h,),
-                      Container(
-                        width: 1.sw,
-                        padding: EdgeInsets.symmetric(horizontal: 15.w,vertical: 8.h),
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            begin: Alignment.centerLeft,
-                            end: Alignment.centerRight,
-                            colors: [
-                              Color(0xFFFFF4F7),
-                              Color(0xFFE5F7FF),
-                            ],
-                          ),
-                        ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            ImageView(
-                              width: 60.sp,
-                              height: 60.sp,
-                              boxFit: BoxFit.contain,
-                              image: AppSvgIcons.onBord2ButtomIcon,
-                              imageType: ImageType.svg,
-                            ),
-                            SizedBox(width: 10.w,),
-                            Text(Strings.thisHelpsUsWith,style: Styles.textFontMedium(size: 13),)
-                          ],
-                        ),
-                      ),
+                      SizedBox(height: 60.h,),
+
 
                     ],
                   ),
@@ -139,6 +141,7 @@ class TwoOnboardingScreenState extends State<TwoOnboardingScreen> {
           shrinkWrap: true,
           padding: EdgeInsets.zero,
           itemCount: 8,
+          physics: NeverScrollableScrollPhysics(),
           itemBuilder: (BuildContext context, int index) {
             List sList = [
               'I’m feeling anxious or panicky',
@@ -190,7 +193,7 @@ class TwoOnboardingScreenState extends State<TwoOnboardingScreen> {
                     SizedBox(width: 10.w,),
                     SizedBox(
                         width: 1.sw * 0.75,
-                        child: Text(sList[index],style: Styles.textFontMedium(size: 14,color: DARK_GREY),))
+                        child: Text(sList[index],style: Styles.textFontMedium(size: 16,color: DARK_GREY),))
 
                   ],
                 ),

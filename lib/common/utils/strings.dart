@@ -136,6 +136,7 @@ class Strings {
   static const withFacebook = 'with Facebook';
   static const useMobileNumber = 'Use mobile number';
   static const startedWithYourNumber = 'Let’s get started with your number? ';
+  static const enterYourCode = 'Enter your code';
   static const errorPhone = "Please enter phone number";
   static const messageNumber = "We’ll send you a code to verify it’s you, message and data rates may apply";
   static const sFor = "for";
@@ -155,6 +156,7 @@ class Strings {
   static const String location = "Location";
   static const String errorLocation = "Please enter location.";
   static const txtContinue = 'Continue';
+  static const txtContinueWellbeing = 'Continue to wellbeing';
   static const isThereAnything = 'Is there anything particular you want help with?';
   static const weCanConnectYouWithTheRightPerson = 'Tell us what’s on your mind so that we can connect you with the right person';
   static const thisHelpsUsWith = 'This helps us with finding a right match';
