@@ -208,5 +208,10 @@ class Strings {
   static const String validDate = "Please select valid date";
   static const String help = "Help";
   static const String errorHelp = "Please enter help";
+  static const String hoorayShare = "Hooray!,\nShare this joy\nwith people";
+  static const String ConnectSomeone = "Sad to learn,\nConnect someone to\nfeel good";
+  static const String startCallingPeople = "Start calling people";
+  static const String noImGood = "No, I’m good";
+  static const String connectWithSomone = "Connect with somone";
 
 }

@@ -456,7 +456,74 @@ class AppConstants {
   }
 
 
+  static CommonButtom2({String? text, onTap}){
+    return GestureDetector(
+      onTap: (){
+        onTap();
+      },
+      child: Container(
+        height: 40.h,
+        width: 1.sw,
+        margin: EdgeInsets.symmetric(horizontal: 25.w,vertical: 10.h),
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.centerLeft,
+              end: Alignment.centerRight,
+              colors: [
+                PRIMARY_COLOR_GRA1,
+                PRIMARY_COLOR_GRA2,
+              ],
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: GREY_COLOR.withOpacity(0.2), // Shadow color
+                spreadRadius: 0, // Slight spread to keep the shadow subtle
+                blurRadius: 2, // Increased blur for a softer shadow
+                offset: Offset(0, 4), // Shadow appears below (positive y-axis)
+              ),
+            ],
+            borderRadius: BorderRadius.circular(30)
+        ),
+        child: Text(text??"",style: Styles.textFontMedium(size: 14),),
+      ),
+    );
+  }
 
+  static CommonButtom3({String? text, onTap}){
+    return GestureDetector(
+      onTap: (){
+        onTap();
+      },
+      child: Container(
+        height: 40.h,
+        width: 1.sw,
+        margin: EdgeInsets.symmetric(horizontal: 25.w,vertical: 10.h),
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.centerLeft,
+              end: Alignment.centerRight,
+              colors: [
+                Color(0xFF8ADCFF),
+                Color(0xFFE4F7FF),
+
+              ],
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: GREY_COLOR.withOpacity(0.2), // Shadow color
+                spreadRadius: 0, // Slight spread to keep the shadow subtle
+                blurRadius: 2, // Increased blur for a softer shadow
+                offset: Offset(0, 4), // Shadow appears below (positive y-axis)
+              ),
+            ],
+            borderRadius: BorderRadius.circular(30)
+        ),
+        child: Text(text??"",style: Styles.textFontMedium(size: 14),),
+      ),
+    );
+  }
 
 // Common BoxShadow utility
   BoxShadow commonBoxShadow({

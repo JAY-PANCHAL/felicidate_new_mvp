@@ -52,6 +52,8 @@ class AppSvgIcons {
 
   static final String icClose = 'assets/icons/svgIcons/ic_close.svg';
   static final String icCreateNote = 'assets/icons/svgIcons/createnote.svg';
+  static final String icHorrayIcon = 'assets/icons/svgIcons/horray_icon.svg';
+  static final String icConnectSomeoneIcon = 'assets/icons/svgIcons/connect_someone_icon.svg';
 
 
 

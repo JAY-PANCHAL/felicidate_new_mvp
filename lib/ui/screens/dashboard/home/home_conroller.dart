@@ -64,9 +64,9 @@ class HomeController extends BaseController {
     } else if (icon == AppSvgIcons.fe3Icon) {
       mood = "Neutral";
     } else if (icon == AppSvgIcons.fe4Icon) {
-      mood = "Bad";
-    } else {
       mood = "Terrible";
+    } else {
+      mood = "Bad";
     }
 
     var params = {"todays_feeling": mood};

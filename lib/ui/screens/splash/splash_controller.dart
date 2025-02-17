@@ -31,14 +31,14 @@ class SplashController extends BaseController {
     Timer(duration, () async {
       var loginData = await getUser();
       if (loginData==null) {
-        Get.offNamedUntil(Routes.login,(route) => false);
+        Get.offNamedUntil(Routes.dashboard,(route) => false);
       } else {
         print('location--${loginData.cityLocation??''}');
         if((loginData.cityLocation??"")==""){
           Get.offNamedUntil(Routes.oneOnboardingScreen,(route) => false);
         }
         else{
-          Get.offNamedUntil(Routes.dashboard,(route) => false);
+            Get.offNamedUntil(Routes.dashboard,(route) => false);
         }
 
       }
