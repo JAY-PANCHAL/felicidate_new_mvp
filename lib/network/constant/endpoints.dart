@@ -33,4 +33,9 @@ class Endpoints {
 
   static const String getDiaryDetail = "/talker/get_diary_detail";
   static const String initialDetails = "/talker/initial-details";
+  static const String  nearByTalker=  "/talker/nearby_talker";
+
+
+
+
 }

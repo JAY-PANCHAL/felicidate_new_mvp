@@ -4,9 +4,7 @@ import 'package:felicidade/ui/widget/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-
 import '../../../../../common/utils/app_constants.dart';
 import '../../../../common/utils/Styles.dart';
 import '../../../../common/utils/strings.dart';
