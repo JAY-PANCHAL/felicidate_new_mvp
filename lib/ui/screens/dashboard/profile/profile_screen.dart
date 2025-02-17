@@ -175,7 +175,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                       padding: EdgeInsets.symmetric(horizontal: 15.w,vertical: 12.h),
                       decoration: BoxDecoration(
                           borderRadius:BorderRadius.circular(16),
-                          color: LIGHT_GREEN
+                          color: Color(0xFFF7F7F7),
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,

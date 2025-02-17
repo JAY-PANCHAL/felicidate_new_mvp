@@ -193,17 +193,17 @@ class CustomBottomNavBar extends StatelessWidget {
   Color _getSelectedColor(int index) {
     switch (index) {
       case 0:
-        return Colors.pink;
+        return PINK;
       case 1:
-        return Colors.blue;
+        return DETAILS_COLOR;
       case 2:
-        return Colors.green;
+        return BLUE_COLOR2;
       case 3:
-        return Colors.orange;
+        return YELLOW_COLOR;
       case 4:
-        return Colors.purple;
+        return BUTTON_COLOR;
       default:
-        return Colors.pink;
+        return PINK;
     }
   }
 }
