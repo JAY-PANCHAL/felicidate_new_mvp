@@ -71,8 +71,8 @@ class PhoneOtpScreenState extends State<PhoneOtpScreen> {
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 colors: [
-                  LIGHT_BLUE2,
-                  LIGHT_BLUE1,
+                  Color(0xFFE7F7FF),
+                  WHITE,
                 ],
               ),
             ),
@@ -84,17 +84,17 @@ class PhoneOtpScreenState extends State<PhoneOtpScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(height: 45.h,),
-                    Text(Strings.startedWithYourNumber,style: Styles.textFontBold(size: 30,color: BLUE_COLOR),),
-                    SizedBox(height: 20.h,),
+                    Text(Strings.enterYourCode,style: Styles.textFontBoldHeight(size: 40,color: BLUE_COLOR),),
+                    SizedBox(height: 10.h,),
                     Text.rich(
                       TextSpan(
                           children: [
-                            TextSpan(text: Strings.sFor,style: Styles.textFontMedium(size: 16,color: GREY_COLOR),),
-                            TextSpan(text: '${phoneOtpController.preNum.value} ${phoneOtpController.number.value}',style: Styles.textFontMedium(size: 16),),
+                            TextSpan(text: Strings.sFor,style: Styles.textFontMedium(size: 18,color: GREY_COLOR),),
+                            TextSpan(text: '${phoneOtpController.preNum.value} ${phoneOtpController.number.value}',style: Styles.textFontMedium(size: 18),),
                           ]
                       ),
                     ),
-                    SizedBox(height: 20.h,),
+                    SizedBox(height: 30.h,),
                     otpWidget(),
                     GestureDetector(
                       onTap: (){
@@ -103,9 +103,9 @@ class PhoneOtpScreenState extends State<PhoneOtpScreen> {
                       child: Text.rich(
                         TextSpan(
                             children: [
-                              TextSpan(text: Strings.didNotGetOtp,style: Styles.textFontMedium(size: 14,color: GREY_COLOR),),
+                              TextSpan(text: Strings.didNotGetOtp,style: Styles.textFontMedium(size: 16,color: GREY_COLOR),),
                               TextSpan(
-                                text: Strings.sendOtpAgain,style: TextStyle(fontSize: 14,fontWeight: FontWeight.w700,color: BLUE_COLOR,fontFamily: AppConstants.fontFamilySatoshi,decoration: TextDecoration.underline),),
+                                text: Strings.sendOtpAgain,style: TextStyle(fontSize: 16,fontWeight: FontWeight.w700,color: BLUE_COLOR,fontFamily: AppConstants.fontFamilySatoshi,decoration: TextDecoration.underline),),
                             ]
                         ),
                       ),

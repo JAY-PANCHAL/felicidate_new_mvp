@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:felicidade/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -8,6 +11,7 @@ import 'package:get/get.dart';
 import 'common/dependency_injection.dart';
 import 'common/service_locator.dart';
 import 'common/utils/color_constants.dart';
+import 'common/utils/shared_pref_utils.dart';
 import 'common/utils/sp_util.dart';
 import 'common/utils/storage_service.dart';
 import 'common/utils/strings.dart';
@@ -121,6 +125,10 @@ Future<void> main() async {
 
   /// secure storage
   storage = const FlutterSecureStorage();
+
+  /// Device Info
+  await setDeviceInfo();
+
   setup();
   final prefs = await SharedPreferences.getInstance();
   final cacheUserID = prefs.get(cacheUserIDKey) as String? ?? '';
@@ -139,6 +147,20 @@ Future<void> main() async {
   });*/
   runApp(MyApp());
 
+}
+
+Future<void> setDeviceInfo() async {
+  DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+  if (Platform.isAndroid) {
+    AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+    await setDeviceModel("${androidInfo.brand} ${androidInfo.model}");
+    await setDeviceId(androidInfo.id);
+  }
+  if (Platform.isIOS) {
+    IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
+    await setDeviceModel(iosInfo.systemName);
+    await setDeviceId("${iosInfo.identifierForVendor}");
+  }
 }
 
 class MyApp extends StatelessWidget {

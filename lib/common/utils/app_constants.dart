@@ -450,7 +450,7 @@ class AppConstants {
             ],
             borderRadius: BorderRadius.circular(30)
         ),
-        child: Text(text??"",style: Styles.textFontMedium(size: 16),),
+        child: Text(text??"",style: Styles.textFontMedium(size: 20),),
       ),
     );
   }

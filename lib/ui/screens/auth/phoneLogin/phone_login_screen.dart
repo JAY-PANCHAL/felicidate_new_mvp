@@ -65,8 +65,8 @@ class PhoneLoginScreenState extends State<PhoneLoginScreen> {
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 colors: [
-                  LIGHT_BLUE1,
-                  LIGHT_BLUE2,
+                  Color(0xFFE7F7FF),
+                  Color(0xFFA8E2FF),
                 ],
               ),
             ),
@@ -80,7 +80,7 @@ class PhoneLoginScreenState extends State<PhoneLoginScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(height: 45.h,),
-                      Text(Strings.startedWithYourNumber,style: Styles.textFontBold(size: 30,color: BLUE_COLOR),),
+                      Text(Strings.startedWithYourNumber,style: Styles.textFontBoldHeight(size: 40,color: BLUE_COLOR),),
                       SizedBox(height: 50.h,),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -98,7 +98,7 @@ class PhoneLoginScreenState extends State<PhoneLoginScreen> {
                         ],
                       ),
                       SizedBox(height: 10.h,),
-                      Text(Strings.messageNumber,style: Styles.textFontMedium(size: 14,color: DARK_GREY),),
+                      Text(Strings.messageNumber,style: Styles.textFontMedium(size: 16,color: DARK_GREY),),
 
 
                     ],
@@ -141,8 +141,8 @@ class PhoneLoginScreenState extends State<PhoneLoginScreen> {
       icon: Padding(
         padding: EdgeInsets.only(right: 13.w),
         child: ImageView(
-          width: 8.sp,
-          height: 8.sp,
+          width: 7.sp,
+          height: 7.sp,
           boxFit: BoxFit.contain,
           image: AppSvgIcons.icDropIcon,
           imageType: ImageType.svg,
