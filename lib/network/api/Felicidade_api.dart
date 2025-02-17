@@ -17,13 +17,13 @@ class FelicidadeApi {
   Future<String> loadPostData(endpoint, body, context) async {
     var encodeData = json.encode(body);
     var reqData = encodeData;
-    // final Map<String, dynamic> header = new Map<String, dynamic>();
-    // var tocken = await getToken();
-    // header["Authorization"] = 'Bearer $tocken';
-    // print('tocken---${tocken}');
-     final Map<String, dynamic> header = new Map<String, dynamic>();
+    final Map<String, dynamic> header = new Map<String, dynamic>();
+    var tocken = await getToken();
+    header["Authorization"] = 'Bearer $tocken';
+    print('tocken---${tocken}');
+   /*  final Map<String, dynamic> header = new Map<String, dynamic>();
      header["Authorization"] = 'Bearer 156|c8XTsQF6ApkNUVSYdfNEFWZZiTcZU38QfnCKiVSBcbeea0f7';
-    try {
+*/    try {
       final String response = await dioClient.post(endpoint, data: reqData,
           options: Options(headers:header));
       var finalresponse = response;

@@ -98,6 +98,8 @@ class PhoneOtpController extends BaseController {
       if (data != null) {
         LoginModel model = LoginModel.fromJson(data);
         if (model.status == true) {
+          await SpUtil.putString(ACCESS_TOKEN, model.data?.token??"");
+
           AppConstants.showToast(model.message??"");
           Get.toNamed(Routes.oneOnboardingScreen);
         }

@@ -26,8 +26,8 @@ class DashboardScreen extends StatefulWidget {
 class _DashboardScreenState extends State<DashboardScreen> {
   late PersistentTabController _controller;
 
-  final DashboardController dashboardController = Get.put(DashboardController());
-
+  final DashboardController dashboardController =
+      Get.put(DashboardController());
 
   @override
   void initState() {
@@ -79,32 +79,30 @@ class _DashboardScreenState extends State<DashboardScreen> {
             // color: PINK,
             imageType: ImageType.svg,
           ),
-
-          title:Strings.talk,
+          title: Strings.talk,
         ),
       ),
       PersistentTabConfig(
         screen: ExpertScreen(),
         item: ItemConfig(
-          inactiveIcon: ImageView(
-            width: 33.sp,
-            height: 33.sp,
-            boxFit: BoxFit.contain,
-            image: AppSvgIcons.expert,
-            color: GREY_COLOR,
-            imageType: ImageType.svg,
-          ),
-          icon: ImageView(
-            width: 33.sp,
-            height: 33.sp,
-            boxFit: BoxFit.contain,
-            image: AppSvgIcons.expert,
-            color: BLUE_COLOR2,
-            // color: PINK,
-            imageType: ImageType.svg,
-          ),
-          title: Strings.expert
-        ),
+            inactiveIcon: ImageView(
+              width: 33.sp,
+              height: 33.sp,
+              boxFit: BoxFit.contain,
+              image: AppSvgIcons.expert,
+              color: GREY_COLOR,
+              imageType: ImageType.svg,
+            ),
+            icon: ImageView(
+              width: 33.sp,
+              height: 33.sp,
+              boxFit: BoxFit.contain,
+              image: AppSvgIcons.expert,
+              color: BLUE_COLOR2,
+              // color: PINK,
+              imageType: ImageType.svg,
+            ),
+            title: Strings.expert),
       ),
       PersistentTabConfig(
         screen: TripScreen(),
@@ -178,8 +176,9 @@ class CustomBottomNavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return BottomNavigationBar(
       currentIndex: controller.index,
-      onTap: (index) => controller.jumpToTab(index),      type: BottomNavigationBarType.fixed,
-      selectedItemColor: Colors.pink,
+      onTap: (index) => controller.jumpToTab(index),
+      type: BottomNavigationBarType.fixed,
+      selectedItemColor: _getSelectedColor(controller.index),
       unselectedItemColor: Colors.grey,
       items: items.map((item) {
         return BottomNavigationBarItem(
@@ -190,12 +189,21 @@ class CustomBottomNavBar extends StatelessWidget {
       }).toList(),
     );
   }
+
+  Color _getSelectedColor(int index) {
+    switch (index) {
+      case 0:
+        return Colors.pink;
+      case 1:
+        return Colors.blue;
+      case 2:
+        return Colors.green;
+      case 3:
+        return Colors.orange;
+      case 4:
+        return Colors.purple;
+      default:
+        return Colors.pink;
+    }
+  }
 }
-
-
-
-
-
-
-
-
