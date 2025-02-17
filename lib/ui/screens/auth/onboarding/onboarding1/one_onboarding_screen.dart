@@ -177,6 +177,11 @@ class OneOnboardingScreenState extends State<OneOnboardingScreen> {
       validator: (value) => commonValidation(value,Strings.errorLocation),
       titleLabel: Strings.location,
       suffixIcon: AppSvgIcons.icLocationIcon,
+      hintText: "Fetching location...",
+      suffixIconTap: (){
+        oneOnboardingController.getCurrentLocation();
+      },
+
     );
   }
 

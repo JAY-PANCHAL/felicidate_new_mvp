@@ -43,6 +43,8 @@ class CustomTextField extends StatefulWidget {
   final double? cursorHeight;
   final String? titleLabel;
   final String? suffixIcon;
+  final String? hintText;
+  final Function? suffixIconTap;
   final LabeledGlobalKey? labelKey;
 
   final Function(PointerDownEvent)? onTapOutside;
@@ -83,6 +85,8 @@ class CustomTextField extends StatefulWidget {
     this.cursorHeight,
     this.titleLabel,
     this.suffixIcon,
+    this.suffixIconTap,
+    this.hintText = "",
     this.onTapOutside,
   });
 
@@ -156,18 +160,23 @@ class _CustomTextFieldState extends State<CustomTextField> {
           focusColor: WHITE,
           contentPadding: EdgeInsets.only(left: 15,top: 10),
           errorMaxLines: 2,
-          hintText: "",
+          hintText: widget.hintText,
           hintStyle: Styles.textFontRegular(size: 16,color: GREY_COLOR),
           suffixIcon:
           widget.suffixIcon!=null?
-          Padding(
-            padding: EdgeInsets.only(right: 12.w),
-            child: ImageView(
-              // width: 20.sp,
-              // height: 20.sp,
-              boxFit: BoxFit.contain,
-              image: widget.suffixIcon??"",
-              imageType: ImageType.svg,
+          InkWell(
+            onTap: (){
+              widget.suffixIconTap!();
+            },
+            child: Padding(
+              padding: EdgeInsets.only(right: 12.w),
+              child: ImageView(
+                // width: 20.sp,
+                // height: 20.sp,
+                boxFit: BoxFit.contain,
+                image: widget.suffixIcon??"",
+                imageType: ImageType.svg,
+              ),
             ),
           ):null,
           suffixIconConstraints: BoxConstraints(minWidth: 30.sp,minHeight: 30.sp,maxWidth: 30.sp,maxHeight: 30.sp),
