@@ -56,6 +56,16 @@ class AppSvgIcons {
   static final String icCreateNote = 'assets/icons/svgIcons/createnote.svg';
   static final String icHorrayIcon = 'assets/icons/svgIcons/horray_icon.svg';
   static final String icConnectSomeoneIcon = 'assets/icons/svgIcons/connect_someone_icon.svg';
+  static final String icTs1Icon = 'assets/icons/svgIcons/ts1.svg';
+  static final String icTs2Icon = 'assets/icons/svgIcons/ts2.svg';
+  static final String icTs3Icon = 'assets/icons/svgIcons/ts3.svg';
+  static final String icTs4Icon = 'assets/icons/svgIcons/ts4.svg';
+  static final String icTs5Icon = 'assets/icons/svgIcons/ts5.svg';
+  static final String icTs6Icon = 'assets/icons/svgIcons/ts6.svg';
+
+  static final String icBackIcon = 'assets/icons/svgIcons/back_icon.svg';
+  static final String icCallCutIcon = 'assets/icons/pngIcons/call_cut_icon.svg';
+  static final String icMessageSendIcon = 'assets/icons/svgIcons/message_send_icon.svg';
 
 
 
@@ -70,6 +80,8 @@ class AppPngIcons {
   static const String manImage = 'assets/icons/pngIcons/man_image.png';
   static const String loaderText = 'assets/icons/pngIcons/loader_text.png';
   static const String spashLogo = 'assets/icons/pngIcons/spash_logo.png';
+  static const String createNewStoryBack = 'assets/icons/pngIcons/create_new_story_back.png';
+  static const String talkSomeoneBack = 'assets/icons/pngIcons/talk_someone_back.png';
 
 
 

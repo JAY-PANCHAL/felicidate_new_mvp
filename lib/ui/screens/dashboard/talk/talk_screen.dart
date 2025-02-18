@@ -1,4 +1,5 @@
 import 'package:felicidade/common/utils/image_paths.dart';
+import 'package:felicidade/routes/app_pages.dart';
 import 'package:felicidade/ui/screens/dashboard/profile/profile_controller.dart';
 import 'package:felicidade/ui/widget/constants/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -65,43 +66,48 @@ class TalkScreenState extends State<TalkScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(height: 40.h,),
-                        Container(
-                          padding: EdgeInsets.symmetric(vertical: 10.h),
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                            boxShadow: [
-                              AppConstants().commonBoxShadow(),
-                            ],
-                            borderRadius: BorderRadius.circular(15),
-                            gradient: LinearGradient(
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                              colors: [
-                                Color(0xFFFFF5F7),
-                                Color(0xFFFFE0E6),
+                        GestureDetector(
+                          onTap: (){
+                            Get.toNamed(Routes.talkToSomeoneScreen);
+                          },
+                          child: Container(
+                            padding: EdgeInsets.symmetric(vertical: 10.h),
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              boxShadow: [
+                                AppConstants().commonBoxShadow(color: LIGHT_GREY_COLOR2),
+                              ],
+                              borderRadius: BorderRadius.circular(15),
+                              gradient: LinearGradient(
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                                colors: [
+                                  Color(0xFFFFF5F7),
+                                  Color(0xFFFFE0E6),
+                                ],
+                              ),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                ImageView(
+                                  width: 30.sp,
+                                  height: 30.sp,
+                                  boxFit: BoxFit.contain,
+                                  image: AppSvgIcons.callTalkIcon,
+                                  imageType: ImageType.svg,
+                                ),
+                                SizedBox(width: 10.w,),
+                                Text(Strings.talkToANewFeliFriend,style: Styles.textFontBold(size: 17,fontFamily: AppConstants.fontFamilyOgg,color: RED_DARK),)
+
+
                               ],
                             ),
                           ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              ImageView(
-                                width: 30.sp,
-                                height: 30.sp,
-                                boxFit: BoxFit.contain,
-                                image: AppSvgIcons.callTalkIcon,
-                                imageType: ImageType.svg,
-                              ),
-                              SizedBox(width: 10.w,),
-                              Text(Strings.talkToANewFeliFriend,style: Styles.textFontBold(size: 16,fontFamily: AppConstants.fontFamilyOgg,color: RED_DARK),)
-                  
-                  
-                            ],
-                          ),
                         ),
                         SizedBox(height: 20.h,),
-                        Text(Strings.recentlyTalkedWith,style: Styles.textFontMedium(size: 16,)),
+                        Text(Strings.recentlyTalkedWith,style: Styles.textFontMedium(size: 20,)),
                         SizedBox(height: 12.h,),
                         recentlyTalkedWith(),
                   
@@ -129,10 +135,11 @@ class TalkScreenState extends State<TalkScreen> {
 
   Widget recentlyTalkedWith(){
     return SizedBox(
-      height: 1.sh * 0.33,
+      height: 1.sh * 0.335,
       child: ListView.separated(
         itemCount: 3,
         shrinkWrap: true,
+        padding: EdgeInsets.only(bottom: 5.h),
         scrollDirection: Axis.horizontal,
         itemBuilder: (BuildContext context, int index) {
           return Container(
@@ -155,42 +162,42 @@ class TalkScreenState extends State<TalkScreen> {
                   decoration: BoxDecoration(
                       color: WHITE,
                       boxShadow: [
-                        AppConstants().commonBoxShadow()
+                        AppConstants().commonBoxShadow(color: LIGHT_GREY_COLOR3)
                       ],
                       borderRadius: BorderRadius.circular(5),
                       border: Border.all(color: HOME_RED_LIGHT,width: 0.5)
                   ),
-                  child: Text(Strings.feliFriend,style: Styles.textFontBold(size: 10,color:HOME_RED_LIGHT  ),),
+                  child: Text(Strings.feliFriend,style: Styles.textFontBold(size: 12,color:HOME_RED_LIGHT  ),),
                 ),
                 SizedBox(height: 8.h,),
-                Text("Rohit Kadam",style: Styles.textFontMedium(size: 17,color:RED_DARK  ),),
+                Text("Rohit Kadam",style: Styles.textFontMedium(size: 19,color:RED_DARK  ),),
 
 
-                Text("24th Sep 2024  12:00 Min",style: Styles.textFontMedium(size: 10,color:RED_DARK  ),),
+                Text("24th Sep 2024  12:00 Min",style: Styles.textFontMedium(size: 12,color:RED_DARK  ),),
 
                 SizedBox(height: 45.h,),
 
                 Container(
                   width: 1.sw,
-                  padding: EdgeInsets.symmetric(vertical: 8.h),
+                  padding: EdgeInsets.symmetric(vertical: 6.h),
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
                     color: HOME_RED_LIGHT2,
                     borderRadius: BorderRadius.circular(15),
                   ),
-                  child: Text(Strings.callNow,style: Styles.textFontRegular(size: 10,color: RED_DARK  ),),
+                  child: Text(Strings.callNow,style: Styles.textFontRegular(size: 12,color: RED_DARK  ),),
                 ),
                 SizedBox(height: 8.h,),
                 Container(
                   width: 1.sw,
-                  padding: EdgeInsets.symmetric(vertical: 8.h),
+                  padding: EdgeInsets.symmetric(vertical: 6.h),
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
                       color: WHITE,
                       borderRadius: BorderRadius.circular(15),
                       border: Border.all(color: RED_DARK,width: 0.5)
                   ),
-                  child: Text(Strings.feliFriend,style: Styles.textFontRegular(size: 10,color:RED_DARK  ),),
+                  child: Text(Strings.feliFriend,style: Styles.textFontRegular(size: 12,color:RED_DARK  ),),
                 ),
 
               ],
@@ -222,7 +229,7 @@ class TalkScreenState extends State<TalkScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(height: 10.h,),
-          Text(Strings.yourFavourite,style: Styles.textFontMedium(size: 16,)),
+          Text(Strings.yourFavourite,style: Styles.textFontMedium(size: 20,)),
           SizedBox(height: 20.h,),
           GridView.builder(
             shrinkWrap: true,
@@ -230,9 +237,9 @@ class TalkScreenState extends State<TalkScreen> {
             padding: EdgeInsets.zero,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 4, // Number of columns
-              mainAxisSpacing: 5, // Vertical spacing
+              mainAxisSpacing: 8.h, // Vertical spacing
               crossAxisSpacing: 5, // Horizontal spacing
-              childAspectRatio: 0.8
+              childAspectRatio: 0.7
             ),
             itemCount: users.length,
             itemBuilder: (context, index) {
@@ -253,13 +260,13 @@ class TalkScreenState extends State<TalkScreen> {
                     ),
                     child: Text(
                       user['initial']!,
-                      style: Styles.textFontBold(size: 20,color: RED_DARK)
+                      style: Styles.textFontBold(size: 28,color: RED_DARK)
                     ),
                   ),
                   SizedBox(height: 5.h,),
                   Text(
                     user['name']!,
-                    style: Styles.textFontMedium(size: 12,color: GREY_COLOR),textAlign: TextAlign.center,),
+                    style: Styles.textFontMedium(size: 14,color: GREY_COLOR),textAlign: TextAlign.center,),
                 ],
               );
             },
@@ -295,9 +302,9 @@ class TalkScreenState extends State<TalkScreen> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("Need expert advice\non a serious topic?",style: Styles.textFontMedium(size: 17,color: HOME_BLUE_COLOR),),
+              Text("Need expert advice\non a serious topic?",style: Styles.textFontMedium(size: 20,color: HOME_BLUE_COLOR),),
               SizedBox(height: 12.h,),
-              Text("We’ve certified doctors and\nprofessionals to help you out.",style: Styles.textFontRegular(size: 10),),
+              Text("We’ve certified doctors and\nprofessionals to help you out.",style: Styles.textFontRegular(size: 12),),
               SizedBox(height: 20.h,),
 
               Container(
@@ -318,7 +325,7 @@ class TalkScreenState extends State<TalkScreen> {
                     ],
                   ),
                 ),
-                child: Text(Strings.talkWithOurExperts,style: Styles.textFontMedium(size: 10,color: WHITE),),
+                child: Text(Strings.talkWithOurExperts,style: Styles.textFontMedium(size: 12,color: WHITE),),
               ),
 
 

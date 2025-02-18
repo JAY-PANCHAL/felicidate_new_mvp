@@ -65,8 +65,8 @@ class ExpertScreenState extends State<ExpertScreen> {
                       children: [
                         SizedBox(height: 40.h,),
                         ImageView(
-                          width: 80.sp,
-                          height: 80.sp,
+                          width: 83.sp,
+                          height: 83.sp,
                           boxFit: BoxFit.contain,
                           image: AppSvgIcons.expertMainIcon,
                           imageType: ImageType.svg,
@@ -75,7 +75,7 @@ class ExpertScreenState extends State<ExpertScreen> {
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 20.w),
                           child: Text("We’re coming to you with our experts!!",style: Styles.textFontBoldHeight(
-                              size: 28,
+                              size: 32,
                               color: BLUE_COLOR3,
                               fontFamily: AppConstants.fontFamilyOgg),
                             textAlign: TextAlign.center,),
@@ -83,8 +83,8 @@ class ExpertScreenState extends State<ExpertScreen> {
                         SizedBox(height: 15.h,),
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 20.w),
-                          child: Text("We’re going to launch fel-expert\nsoon. Stay tune.",style: Styles.textFontRegular(
-                              size: 18,),
+                          child: Text("We’re going to launch fel-expert soon. Stay tune.",style: Styles.textFontRegular(
+                              size: 20,),
                             textAlign: TextAlign.center,),
                         ),
 
@@ -103,15 +103,15 @@ class ExpertScreenState extends State<ExpertScreen> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         ImageView(
-                          width: 25.sp,
-                          height: 25.sp,
+                          width: 28.sp,
+                          height: 28.sp,
                           boxFit: BoxFit.contain,
                           image: AppSvgIcons.notifyMeIcon,
                           imageType: ImageType.svg,
                         ),
                         SizedBox(width: 10.w,),
-                        Text(Strings.NotifyMe,style: Styles.textFontRegular(size: 14,color: WHITE),),
-                        Icon(Icons.chevron_right_outlined,color: WHITE,)
+                        Text(Strings.NotifyMe,style: Styles.textFontRegular(size: 18,color: WHITE),),
+                        Icon(Icons.chevron_right_outlined,color: WHITE,size: 28,)
                       ],
                     ),
                   )

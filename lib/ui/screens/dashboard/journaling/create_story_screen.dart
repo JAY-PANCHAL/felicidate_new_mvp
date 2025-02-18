@@ -81,7 +81,7 @@ class CreateNewStoryScreenState extends State<CreateNewStoryScreen> {
                                       textAlign: TextAlign.center,
                                       style: Styles.textFontMedium(
                                         fontFamily: AppConstants.fontFamilyOgg,
-                                        size: 22,
+                                        size: 24,
                                       )),
                                 ],
                               ),
@@ -90,8 +90,7 @@ class CreateNewStoryScreenState extends State<CreateNewStoryScreen> {
                               ),
                               Text("Title for your thought",
                                   style: Styles.textFontMedium(
-                                    fontFamily: AppConstants.fontFamilyOgg,
-                                    size: 12,
+                                    size: 16,
                                   )),
                               SizedBox(height: 8),
                               TextFormField(
@@ -104,11 +103,10 @@ class CreateNewStoryScreenState extends State<CreateNewStoryScreen> {
                                 ),
                                 validator: (value) => commonValidation(value,Strings.errorTitle),
                               ),
-                              SizedBox(height: 16),
+                              SizedBox(height: 20),
                               Text("Write your thoughts here (summary)",
                                   style: Styles.textFontMedium(
-                                    fontFamily: AppConstants.fontFamilyOgg,
-                                    size: 12,
+                                    size: 16,
                                   )),
                               SizedBox(height: 8),
                               TextFormField(

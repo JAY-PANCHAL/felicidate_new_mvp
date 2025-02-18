@@ -138,7 +138,7 @@ class HomeScreenState extends State<HomeScreen> {
                               horizontal: 15.w, vertical: 15.h),
                           decoration: BoxDecoration(
                             boxShadow: [AppConstants().commonBoxShadow(color: LIGHT_GREY_COLOR2)],
-                            borderRadius: BorderRadius.circular(16),
+                            borderRadius: BorderRadius.circular(8),
                             color: WHITE
                           ),
                           child: Row(
@@ -206,18 +206,8 @@ class HomeScreenState extends State<HomeScreen> {
   Widget commonFeeling({String? icon}) {
     return GestureDetector(
       onTap: () {
-        // homeController.saveFeelingsApiCall(context, icon ?? "");
-        if (icon == AppSvgIcons.fe1Icon) {
-          feelingDialog();
-        } else if (icon == AppSvgIcons.fe2Icon) {
-          feelingDialog();
-        } else if (icon == AppSvgIcons.fe3Icon) {
-          feelingDialog();
-        } else if (icon == AppSvgIcons.fe4Icon) {
-          feelingDialog(type: 2);
-        } else {
-          feelingDialog(type: 2);
-        }
+        homeController.saveFeelingsApiCall(context, icon ?? "");
+
       },
       child: Container(
         decoration: BoxDecoration(boxShadow: [
@@ -337,65 +327,6 @@ class HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Future<void> feelingDialog({type = 1}) async {
-    return Get.dialog(
-      Dialog(
-        insetPadding: EdgeInsets.symmetric(horizontal: 70.w),
-        backgroundColor: WHITE,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15), // Optional: Rounded corners
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min, // Prevents unnecessary expansion
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(height: 35),
-            ImageView(
-              width: 80.sp, // Decreased icon size
-              height: 80.sp,
-              boxFit: BoxFit.contain,
-              image: type==1? AppSvgIcons.icHorrayIcon:AppSvgIcons.icConnectSomeoneIcon,
-              imageType: ImageType.svg,
-            ),
-            SizedBox(height: 20),
-            Text( type==1? Strings.hoorayShare : Strings.ConnectSomeone, textAlign: TextAlign.center,style: Styles.textFontBoldHeight(size: 19,fontFamily: AppConstants.fontFamilyOgg,color: type==1?RED_DARK:BLUE_COLOR2,height: 1.4),),
-            SizedBox(height: 7.h,),
-            type==1?
-            AppConstants.CommonButtom2(
-                text: Strings.startCallingPeople,
-                onTap: (){
-
-
-                }
-            ):    AppConstants.CommonButtom3(
-                text: Strings.connectWithSomone,
-                onTap: (){
-
-
-                }
-            ),
-            SizedBox(height: 7),
-            GestureDetector(
-                onTap: (){
-                  Get.back();
-                },
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    SizedBox(height: 7),
-                    Text(Strings.noImGood, textAlign: TextAlign.center,style: Styles.textFontMedium(size: 17,color: type==1?RED_DARK:BLUE_COLOR2),),
-                    SizedBox(height: 20),
-
-                  ],
-                )),
-
-          ],
-        ),
-      ),
-    );
-  }
 
   Widget feturesWidget() {
     return Row(

@@ -49,187 +49,167 @@ class JournalingDashboardState extends State<JournalingDashboard> {
           inAsyncCall: jdController.isLoading.value,
           child: Scaffold(
             backgroundColor: WHITE,
-            body: Container(
-                height: 1.sh,
-                width: 1.sw,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      Color(0xFFFFF5F8),
-                      Color(0xFFF5FBFD),
-                      Color(0xFFF8F6E6),
-                    ],
-                  ),
-                ),
-                child: SingleChildScrollView(
-                    child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 15.w),
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                          height: 50.h,
+            body: SingleChildScrollView(
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Container(
+                        width: 1.sw,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(image: AssetImage(AppPngIcons.createNewStoryBack),fit: BoxFit.cover)
                         ),
-                        Text(Strings.forAddingYourMoments,
-                            textAlign: TextAlign.center,
-                            style: Styles.textFontMedium(
-                              fontFamily: AppConstants.fontFamilyOgg,
-                              size: 22,
-                            )),
-                        SizedBox(
-                          height: 10.h,
-                        ),
-                        InkWell(
-                          onTap: (){
-                            Get.toNamed(Routes.createNewStoryScreen)?.then((val){
-                              if(val=='update'){
-                                jdController.apiCallForGetJournalEntries(context);
-                              }
-                            });
-                          },
-                          child: Container(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 15.w, vertical: 25.h),
-                              decoration: BoxDecoration(
-                                boxShadow: [
-                                  BoxShadow(
-                                      color: AppColors.appColor,
-                                      blurRadius: 0.3,
-                                      blurStyle: BlurStyle.outer)
-                                ],
-                                borderRadius: BorderRadius.circular(16),
-                                gradient: LinearGradient(
-                                  begin: Alignment.topLeft,
-                                  end: Alignment.bottomRight,
-                                  colors: [
-                                    Color(0xFFFFFFFF),
-                                    Color(0xFFFFFFFF),
-                                  ],
-                                ),
-                              ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  ImageView(
-                                    image: AppSvgIcons.icCreateNote,
-                                    imageType: ImageType.svg,
-                                    width: 28,
-                                    height: 28,
-                                  ),
-                                  SizedBox(
-                                    width: 10.h,
-                                  ),
-                                  Text(Strings.createAnewStory,
-                                      style: Styles.textFontMedium(
-                                        fontFamily: AppConstants.fontFamilyOgg,
-                                        size: 18,
-                                      )),
-                                ],
-                              )),
-                        ),
-
-                        SizedBox(height: 25.h,),
-
-                        Container(
-                          height: 1.sh * 0.4,
-                          child: ListView.separated(itemCount: jdController.mMyDiaries.length,
-                            shrinkWrap: true,
-                            reverse: true,
-                            scrollDirection: Axis.horizontal,
-                            itemBuilder: (BuildContext context, int index) {
-                            var data = jdController.mMyDiaries[index];
-                            return GestureDetector(
-                              onTap: (){
-                                Get.to(JournalDetailsScreen(
-                                    id: jdController.mMyDiaries.value[index].id ?? 0));
-
-                              },
-                              child: Container(
-                                height: 1.sh * 0.4,
-                                width: 1.sw * 0.58,
-                                padding: EdgeInsets.symmetric(vertical: 15.h,horizontal: 15.w),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15),
-                                  boxShadow: [
-                                    AppConstants().commonBoxShadow(color: GRAY_COLOR_LIGHT)
-                                  ],
-                                  gradient:
-                                  index%2==0?
-                                  LinearGradient(
-                                    begin: Alignment.topCenter,
-                                    end: Alignment.bottomCenter,
-                                    colors: [
-                                      WHITE,
-                                      Color(0xFFF3F3F3),
-                                    ],
-                                  ):LinearGradient(
-                                    begin: Alignment.topCenter,
-                                    end: Alignment.bottomCenter,
-                                    colors: [
-
-                                      Color(0xFFE0F8FF),
-                                      WHITE,
-                                    ],
-                                  ),
-                                ),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(AppConstants().formatDateTimeString(data.createdAt??""),style: Styles.textFontBold(size: 10,color:  index%2==0?BLACK:HOME_BLUE_COLOR),),
-                                    Spacer(),
-                                    Text(data.journalDescription??"",style: Styles.textFontBoldHeight(size: 22,fontFamily: AppConstants.fontFamilyOgg,color: index%2==0?BLACK:HOME_BLUE_COLOR),),
-                                    SizedBox(height: 10.h,),
-                                    Text("${Strings.anxious} • ${data.journalTitle??""}",style: Styles.textFontBoldHeight(size: 10,color: index%2==0?BLACK:HOME_BLUE_COLOR),),
-                                    SizedBox(height: 3.h,),
-
-                                  ],
-                                ),
-                              ),
-                            );
-                            },
-                            separatorBuilder: (BuildContext context, int index) {
-                            return SizedBox(width: 15.w,);
-                            },),
-                        ),
-                        SizedBox(height: 25.h,),
-                        Container(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 15.w, vertical: 25.h),
-                          decoration: BoxDecoration(
-                            boxShadow: [
-                              BoxShadow(
-                                  color: AppColors.appColor,
-                                  blurRadius: 0.3,
-                                  blurStyle: BlurStyle.outer)
-                            ],
-                            borderRadius: BorderRadius.circular(16),
-                            gradient: LinearGradient(
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                              colors: [
-                                Color(0xFFFFF5F7),
-                                Color(0xFFFFF5F7),
-                              ],
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            SizedBox(height: 50.h,),
+                            Text(Strings.forAddingYourMoments,
+                                textAlign: TextAlign.center,
+                                style: Styles.textFontMedium(
+                                  fontFamily: AppConstants.fontFamilyOgg,
+                                  size: 32,
+                                ).copyWith(fontWeight: FontWeight.w500)),
+                            SizedBox(
+                              height: 10.h,
                             ),
+                            Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 15.w),
+                              child: InkWell(
+                                onTap: (){
+                                  Get.toNamed(Routes.createNewStoryScreen)?.then((val){
+                                    if(val=='update'){
+                                      jdController.apiCallForGetJournalEntries(context);
+                                    }
+                                  });
+                                },
+                                child: Container(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 15.w, vertical: 15.h),
+                                    decoration: BoxDecoration(
+                                      boxShadow: [
+                                        AppConstants().commonBoxShadow(color: LIGHT_GREY_COLOR2)
+                                      ],
+                                      border: Border.all(width: 0.5,color: Color(0xFFD6D6D6)),
+                                      borderRadius: BorderRadius.circular(8),
+                                      color: WHITE
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        ImageView(
+                                          image: AppSvgIcons.icCreateNote,
+                                          imageType: ImageType.svg,
+                                          width: 28,
+                                          height: 28,
+                                        ),
+                                        SizedBox(
+                                          width: 13.h,
+                                        ),
+                                        Text(Strings.createAnewStory,
+                                            style: Styles.textFontBold(
+                                              fontFamily: AppConstants.fontFamilyOgg,
+                                              size: 18,
+                                            )),
+                                      ],
+                                    )),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+
+
+                      SizedBox(height: 20.h,),
+
+                      Container(
+                        height: 1.sh * 0.42,
+                        alignment: Alignment.centerLeft,
+                        child: ListView.separated(itemCount: jdController.mMyDiaries.length,
+                          shrinkWrap: true,
+                          padding: EdgeInsets.symmetric(horizontal: 15.w,vertical: 10.h),
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (BuildContext context, int index) {
+                          var data = jdController.mMyDiaries[index];
+                          return GestureDetector(
+                            onTap: (){
+                              Get.to(JournalDetailsScreen(
+                                  id: jdController.mMyDiaries.value[index].id ?? 0));
+
+                            },
+                            child: Container(
+                              height: 1.sh * 0.4,
+                              width: 1.sw * 0.58,
+                              padding: EdgeInsets.symmetric(vertical: 15.h,horizontal: 15.w),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                boxShadow: [
+                                  AppConstants().commonBoxShadow(color: LIGHT_GREY_COLOR2)
+                                ],
+                                gradient:
+                                index%2==0?
+                                LinearGradient(
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                  colors: [
+                                    WHITE,
+                                    Color(0xFFF3F3F3),
+                                  ],
+                                ):LinearGradient(
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                  colors: [
+
+                                    Color(0xFFE0F8FF),
+                                    WHITE,
+                                  ],
+                                ),
+                              ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(AppConstants().formatDateTimeString(data.createdAt??""),style: Styles.textFontBold(size: 12,color:  index%2==0?BLACK:HOME_BLUE_COLOR),),
+                                  Spacer(),
+                                  Text(data.journalDescription??"",style: Styles.textFontBoldHeight(size: 32,fontFamily: AppConstants.fontFamilyOgg,color: index%2==0?BLACK:HOME_BLUE_COLOR),),
+                                  SizedBox(height: 10.h,),
+                                  Text("${Strings.anxious} • ${data.journalTitle??""}",style: Styles.textFontBoldHeight(size: 12,color: index%2==0?BLACK:HOME_BLUE_COLOR),),
+                                  SizedBox(height: 3.h,),
+
+                                ],
+                              ),
+                            ),
+                          );
+                          },
+                          separatorBuilder: (BuildContext context, int index) {
+                          return SizedBox(width: 15.w,);
+                          },),
+                      ),
+                      SizedBox(height: 25.h,),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 15.w),
+                        child: Container(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 15.w, vertical: 20.h),
+                          decoration: BoxDecoration(
+
+                            borderRadius: BorderRadius.circular(8),
+                            color: Color(0xFFF8F8F8),
+                            border: Border.all(color: Color(0xFFD5D5D5),width: 0.5)
                           ),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(Strings.feelingsLongText,
                                   textAlign: TextAlign.center,
-                                  style: Styles.textFontMedium(
-                                    fontFamily: AppConstants.fontFamilyOgg,
+                                  style: Styles.textFontRegular(
                                     size: 16,
-                                  )),
+                                  ).copyWith(fontStyle: FontStyle.italic)),
                             ],
                           ),
-                        )
-                      ]),
-                ))),
+                        ),
+                      )
+                    ])),
           ));
     });
   }
