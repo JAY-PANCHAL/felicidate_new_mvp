@@ -7,13 +7,23 @@ import 'package:felicidade/ui/widget/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-
 import '../../../common/utils/app_constants.dart';
 import '../../../common/utils/strings.dart';
 import '../../widget/image_view.dart';
 import 'login_controller.dart';
+import 'dart:math' as math;
+
+/// Generates a cryptographically secure random nonce of the specified length.
+/// Defaults to 32 characters, which is recommended for most use cases.
+String generateNonce([int length = 32]) {
+  final charset =
+      '0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._';
+  final random = math.Random.secure();
+  return List.generate(length, (_) => charset[random.nextInt(charset.length)])
+      .join();
+}
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({Key? key}) : super(key: key);
@@ -23,7 +33,6 @@ class LoginScreen extends StatefulWidget {
 }
 
 class LoginScreenState extends State<LoginScreen> {
-
   final List<String> imageUrls = List.generate(19, (index) {
     return 'assets/icons/pngIcons/a${index + 1}.jpg';
   });
@@ -31,13 +40,57 @@ class LoginScreenState extends State<LoginScreen> {
   late ScrollController _scrollController1;
   late ScrollController _scrollController2;
   late ScrollController _scrollController3;
+  final _auth = FacebookAuth.instance;
+  String? _nonce;
 
-   Timer? _timer1;
-   Timer?_timer2;
-   Timer? _timer3;
-
+  Timer? _timer1;
+  Timer? _timer2;
+  Timer? _timer3;
 
   final LoginController loginController = Get.put(LoginController());
+
+  Future<void> _getUserProfile(AccessToken accessToken) async {
+    if (accessToken is LimitedToken) {
+      print('token nonce: ${accessToken.nonce}');
+      print('_nonce: $_nonce');
+    } else {
+      print('accessToken is ClassicToken');
+    }
+
+    final data = await _auth.getUserData();
+    print("Facebook Data--------------->");
+    print(data);
+    FacebookUser user = FacebookUser.fromJson(data);
+    loginController.apiCallForFBSignIn(context, user,accessToken);
+
+    if (data.isEmpty) {
+      await _logout();
+      return;
+    }
+  }
+
+  Future<void> _logout() async {
+    await _auth.logOut();
+  }
+
+  Future<void> fblogin() async {
+    _nonce = generateNonce();
+    print("facebook button clicked");
+    final result = await _auth.login(
+      loginTracking: LoginTracking.limited,
+      nonce: _nonce,
+    );
+
+    switch (result.status) {
+      case LoginStatus.success:
+        await _getUserProfile(result.accessToken!);
+      case LoginStatus.cancelled:
+      case _:
+        print(
+          '${result.status.name}: ${result.message}',
+        );
+    }
+  }
 
   @override
   void initState() {
@@ -52,29 +105,47 @@ class LoginScreenState extends State<LoginScreen> {
     super.initState();
   }
 
+  Future facebookLogin() async {
+    final result =
+        await FacebookAuth.i.login(permissions: ['public_profile', 'email']);
+    if (result.status == LoginStatus.success) {
+      final userData = await FacebookAuth.i.getUserData();
+      print(userData);
+      return userData;
+    }
+    return null;
+  }
+
   void _startScrolling() {
     _timer1 = Timer.periodic(Duration(milliseconds: 30), (timer) {
-      if (_scrollController1.hasClients && _scrollController1.position.hasContentDimensions) {
+      if (_scrollController1.hasClients &&
+          _scrollController1.position.hasContentDimensions) {
         _scrollController1.jumpTo(_scrollController1.offset + 1);
-        if (_scrollController1.offset >= _scrollController1.position.maxScrollExtent) {
+        if (_scrollController1.offset >=
+            _scrollController1.position.maxScrollExtent) {
           _scrollController1.jumpTo(0);
         }
       }
     });
 
     _timer2 = Timer.periodic(Duration(milliseconds: 30), (timer) {
-      if (_scrollController2.hasClients && _scrollController2.position.hasContentDimensions) {
+      if (_scrollController2.hasClients &&
+          _scrollController2.position.hasContentDimensions) {
         _scrollController2.jumpTo(_scrollController2.offset - 1);
-        if (_scrollController2.offset <= _scrollController2.position.minScrollExtent) {
-          _scrollController2.jumpTo(_scrollController2.position.maxScrollExtent);
+        if (_scrollController2.offset <=
+            _scrollController2.position.minScrollExtent) {
+          _scrollController2
+              .jumpTo(_scrollController2.position.maxScrollExtent);
         }
       }
     });
 
     _timer3 = Timer.periodic(Duration(milliseconds: 30), (timer) {
-      if (_scrollController3.hasClients && _scrollController3.position.hasContentDimensions) {
+      if (_scrollController3.hasClients &&
+          _scrollController3.position.hasContentDimensions) {
         _scrollController3.jumpTo(_scrollController3.offset + 1);
-        if (_scrollController3.offset >= _scrollController3.position.maxScrollExtent) {
+        if (_scrollController3.offset >=
+            _scrollController3.position.maxScrollExtent) {
           _scrollController3.jumpTo(0);
         }
       }
@@ -93,8 +164,6 @@ class LoginScreenState extends State<LoginScreen> {
     super.dispose();
     Get.delete<LoginController>();
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -177,19 +246,48 @@ class LoginScreenState extends State<LoginScreen> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      SizedBox(height: 50.h,),
-                      Text(Strings.felicidade,style: Styles.textFontBold(size: 50,color: WHITE,fontFamily: AppConstants.fontFamilyOgg),),
-                      SizedBox(height: 10.h,),
-                      Text(Strings.findYourTribe,style: Styles.textFontBold(size: 24,color: WHITE),textAlign: TextAlign.center,),
+                      SizedBox(
+                        height: 50.h,
+                      ),
+                      Text(
+                        Strings.felicidade,
+                        style: Styles.textFontBold(
+                            size: 50,
+                            color: WHITE,
+                            fontFamily: AppConstants.fontFamilyOgg),
+                      ),
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                      Text(
+                        Strings.findYourTribe,
+                        style: Styles.textFontBold(size: 24, color: WHITE),
+                        textAlign: TextAlign.center,
+                      ),
                       Spacer(),
-                      CommonButton(icon: AppSvgIcons.googleSvg,text1: Strings.continueAs,text2: " Rohit Kadam",onTap: (){}),
-                      CommonButton(icon: AppSvgIcons.facBookIcon,text1: Strings.signIn,text2: " ${Strings.withFacebook}", onTap: (){}),
-                      CommonButton(icon: AppSvgIcons.phoneIcon,text1: "",text2: Strings.useMobileNumber,
-                          onTap: (){
+                      CommonButton(
+                          icon: AppSvgIcons.googleSvg,
+                          text1: Strings.continueAs,
+                          text2: " Rohit Kadam",
+                          onTap: () {}),
+                      CommonButton(
+                          icon: AppSvgIcons.facBookIcon,
+                          text1: Strings.signIn,
+                          text2: " ${Strings.withFacebook}",
+                          onTap: () async {
+                            await fblogin();
+                          }),
+                      CommonButton(
+                          icon: AppSvgIcons.phoneIcon,
+                          text1: "",
+                          text2: Strings.useMobileNumber,
+                          onTap: () {
                             Get.toNamed(Routes.phoneLoginScreen);
                             // Get.toNamed(Routes.dashboard);
                           }),
-                      SizedBox(height: 35.h,),
+                      SizedBox(
+                        height: 35.h,
+                      ),
                     ],
                   ),
                 ),
@@ -201,9 +299,9 @@ class LoginScreenState extends State<LoginScreen> {
     });
   }
 
-  Widget CommonButton({String? icon, String? text1, String? text2,onTap}){
+  Widget CommonButton({String? icon, String? text1, String? text2, onTap}) {
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         onTap();
       },
       child: Container(
@@ -222,25 +320,27 @@ class LoginScreenState extends State<LoginScreen> {
               width: 25.sp,
               height: 25.sp,
               boxFit: BoxFit.contain,
-              image: icon??AppSvgIcons.googleSvg,
+              image: icon ?? AppSvgIcons.googleSvg,
               imageType: ImageType.svg,
             ),
-            SizedBox(width: 10.w,),
-            Text.rich(
-              TextSpan(
-                children: [
-                  TextSpan(text: text1??'',style: Styles.textFontMedium(size: 16,color: GREY_COLOR),),
-                  TextSpan(text: text2??"",style: Styles.textFontMedium(size: 16),),
-
-                ]
-              ),
-
+            SizedBox(
+              width: 10.w,
             ),
-
+            Text.rich(
+              TextSpan(children: [
+                TextSpan(
+                  text: text1 ?? '',
+                  style: Styles.textFontMedium(size: 16, color: GREY_COLOR),
+                ),
+                TextSpan(
+                  text: text2 ?? "",
+                  style: Styles.textFontMedium(size: 16),
+                ),
+              ]),
+            ),
           ],
         ),
       ),
     );
   }
-
 }

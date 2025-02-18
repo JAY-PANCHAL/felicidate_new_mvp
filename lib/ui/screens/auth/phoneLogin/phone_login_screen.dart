@@ -4,17 +4,15 @@ import 'package:felicidade/common/utils/image_paths.dart';
 import 'package:felicidade/ui/screens/auth/phoneLogin/phone_login_controller.dart';
 import 'package:felicidade/ui/widget/constants/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 import '../../../../common/CommanTextField.dart';
 import '../../../../common/utils/app_constants.dart';
 import '../../../../common/utils/strings.dart';
-import '../../../../routes/app_pages.dart';
 import '../../../widget/image_view.dart';
-
 
 class PhoneLoginScreen extends StatefulWidget {
   PhoneLoginScreen({Key? key}) : super(key: key);
@@ -24,7 +22,8 @@ class PhoneLoginScreen extends StatefulWidget {
 }
 
 class PhoneLoginScreenState extends State<PhoneLoginScreen> {
-  final PhoneLoginController phoneLoginController = Get.put(PhoneLoginController());
+  final PhoneLoginController phoneLoginController =
+      Get.put(PhoneLoginController());
 
   @override
   void initState() {
@@ -37,8 +36,6 @@ class PhoneLoginScreenState extends State<PhoneLoginScreen> {
     Get.delete<PhoneLoginController>();
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context);
@@ -50,13 +47,11 @@ class PhoneLoginScreenState extends State<PhoneLoginScreen> {
         inAsyncCall: phoneLoginController.isLoading.value,
         child: Scaffold(
           backgroundColor: WHITE,
-          floatingActionButton: AppConstants.CommonFloatButton(
-            onTap: (){
-              if (phoneLoginController.formKey.currentState!.validate()) {
-                phoneLoginController.apiCallForSignIn(context);
-              }
+          floatingActionButton: AppConstants.CommonFloatButton(onTap: () {
+            if (phoneLoginController.formKey.currentState!.validate()) {
+              phoneLoginController.apiCallForSignIn(context);
             }
-          ),
+          }),
           body: Container(
             width: 1.sw,
             height: 1.sh,
@@ -79,28 +74,36 @@ class PhoneLoginScreenState extends State<PhoneLoginScreen> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(height: 45.h,),
-                      Text(Strings.startedWithYourNumber,style: Styles.textFontBoldHeight(size: 40,color: BLUE_COLOR),),
-                      SizedBox(height: 50.h,),
+                      SizedBox(
+                        height: 45.h,
+                      ),
+                      Text(
+                        Strings.startedWithYourNumber,
+                        style: Styles.textFontBoldHeight(
+                            size: 40, color: BLUE_COLOR),
+                      ),
+                      SizedBox(
+                        height: 50.h,
+                      ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-
+                          SizedBox(width: 80.w, child: numDropDown()),
                           SizedBox(
-                            width: 80.w,
-                              child: numDropDown()),
-                          SizedBox(width: 10.w,),
-
-                          Expanded(
-                              child: numberWidget()
+                            width: 10.w,
                           ),
+                          Expanded(child: numberWidget()),
                         ],
                       ),
-                      SizedBox(height: 10.h,),
-                      Text(Strings.messageNumber,style: Styles.textFontMedium(size: 16,color: DARK_GREY),),
-
-
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                      Text(
+                        Strings.messageNumber,
+                        style:
+                            Styles.textFontMedium(size: 16, color: DARK_GREY),
+                      ),
                     ],
                   ),
                 ),
@@ -112,16 +115,16 @@ class PhoneLoginScreenState extends State<PhoneLoginScreen> {
     });
   }
 
-  Widget numberWidget(){
+  Widget numberWidget() {
     return CustomTextField(
       controller: phoneLoginController.number,
       keyboardType: TextInputType.phone,
-      validator: (value) => commonValidation(value,Strings.errorPhone),
+      validator: (value) => commonValidation(value, Strings.errorPhone),
       titleLabel: "",
     );
   }
 
-  Widget numDropDown(){
+  Widget numDropDown() {
     return DropdownButtonFormField(
       value: phoneLoginController.preNum.value,
       items: (phoneLoginController.preNumList ?? []).map((com) {
@@ -129,13 +132,16 @@ class PhoneLoginScreenState extends State<PhoneLoginScreen> {
           value: com,
           child: Padding(
             padding: EdgeInsets.only(left: 20.w, top: 1.h),
-            child: Text(com??"",style: Styles.textFontMedium(size: 16),),
+            child: Text(
+              com ?? "",
+              style: Styles.textFontMedium(size: 16),
+            ),
           ),
         );
       }).toList(),
       onChanged: (val) {
         if (val != null) {
-          phoneLoginController.preNum.value = val??"";
+          phoneLoginController.preNum.value = val ?? "";
         }
       },
       icon: Padding(
@@ -154,18 +160,14 @@ class PhoneLoginScreenState extends State<PhoneLoginScreen> {
         filled: true,
         fillColor: WHITE,
         focusColor: WHITE,
-        contentPadding: EdgeInsets.only(left: 0,top: 10),
+        contentPadding: EdgeInsets.only(left: 0, top: 10),
         errorMaxLines: 2,
         hintText: "",
-        hintStyle: Styles.textFontRegular(size: 16,color: GREY_COLOR),
+        hintStyle: Styles.textFontRegular(size: 16, color: GREY_COLOR),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8.0),
-          borderSide: const BorderSide(
-              color: DIVIDER_COLOR,
-              width: 1
-          ),
+          borderSide: const BorderSide(color: DIVIDER_COLOR, width: 1),
         ),
-
         disabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8.0),
           borderSide: const BorderSide(
@@ -173,7 +175,6 @@ class PhoneLoginScreenState extends State<PhoneLoginScreen> {
             width: 1,
           ),
         ),
-
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8.0),
           borderSide: const BorderSide(
@@ -198,6 +199,5 @@ class PhoneLoginScreenState extends State<PhoneLoginScreen> {
       ),
     );
   }
-
-
 }
+
