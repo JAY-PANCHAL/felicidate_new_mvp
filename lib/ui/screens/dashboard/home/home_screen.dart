@@ -61,8 +61,8 @@ class HomeScreenState extends State<HomeScreen> {
                 end: Alignment.bottomCenter,
                 colors: [
                   Color(0xFFFFF5F8),
-                  Color(0xFFF5FBFD),
-                  Color(0xFFF8F6E6),
+                  Color(0xFFF4F8FA),
+                  Color(0xFFFAF8EE),
                 ],
               ),
             ),
@@ -78,7 +78,7 @@ class HomeScreenState extends State<HomeScreen> {
                     ),
                     Text("Hello ${homeController.mLoginData.value?.name??''}",
                         style: Styles.textFontBold(
-                          size: 26,
+                          size: 30,
                           fontFamily: AppConstants.fontFamilyOgg,
                         )),
                     SizedBox(
@@ -94,7 +94,7 @@ class HomeScreenState extends State<HomeScreen> {
                     ),
                     Text(Strings.recentlyTalkedWith,
                         style: Styles.textFontMedium(
-                          size: 16,
+                          size: 20,
                         )),
                     SizedBox(
                       height: 10.h,
@@ -105,14 +105,14 @@ class HomeScreenState extends State<HomeScreen> {
                     ),
                     Text(Strings.yourRecentJournalEntries,
                         style: Styles.textFontMedium(
-                          size: 16,
+                          size: 22,
                         )),
                     SizedBox(
                       height: 3.h,
                     ),
                     Text(Strings.findExpertsToTalk,
                         style: Styles.textFontRegular(
-                          size: 10,
+                          size: 12,
                         )),
                     SizedBox(
                       height: 10.h,
@@ -127,22 +127,19 @@ class HomeScreenState extends State<HomeScreen> {
                     ),
                     InkWell(
                       onTap: (){
-                        Get.toNamed(Routes.createNewStoryScreen);
+                        Get.toNamed(Routes.createNewStoryScreen)?.then((value){
+                          if(value=="update"){
+                            homeController.apiCallForGetJournalEntries(context);
+                          }
+                        });
                       },
                       child: Container(
                           padding: EdgeInsets.symmetric(
                               horizontal: 15.w, vertical: 15.h),
                           decoration: BoxDecoration(
-                            boxShadow: [AppConstants().commonBoxShadow()],
+                            boxShadow: [AppConstants().commonBoxShadow(color: LIGHT_GREY_COLOR2)],
                             borderRadius: BorderRadius.circular(16),
-                            gradient: LinearGradient(
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                              colors: [
-                                Color(0xFFFFFFFF),
-                                Color(0xFFFFFFFF),
-                              ],
-                            ),
+                            color: WHITE
                           ),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -153,7 +150,6 @@ class HomeScreenState extends State<HomeScreen> {
                               ),
                               Text(Strings.createAnewStory,
                                   style: Styles.textFontMedium(
-                                    fontFamily: AppConstants.fontFamilyOgg,
                                     size: 18,
                                   )),
                             ],
@@ -179,7 +175,7 @@ class HomeScreenState extends State<HomeScreen> {
       decoration: BoxDecoration(
         color: WHITE,
         borderRadius: BorderRadius.circular(10),
-        boxShadow: [AppConstants().commonBoxShadow()],
+        boxShadow: [AppConstants().commonBoxShadow(color: GRAY_COLOR_LIGHT)],
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -240,11 +236,12 @@ class HomeScreenState extends State<HomeScreen> {
 
   Widget recentlyTalkedWith() {
     return SizedBox(
-      height: 1.sh * 0.316,
+      height: 1.sh * 0.38,
       child: ListView.separated(
         itemCount: 3,
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,
+        padding: EdgeInsets.symmetric(vertical: 5.h),
         itemBuilder: (BuildContext context, int index) {
           return Container(
             width: 1.sw * 0.42,
@@ -253,7 +250,7 @@ class HomeScreenState extends State<HomeScreen> {
               color: WHITE,
               borderRadius: BorderRadius.circular(16),
               boxShadow: [
-                AppConstants().commonBoxShadow(color: LIGHT_GREY_COLOR2)
+                AppConstants().commonBoxShadow(color: LIGHT_GREY_COLOR3)
               ],
             ),
             child: Column(
@@ -266,12 +263,11 @@ class HomeScreenState extends State<HomeScreen> {
                       EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
                   decoration: BoxDecoration(
                       color: WHITE,
-                      boxShadow: [AppConstants().commonBoxShadow()],
                       borderRadius: BorderRadius.circular(5),
                       border: Border.all(color: HOME_RED_LIGHT, width: 0.5)),
                   child: Text(
                     Strings.feliFriend,
-                    style: Styles.textFontBold(size: 10, color: HOME_RED_LIGHT),
+                    style: Styles.textFontBold(size: 11, color: HOME_RED_LIGHT),
                   ),
                 ),
                 SizedBox(
@@ -279,12 +275,12 @@ class HomeScreenState extends State<HomeScreen> {
                 ),
                 Text(
                   "Rohit Kadam",
-                  style: Styles.textFontMedium(size: 17, color: RED_DARK),
+                  style: Styles.textFontMedium(size: 19, color: RED_DARK),
                 ),
                 // SizedBox(height: 10.h,),
                 Text(
                   "Lorem ipsum dolor sit amet consectetur. Magnis id.",
-                  style: Styles.textFontRegular(size: 10),
+                  style: Styles.textFontRegular(size: 11),
                 ),
                 SizedBox(
                   height: 5.h,
@@ -292,16 +288,16 @@ class HomeScreenState extends State<HomeScreen> {
 
                 Text(
                   "24th Sep 2024  12:00 Min",
-                  style: Styles.textFontMedium(size: 10, color: RED_DARK),
+                  style: Styles.textFontMedium(size: 11, color: RED_DARK),
                 ),
 
                 SizedBox(
-                  height: 25.h,
+                  height: 22.h,
                 ),
 
                 Container(
                   width: 1.sw,
-                  padding: EdgeInsets.symmetric(vertical: 8.h),
+                  padding: EdgeInsets.symmetric(vertical: 6.h),
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
                     color: HOME_RED_LIGHT2,
@@ -309,7 +305,7 @@ class HomeScreenState extends State<HomeScreen> {
                   ),
                   child: Text(
                     Strings.callNow,
-                    style: Styles.textFontRegular(size: 10, color: RED_DARK),
+                    style: Styles.textFontRegular(size: 12, color: RED_DARK),
                   ),
                 ),
                 SizedBox(
@@ -317,7 +313,7 @@ class HomeScreenState extends State<HomeScreen> {
                 ),
                 Container(
                   width: 1.sw,
-                  padding: EdgeInsets.symmetric(vertical: 8.h),
+                  padding: EdgeInsets.symmetric(vertical: 6 .h),
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
                       color: WHITE,
@@ -325,7 +321,7 @@ class HomeScreenState extends State<HomeScreen> {
                       border: Border.all(color: RED_DARK, width: 0.5)),
                   child: Text(
                     Strings.addtofav,
-                    style: Styles.textFontRegular(size: 10, color: RED_DARK),
+                    style: Styles.textFontRegular(size: 12, color: RED_DARK),
                   ),
                 ),
               ],
@@ -446,14 +442,14 @@ class HomeScreenState extends State<HomeScreen> {
                             EdgeInsets.symmetric(horizontal: 12.w, vertical: 4.h),
                         decoration: BoxDecoration(
                             color: WHITE,
-                            boxShadow: [AppConstants().commonBoxShadow()],
+                            boxShadow: [AppConstants().commonBoxShadow(color: LIGHT_GREY_COLOR)],
                             borderRadius: BorderRadius.circular(5.sp),
                             border:
                                 Border.all(color: HOME_RED_LIGHT, width: 0.5)),
                         child: Text(
                           Strings.itFree,
                           style: Styles.textFontBold(
-                              size: 10, color: HOME_RED_LIGHT),
+                              size: 12, color: HOME_RED_LIGHT),
                         ),
                       ),
                     ),
@@ -463,7 +459,7 @@ class HomeScreenState extends State<HomeScreen> {
                     Text(
                       Strings.talkWithSomeone,
                       style: Styles.textFontBoldHeight(
-                          size: 18,
+                          size: 20,
                           color: RED_DARK,
                           fontFamily: AppConstants.fontFamilyOgg),
                     ),
@@ -490,7 +486,7 @@ class HomeScreenState extends State<HomeScreen> {
               },
               child: Container(
                 width: 1.sw * 0.44,
-                height: 1.sh * 0.25,
+                height: 1.sh * 0.26,
                 padding: EdgeInsets.symmetric(horizontal: 13.w),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15.sp),
@@ -503,7 +499,7 @@ class HomeScreenState extends State<HomeScreen> {
                     colors: [
                       WHITE,
                       WHITE,
-                      LIGHT_GREY_COLOR2,
+                      LIGHT_GREY_COLOR3,
                     ],
                   ),
                 ),
@@ -527,7 +523,7 @@ class HomeScreenState extends State<HomeScreen> {
                     Text(
                       Strings.writeYourThoughtsDown,
                       style: Styles.textFontBoldHeight(
-                          size: 18,
+                          size: 20,
                           color: BLACK_COLOR3,
                           fontFamily: AppConstants.fontFamilyOgg),
                     ),
@@ -550,7 +546,7 @@ class HomeScreenState extends State<HomeScreen> {
               },
               child: Container(
                 width: 1.sw * 0.44,
-                height: 1.sh * 0.25,
+                height: 1.sh * 0.26,
                 padding: EdgeInsets.symmetric(horizontal: 13.w),
                 decoration: BoxDecoration(
                   boxShadow: [
@@ -580,13 +576,13 @@ class HomeScreenState extends State<HomeScreen> {
                             EdgeInsets.symmetric(horizontal: 12.w, vertical: 4.h),
                         decoration: BoxDecoration(
                             color: WHITE,
-                            boxShadow: [AppConstants().commonBoxShadow()],
+                            boxShadow: [AppConstants().commonBoxShadow(color: LIGHT_GREY_COLOR)],
                             borderRadius: BorderRadius.circular(5),
                             border: Border.all(color: BLUE_COLOR3, width: 0.5)),
                         child: Text(
                           Strings.comingSoon,
                           style:
-                              Styles.textFontBold(size: 10, color: BLUE_COLOR3),
+                              Styles.textFontBold(size: 12, color: BLUE_COLOR3),
                         ),
                       ),
                     ),
@@ -606,7 +602,7 @@ class HomeScreenState extends State<HomeScreen> {
                     Text(
                       Strings.bookCallWithExperts,
                       style: Styles.textFontBoldHeight(
-                          size: 18,
+                          size: 20,
                           color: BLUE_COLOR3,
                           fontFamily: AppConstants.fontFamilyOgg),
                     ),
@@ -650,12 +646,12 @@ class HomeScreenState extends State<HomeScreen> {
                           EdgeInsets.symmetric(horizontal: 12.w, vertical: 4.h),
                       decoration: BoxDecoration(
                           color: WHITE,
-                          boxShadow: [AppConstants().commonBoxShadow()],
+                          boxShadow: [AppConstants().commonBoxShadow(color: LIGHT_GREY_COLOR)],
                           borderRadius: BorderRadius.circular(5),
                           border: Border.all(color: YELLOW_COLOR, width: 0.5)),
                       child: Text(
                         Strings.comingSoon,
-                        style: Styles.textFontBold(size: 10, color: YELLOW_COLOR),
+                        style: Styles.textFontBold(size: 12, color: YELLOW_COLOR),
                       ),
                     ),
                     SizedBox(
@@ -664,7 +660,7 @@ class HomeScreenState extends State<HomeScreen> {
                     Text(
                       Strings.startFreakingYourTrip,
                       style: Styles.textFontBoldHeight(
-                          size: 18,
+                          size: 20,
                           color: YELLOW_COLOR,
                           fontFamily: AppConstants.fontFamilyOgg),
                     ),
@@ -789,7 +785,7 @@ class HomeScreenState extends State<HomeScreen> {
               ),
               child: Text(
                 homeController.journalEntries[index].date,
-                style: Styles.textFontMedium(size: 12),
+                style: Styles.textFontMedium(size: 14),
               ),
             ),
           );
@@ -814,14 +810,14 @@ class HomeScreenState extends State<HomeScreen> {
 
   Widget yourRecentJournalList() {
     return SizedBox(
-      height: 1.sh * 0.24,
+      height: 1.sh * 0.26,
       child: ListView.separated(
         itemCount: homeController.mMyDiaries.value.length,
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,
         itemBuilder: (BuildContext context, int i) {
           return Container(
-            width: 1.sw * 0.42,
+            width: 1.sw * 0.43,
             padding: EdgeInsets.symmetric(horizontal: 13.w, vertical: 13.h),
             decoration: BoxDecoration(
               color: WHITE,
@@ -838,7 +834,7 @@ class HomeScreenState extends State<HomeScreen> {
                 Text(
                   homeController.mMyDiaries.value[i].journalTitle ?? "",
                   style: Styles.textFontMedium(
-                    size: 16,
+                    size: 18,
                   ),
                 ),
                 SizedBox(
@@ -848,7 +844,7 @@ class HomeScreenState extends State<HomeScreen> {
                   homeController.mMyDiaries.value[i].journalDescription ?? "",
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
-                  style: Styles.textFontRegular(size: 10),
+                  style: Styles.textFontRegular(size: 14),
                 ),
 
                 Spacer(),
@@ -860,7 +856,7 @@ class HomeScreenState extends State<HomeScreen> {
                   },
                   child: Container(
                     width: 1.sw,
-                    padding: EdgeInsets.symmetric(vertical: 8.h),
+                    padding: EdgeInsets.symmetric(vertical: 6.h),
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
                       color: LIGHT_GREY_COLOR3,
@@ -869,7 +865,7 @@ class HomeScreenState extends State<HomeScreen> {
                     child: Text(
                       Strings.readMore,
                       style: Styles.textFontRegular(
-                        size: 10,
+                        size: 12,
                       ),
                     ),
                   ),

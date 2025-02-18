@@ -59,16 +59,7 @@ class PhoneOtpController extends BaseController {
       if (data != null) {
         LoginModel model = LoginModel.fromJson(data);
         if (model.status == true) {
-          await SpUtil.putString(ACCESS_TOKEN, model.data?.token??"");
-          setUser(model.data?.user);
           AppConstants.showToast(model.message??"");
-          var loginData = await getUser();
-          if((loginData?.cityLocation??"")==""){
-            Get.offNamedUntil(Routes.oneOnboardingScreen,(route) => false);
-          }
-          else{
-            Get.offNamedUntil(Routes.dashboard,(route) => false);
-          }
         }
       }
     }, onError: (e) {
@@ -99,9 +90,15 @@ class PhoneOtpController extends BaseController {
         LoginModel model = LoginModel.fromJson(data);
         if (model.status == true) {
           await SpUtil.putString(ACCESS_TOKEN, model.data?.token??"");
-
+          setUser(model.data?.user);
           AppConstants.showToast(model.message??"");
-          Get.toNamed(Routes.oneOnboardingScreen);
+          var loginData = await getUser();
+          if((loginData?.cityLocation??"")==""){
+            Get.offNamedUntil(Routes.oneOnboardingScreen,(route) => false);
+          }
+          else{
+            Get.offNamedUntil(Routes.dashboard,(route) => false);
+          }
         }
       }
     }, onError: (e) {

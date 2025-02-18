@@ -81,8 +81,8 @@ class ProfileScreenState extends State<ProfileScreen> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             ImageView(
-                              width: 70.sp,
-                              height: 70.sp,
+                              width: 72.sp,
+                              height: 72.sp,
                               boxFit: BoxFit.contain,
                               image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIAKJjhk78An0TpKzc9w-bleEFdUxvNvc-82mUA6JaqIeSssy_YHD4Zjo&s",
                               imageShape: ImageShape.oval,
@@ -93,8 +93,8 @@ class ProfileScreenState extends State<ProfileScreen> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text("Hi ${profileController.mLoginData.value?.name??''}",style: Styles.textFontBold(size: 20,fontFamily: AppConstants.fontFamilyOgg,),),
-                                Text(profileController.mLoginData.value?.email??'',style: Styles.textFontRegular(size: 14,color: GREY_COLOR),),
+                                Text("Hi ${profileController.mLoginData.value?.name??''}",style: Styles.textFontBold(size: 24,fontFamily: AppConstants.fontFamilyOgg,),),
+                                Text(profileController.mLoginData.value?.email??'',style: Styles.textFontRegular(size: 16,color: GREY_COLOR),),
                               ],
                             )
                           ],
@@ -114,8 +114,8 @@ class ProfileScreenState extends State<ProfileScreen> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         ImageView(
-                          width: 25.sp,
-                          height: 25.sp,
+                          width: 28.sp,
+                          height: 28.sp,
                           boxFit: BoxFit.contain,
                           image: AppSvgIcons.lanuageIcon,
                           imageType: ImageType.svg,
@@ -125,8 +125,8 @@ class ProfileScreenState extends State<ProfileScreen> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(Strings.language,style: Styles.textFontBold(size: 16),),
-                            Text(Strings.english,style: Styles.textFontRegular(size: 16,color: DIVIDER_COLOR),),
+                            Text(Strings.language,style: Styles.textFontBold(size: 18),),
+                            Text(Strings.english,style: Styles.textFontRegular(size: 18,color: DIVIDER_COLOR),),
                           ],
                         )
                       ],
@@ -140,8 +140,8 @@ class ProfileScreenState extends State<ProfileScreen> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         ImageView(
-                          width: 25.sp,
-                          height: 25.sp,
+                          width: 28.sp,
+                          height: 28.sp,
                           boxFit: BoxFit.contain,
                           image: AppSvgIcons.countryIcon,
                           imageType: ImageType.svg,
@@ -151,8 +151,8 @@ class ProfileScreenState extends State<ProfileScreen> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(Strings.country,style: Styles.textFontBold(size: 16),),
-                            Text(Strings.india,style: Styles.textFontRegular(size: 16,color: DIVIDER_COLOR),),
+                            Text(Strings.country,style: Styles.textFontBold(size: 18),),
+                            Text(Strings.india,style: Styles.textFontRegular(size: 18,color: DIVIDER_COLOR),),
                           ],
                         )
                       ],
@@ -182,8 +182,8 @@ class ProfileScreenState extends State<ProfileScreen> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           ImageView(
-                            width: 25.sp,
-                            height: 25.sp,
+                            width: 28.sp,
+                            height: 28.sp,
                             boxFit: BoxFit.contain,
                             image: AppSvgIcons.logOutIcon,
                             imageType: ImageType.svg,
@@ -193,14 +193,15 @@ class ProfileScreenState extends State<ProfileScreen> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(Strings.logoutSignOut,style: Styles.textFontBold(size: 16),),
-                              Text(Strings.logoutOfOurApp,style: Styles.textFontRegular(size: 16,color: DIVIDER_COLOR),),
+                              Text(Strings.logoutSignOut,style: Styles.textFontBold(size: 18),),
+                              Text(Strings.logoutOfOurApp,style: Styles.textFontRegular(size: 18,color: DIVIDER_COLOR),),
                             ],
                           )
                         ],
                       ),
                     ),
                   ),
+                  SizedBox(height: 10.h,)
                 ],
               ),
             ),

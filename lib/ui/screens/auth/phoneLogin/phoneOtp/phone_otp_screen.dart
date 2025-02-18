@@ -43,7 +43,6 @@ class PhoneOtpScreenState extends State<PhoneOtpScreen> {
 
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.init(context);
     return Obx(() {
       return ModalProgressHUD(
         color: Colors.black.withOpacity(0.6),
