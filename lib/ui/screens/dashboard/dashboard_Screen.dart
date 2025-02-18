@@ -178,6 +178,7 @@ class CustomBottomNavBar extends StatelessWidget {
       currentIndex: controller.index,
       onTap: (index) => controller.jumpToTab(index),
       type: BottomNavigationBarType.fixed,
+
       selectedItemColor: _getSelectedColor(controller.index),
       unselectedItemColor: Colors.grey,
       items: items.map((item) {

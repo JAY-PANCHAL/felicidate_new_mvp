@@ -1,5 +1,8 @@
 import 'package:felicidade/common/utils/image_paths.dart';
+import 'package:felicidade/ui/screens/dashboard/expert/expert_screen.dart';
 import 'package:felicidade/ui/screens/dashboard/journaling/journal_details_screen.dart';
+import 'package:felicidade/ui/screens/dashboard/talk/talk_screen.dart';
+import 'package:felicidade/ui/screens/dashboard/trip/trip_screen.dart';
 import 'package:felicidade/ui/widget/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,6 +13,7 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 import '../../../../../common/utils/app_constants.dart';
 import '../../../../common/utils/Styles.dart';
+import '../../../../common/utils/color_constants.dart';
 import '../../../../common/utils/strings.dart';
 import '../../../../routes/app_pages.dart';
 import '../../../widget/image_view.dart';
@@ -118,6 +122,43 @@ class HomeScreenState extends State<HomeScreen> {
                       height: 10.h,
                     ),
                     yourRecentJournalList(),
+                    SizedBox(
+                      height: 20.h,
+                    ),
+                    InkWell(
+                      onTap: (){
+                        Get.toNamed(Routes.createNewStoryScreen);
+                      },
+                      child: Container(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 15.w, vertical: 15.h),
+                          decoration: BoxDecoration(
+                            boxShadow: [AppConstants().commonBoxShadow()],
+                            borderRadius: BorderRadius.circular(16),
+                            gradient: LinearGradient(
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                              colors: [
+                                Color(0xFFFFFFFF),
+                                Color(0xFFFFFFFF),
+                              ],
+                            ),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(Icons.add_circle,color: Colors.black,size: 28.sp,),
+                              SizedBox(
+                                width: 10.h,
+                              ),
+                              Text(Strings.createAnewStory,
+                                  style: Styles.textFontMedium(
+                                    fontFamily: AppConstants.fontFamilyOgg,
+                                    size: 18,
+                                  )),
+                            ],
+                          )),
+                    ),
                     SizedBox(
                       height: 80.h,
                     ),
@@ -283,7 +324,7 @@ class HomeScreenState extends State<HomeScreen> {
                       borderRadius: BorderRadius.circular(15),
                       border: Border.all(color: RED_DARK, width: 0.5)),
                   child: Text(
-                    Strings.feliFriend,
+                    Strings.addtofav,
                     style: Styles.textFontRegular(size: 10, color: RED_DARK),
                   ),
                 ),
@@ -369,70 +410,75 @@ class HomeScreenState extends State<HomeScreen> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              width: 1.sw * 0.44,
-              height: 1.sh * 0.28,
-              padding: EdgeInsets.symmetric(horizontal: 13.w),
-              decoration: BoxDecoration(
-                boxShadow: [
-                  AppConstants().commonBoxShadow(color: LIGHT_GREY_COLOR2)
-                ],
-                borderRadius: BorderRadius.circular(15),
-                gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    Color(0xFFFFF5F7),
-                    Color(0xFFFFE0E6),
+            GestureDetector(
+              onTap: (){
+                Get.to(TalkScreen());
+              },
+              child: Container(
+                width: 1.sw * 0.44,
+                height: 1.sh * 0.28,
+                padding: EdgeInsets.symmetric(horizontal: 13.w),
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    AppConstants().commonBoxShadow(color:Color(0xFFFFE0E6),)
                   ],
-                ),
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    height: 10.h,
+                  borderRadius: BorderRadius.circular(15),
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      Color(0xFFFFF5F7),
+                      Color(0xFFFFE0E6),
+                    ],
                   ),
-                  Align(
-                    alignment: Alignment.topRight,
-                    child: Container(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 12.w, vertical: 4.h),
-                      decoration: BoxDecoration(
-                          color: WHITE,
-                          boxShadow: [AppConstants().commonBoxShadow()],
-                          borderRadius: BorderRadius.circular(5),
-                          border:
-                              Border.all(color: HOME_RED_LIGHT, width: 0.5)),
-                      child: Text(
-                        Strings.itFree,
-                        style: Styles.textFontBold(
-                            size: 10, color: HOME_RED_LIGHT),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      height: 10.h,
+                    ),
+                    Align(
+                      alignment: Alignment.topRight,
+                      child: Container(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 12.w, vertical: 4.h),
+                        decoration: BoxDecoration(
+                            color: WHITE,
+                            boxShadow: [AppConstants().commonBoxShadow()],
+                            borderRadius: BorderRadius.circular(5.sp),
+                            border:
+                                Border.all(color: HOME_RED_LIGHT, width: 0.5)),
+                        child: Text(
+                          Strings.itFree,
+                          style: Styles.textFontBold(
+                              size: 10, color: HOME_RED_LIGHT),
+                        ),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 15.h,
-                  ),
-                  Text(
-                    Strings.talkWithSomeone,
-                    style: Styles.textFontBoldHeight(
-                        size: 18,
-                        color: RED_DARK,
-                        fontFamily: AppConstants.fontFamilyOgg),
-                  ),
-                  SizedBox(
-                    height: 5.h,
-                  ),
-                  ImageView(
-                    width: 90.sp,
-                    height: 90.sp,
-                    boxFit: BoxFit.contain,
-                    image: AppSvgIcons.talkIcon,
-                    imageType: ImageType.svg,
-                  ),
-                ],
+                    SizedBox(
+                      height: 15.h,
+                    ),
+                    Text(
+                      Strings.talkWithSomeone,
+                      style: Styles.textFontBoldHeight(
+                          size: 18,
+                          color: RED_DARK,
+                          fontFamily: AppConstants.fontFamilyOgg),
+                    ),
+                    SizedBox(
+                      height: 5.h,
+                    ),
+                    ImageView(
+                      width: 90.sp,
+                      height: 90.sp,
+                      boxFit: BoxFit.contain,
+                      image: AppSvgIcons.talkIcon,
+                      imageType: ImageType.svg,
+                    ),
+                  ],
+                ),
               ),
             ),
             SizedBox(
@@ -447,7 +493,7 @@ class HomeScreenState extends State<HomeScreen> {
                 height: 1.sh * 0.25,
                 padding: EdgeInsets.symmetric(horizontal: 13.w),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
+                  borderRadius: BorderRadius.circular(15.sp),
                   boxShadow: [
                     AppConstants().commonBoxShadow(color: LIGHT_GREY_COLOR2)
                   ],
@@ -498,133 +544,142 @@ class HomeScreenState extends State<HomeScreen> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              width: 1.sw * 0.44,
-              height: 1.sh * 0.25,
-              padding: EdgeInsets.symmetric(horizontal: 13.w),
-              decoration: BoxDecoration(
-                boxShadow: [
-                  AppConstants().commonBoxShadow(color: LIGHT_GREY_COLOR2)
-                ],
-                borderRadius: BorderRadius.circular(15),
-                gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    Color(0xFFEBFAFF),
-                    Color(0xFFC6F2FF),
+            GestureDetector(
+              onTap: (){
+                Get.to(ExpertScreen());
+              },
+              child: Container(
+                width: 1.sw * 0.44,
+                height: 1.sh * 0.25,
+                padding: EdgeInsets.symmetric(horizontal: 13.w),
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    AppConstants().commonBoxShadow(color:  Color(0xFFC6F2FF))
+                  ],
+                  borderRadius: BorderRadius.circular(15),
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      Color(0xFFEBFAFF),
+                      Color(0xFFC6F2FF),
+                    ],
+                  ),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      height: 10.h,
+                    ),
+                    Align(
+                      alignment: Alignment.topRight,
+                      child: Container(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 12.w, vertical: 4.h),
+                        decoration: BoxDecoration(
+                            color: WHITE,
+                            boxShadow: [AppConstants().commonBoxShadow()],
+                            borderRadius: BorderRadius.circular(5),
+                            border: Border.all(color: BLUE_COLOR3, width: 0.5)),
+                        child: Text(
+                          Strings.comingSoon,
+                          style:
+                              Styles.textFontBold(size: 10, color: BLUE_COLOR3),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 15.h,
+                    ),
+                    ImageView(
+                      width: 65.sp,
+                      height: 65.sp,
+                      boxFit: BoxFit.contain,
+                      image: AppSvgIcons.bookCallIcon,
+                      imageType: ImageType.svg,
+                    ),
+                    SizedBox(
+                      height: 10.h,
+                    ),
+                    Text(
+                      Strings.bookCallWithExperts,
+                      style: Styles.textFontBoldHeight(
+                          size: 18,
+                          color: BLUE_COLOR3,
+                          fontFamily: AppConstants.fontFamilyOgg),
+                    ),
                   ],
                 ),
               ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    height: 10.h,
+            ),
+            SizedBox(
+              height: 12.h,
+            ),
+            GestureDetector(
+              onTap: (){
+                Get.to(TripScreen());
+              },              child: Container(
+                width: 1.sw * 0.44,
+                height: 1.sh * 0.28,
+                padding: EdgeInsets.symmetric(horizontal: 13.w),
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    AppConstants().commonBoxShadow(color:  Color(0xFFFFF2D8),)
+                  ],
+                  borderRadius: BorderRadius.circular(15),
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      Color(0xFFFFF9EE),
+                      Color(0xFFFFF2D8),
+                    ],
                   ),
-                  Align(
-                    alignment: Alignment.topRight,
-                    child: Container(
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      height: 10.h,
+                    ),
+                    Container(
                       padding:
                           EdgeInsets.symmetric(horizontal: 12.w, vertical: 4.h),
                       decoration: BoxDecoration(
                           color: WHITE,
                           boxShadow: [AppConstants().commonBoxShadow()],
                           borderRadius: BorderRadius.circular(5),
-                          border: Border.all(color: BLUE_COLOR3, width: 0.5)),
+                          border: Border.all(color: YELLOW_COLOR, width: 0.5)),
                       child: Text(
                         Strings.comingSoon,
-                        style:
-                            Styles.textFontBold(size: 10, color: BLUE_COLOR3),
+                        style: Styles.textFontBold(size: 10, color: YELLOW_COLOR),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 15.h,
-                  ),
-                  ImageView(
-                    width: 65.sp,
-                    height: 65.sp,
-                    boxFit: BoxFit.contain,
-                    image: AppSvgIcons.bookCallIcon,
-                    imageType: ImageType.svg,
-                  ),
-                  SizedBox(
-                    height: 10.h,
-                  ),
-                  Text(
-                    Strings.bookCallWithExperts,
-                    style: Styles.textFontBoldHeight(
-                        size: 18,
-                        color: BLUE_COLOR3,
-                        fontFamily: AppConstants.fontFamilyOgg),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 12.h,
-            ),
-            Container(
-              width: 1.sw * 0.44,
-              height: 1.sh * 0.28,
-              padding: EdgeInsets.symmetric(horizontal: 13.w),
-              decoration: BoxDecoration(
-                boxShadow: [
-                  AppConstants().commonBoxShadow(color: LIGHT_GREY_COLOR2)
-                ],
-                borderRadius: BorderRadius.circular(15),
-                gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    Color(0xFFFFF9EE),
-                    Color(0xFFFFF2D8),
+                    SizedBox(
+                      height: 15.h,
+                    ),
+                    Text(
+                      Strings.startFreakingYourTrip,
+                      style: Styles.textFontBoldHeight(
+                          size: 18,
+                          color: YELLOW_COLOR,
+                          fontFamily: AppConstants.fontFamilyOgg),
+                    ),
+                    SizedBox(
+                      height: 10.h,
+                    ),
+                    ImageView(
+                      width: 65.sp,
+                      height: 65.sp,
+                      boxFit: BoxFit.contain,
+                      image: AppSvgIcons.startTripIconIcon,
+                      imageType: ImageType.svg,
+                    ),
                   ],
                 ),
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    height: 10.h,
-                  ),
-                  Container(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 12.w, vertical: 4.h),
-                    decoration: BoxDecoration(
-                        color: WHITE,
-                        boxShadow: [AppConstants().commonBoxShadow()],
-                        borderRadius: BorderRadius.circular(5),
-                        border: Border.all(color: YELLOW_COLOR, width: 0.5)),
-                    child: Text(
-                      Strings.comingSoon,
-                      style: Styles.textFontBold(size: 10, color: YELLOW_COLOR),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 15.h,
-                  ),
-                  Text(
-                    Strings.startFreakingYourTrip,
-                    style: Styles.textFontBoldHeight(
-                        size: 18,
-                        color: YELLOW_COLOR,
-                        fontFamily: AppConstants.fontFamilyOgg),
-                  ),
-                  SizedBox(
-                    height: 10.h,
-                  ),
-                  ImageView(
-                    width: 65.sp,
-                    height: 65.sp,
-                    boxFit: BoxFit.contain,
-                    image: AppSvgIcons.startTripIconIcon,
-                    imageType: ImageType.svg,
-                  ),
-                ],
               ),
             ),
           ],
@@ -703,7 +758,7 @@ class HomeScreenState extends State<HomeScreen> {
       ),
     )*/
         SizedBox(
-      height: 32.h,
+      height: 35.h,
       child: ListView.separated(
         itemCount: homeController.journalEntries.length,
         shrinkWrap: true,
@@ -720,7 +775,7 @@ class HomeScreenState extends State<HomeScreen> {
               await homeController.apiCallForGetJournalEntries(context);
             },
             child: Container(
-              height: 32.h,
+              height: 35.h,
               alignment: Alignment.center,
               padding: EdgeInsets.symmetric(horizontal: 15.w),
               decoration: BoxDecoration(

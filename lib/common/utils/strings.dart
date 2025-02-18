@@ -177,6 +177,8 @@ class Strings {
   static const howAreYouFeeling = "How are you feeling?";
   static const recentlyTalkedWith = "Recently Talked with";
   static const feliFriend = "Feli-Friend";
+  static const addtofav = "Add to favorites";
+
   static const callNow = "Call now";
   static const itFree = "It’s Free";
   static const talkWithSomeone = "Talk with\nsomeone";

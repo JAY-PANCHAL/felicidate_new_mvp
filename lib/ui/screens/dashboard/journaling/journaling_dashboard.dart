@@ -13,6 +13,7 @@ import '../../../../common/utils/Styles.dart';
 import '../../../../common/utils/strings.dart';
 import '../../../../routes/app_pages.dart';
 import '../../../widget/image_view.dart';
+import 'journal_details_screen.dart';
 
 class JournalingDashboard extends StatefulWidget {
   const JournalingDashboard({super.key});
@@ -104,8 +105,8 @@ class JournalingDashboardState extends State<JournalingDashboard> {
                                   begin: Alignment.topLeft,
                                   end: Alignment.bottomRight,
                                   colors: [
-                                    Color(0xFFFFF5F7),
-                                    Color(0xFFFFF5F7),
+                                    Color(0xFFFFFFFF),
+                                    Color(0xFFFFFFFF),
                                   ],
                                 ),
                               ),
@@ -140,46 +141,53 @@ class JournalingDashboardState extends State<JournalingDashboard> {
                             scrollDirection: Axis.horizontal,
                             itemBuilder: (BuildContext context, int index) {
                             var data = jdController.mMyDiaries[index];
-                            return Container(
-                              height: 1.sh * 0.4,
-                              width: 1.sw * 0.58,
-                              padding: EdgeInsets.symmetric(vertical: 15.h,horizontal: 15.w),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(15),
-                                boxShadow: [
-                                  AppConstants().commonBoxShadow(color: GRAY_COLOR_LIGHT)
-                                ],
-                                gradient:
-                                index%2==0?
-                                LinearGradient(
-                                  begin: Alignment.topCenter,
-                                  end: Alignment.bottomCenter,
-                                  colors: [
-                                    WHITE,
-                                    Color(0xFFF3F3F3),
-                                  ],
-                                ):LinearGradient(
-                                  begin: Alignment.topCenter,
-                                  end: Alignment.bottomCenter,
-                                  colors: [
+                            return GestureDetector(
+                              onTap: (){
+                                Get.to(JournalDetailsScreen(
+                                    id: jdController.mMyDiaries.value[index].id ?? 0));
 
-                                    Color(0xFFE0F8FF),
-                                    WHITE,
+                              },
+                              child: Container(
+                                height: 1.sh * 0.4,
+                                width: 1.sw * 0.58,
+                                padding: EdgeInsets.symmetric(vertical: 15.h,horizontal: 15.w),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15),
+                                  boxShadow: [
+                                    AppConstants().commonBoxShadow(color: GRAY_COLOR_LIGHT)
+                                  ],
+                                  gradient:
+                                  index%2==0?
+                                  LinearGradient(
+                                    begin: Alignment.topCenter,
+                                    end: Alignment.bottomCenter,
+                                    colors: [
+                                      WHITE,
+                                      Color(0xFFF3F3F3),
+                                    ],
+                                  ):LinearGradient(
+                                    begin: Alignment.topCenter,
+                                    end: Alignment.bottomCenter,
+                                    colors: [
+
+                                      Color(0xFFE0F8FF),
+                                      WHITE,
+                                    ],
+                                  ),
+                                ),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(AppConstants().formatDateTimeString(data.createdAt??""),style: Styles.textFontBold(size: 10,color:  index%2==0?BLACK:HOME_BLUE_COLOR),),
+                                    Spacer(),
+                                    Text(data.journalDescription??"",style: Styles.textFontBoldHeight(size: 22,fontFamily: AppConstants.fontFamilyOgg,color: index%2==0?BLACK:HOME_BLUE_COLOR),),
+                                    SizedBox(height: 10.h,),
+                                    Text("${Strings.anxious} • ${data.journalTitle??""}",style: Styles.textFontBoldHeight(size: 10,color: index%2==0?BLACK:HOME_BLUE_COLOR),),
+                                    SizedBox(height: 3.h,),
+
                                   ],
                                 ),
-                              ),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(AppConstants().formatDateTimeString(data.createdAt??""),style: Styles.textFontBold(size: 10,color:  index%2==0?BLACK:HOME_BLUE_COLOR),),
-                                  Spacer(),
-                                  Text(data.journalDescription??"",style: Styles.textFontBoldHeight(size: 22,fontFamily: AppConstants.fontFamilyOgg,color: index%2==0?BLACK:HOME_BLUE_COLOR),),
-                                  SizedBox(height: 10.h,),
-                                  Text("${Strings.anxious} • ${data.journalTitle??""}",style: Styles.textFontBoldHeight(size: 10,color: index%2==0?BLACK:HOME_BLUE_COLOR),),
-                                  SizedBox(height: 3.h,),
-
-                                ],
                               ),
                             );
                             },

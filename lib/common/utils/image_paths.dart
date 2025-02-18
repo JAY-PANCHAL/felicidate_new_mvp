@@ -6,6 +6,8 @@ class AppSvgIcons {
   static const String phoneIcon = 'assets/icons/svgIcons/phone_icon.svg';
   static const String icDropIcon = 'assets/icons/svgIcons/drop_icon.svg';
   static const String icFloatButtonIcon = 'assets/icons/svgIcons/float_buttom_icon.svg';
+  static const String ic_down_FloatButtonIcon = 'assets/icons/svgIcons/down_float.svg';
+
   static const String icLocationIcon = 'assets/icons/svgIcons/location_iocn.svg';
   static const String icCalenderIcon = 'assets/icons/svgIcons/calender_icon.svg';
   static const String onBord2ButtomIcon = 'assets/icons/svgIcons/onBord2_buttom_icon.svg';

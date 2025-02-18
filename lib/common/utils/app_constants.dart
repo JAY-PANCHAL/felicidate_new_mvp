@@ -5,7 +5,6 @@ import 'package:felicidade/common/utils/strings.dart';
 import 'package:felicidade/ui/widget/constants/app_colors.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:url_launcher/url_launcher.dart';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -528,9 +527,9 @@ class AppConstants {
 // Common BoxShadow utility
   BoxShadow commonBoxShadow({
     Color color = GREY_COLOR, // Default shadow color
-    double blurRadius = 10.0,  // Default blur radius
-    double spreadRadius = 0.0, // Default spread radius
-    Offset offset = const Offset(0, 0), // Default offset
+    double blurRadius = 5.0,  // Default blur radius
+    double spreadRadius = 2.0, // Default spread radius
+    Offset offset =  const Offset(2, 4), // Default offset
   }) {
     return BoxShadow(
       color: color.withOpacity(0.2), // Adjust transparency

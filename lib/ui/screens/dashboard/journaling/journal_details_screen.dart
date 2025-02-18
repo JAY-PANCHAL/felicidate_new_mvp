@@ -74,17 +74,39 @@ class JournalDetailsScreenState extends State<JournalDetailsScreen> {
                         SizedBox(
                           height: 50.h,
                         ),
-                        Text(
-                            diaryDetailsController
-                                .diaryDetailModel.value.data?.diaryDetail?.journalTitle??
-                                "",
-                            textAlign: TextAlign.center,
-                            style: Styles.textFontMedium(
-                              fontFamily: AppConstants.fontFamilyOgg,
-                              color: AppColors.black,
-                              size: 26.sp,
-                            )),
-                          SizedBox(height: 30.h,),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              child: Text(
+                                  diaryDetailsController
+                                      .diaryDetailModel.value.data?.diaryDetail?.journalTitle??
+                                      "",
+                                  textAlign: TextAlign.start,
+                                  style: Styles.textFontMedium(
+                                    fontFamily: AppConstants.fontFamilyOgg,
+                                    color: AppColors.black,
+                                    size: 40.sp,
+                                  )),
+                            ),
+                            GestureDetector(
+                              onTap: (){
+                                Get.back();
+                              },
+                              child: ImageView(
+                                width: 75.sp,
+                                height: 75.sp,
+                                boxFit: BoxFit.contain,
+                                image: AppSvgIcons.ic_down_FloatButtonIcon,
+                                imageType: ImageType.svg,
+                              ),
+                            ),
+
+                          ],
+                        ),
+                        SizedBox(height: 10.h,),
+                        Divider(color: Color(0xFFBBBBBB),height: 2.sp,),
+                        SizedBox(height:20.h,),
                         Text(
                             diaryDetailsController
                                 .diaryDetailModel.value.data?.diaryDetail?.journalDescription ??
@@ -94,7 +116,7 @@ class JournalDetailsScreenState extends State<JournalDetailsScreen> {
                             style: Styles.textFontMedium(
                               fontFamily: AppConstants.fontFamilyOgg,
                               color: AppColors.black,
-                              size: 18.sp,
+                              size: 24.sp,
                             )),
                       ]),
                 ))),
