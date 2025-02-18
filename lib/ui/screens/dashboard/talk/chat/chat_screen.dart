@@ -88,14 +88,19 @@ class ChatScreenState extends State<ChatScreen> {
               elevation: 0,
               backgroundColor: Colors.white,
               leadingWidth: 55,
-              leading: Padding(
-                padding: EdgeInsets.only(left: 15.w),
-                child: ImageView(
-                  width: 40.sp,
-                  height: 40.sp,
-                  boxFit: BoxFit.contain,
-                  image: AppSvgIcons.icBackIcon,
-                  imageType: ImageType.svg,
+              leading: GestureDetector(
+                onTap: (){
+                  Get.back();
+                },
+                child: Padding(
+                  padding: EdgeInsets.only(left: 15.w),
+                  child: ImageView(
+                    width: 40.sp,
+                    height: 40.sp,
+                    boxFit: BoxFit.contain,
+                    image: AppSvgIcons.icBackIcon,
+                    imageType: ImageType.svg,
+                  ),
                 ),
               ),
               title: Row(
