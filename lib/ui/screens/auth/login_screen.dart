@@ -1,5 +1,7 @@
 import 'dart:async';
+import 'package:firebase_auth/firebase_auth.dart';
 
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:felicidade/common/utils/Styles.dart';
 import 'package:felicidade/common/utils/image_paths.dart';
 import 'package:felicidade/routes/app_pages.dart';
@@ -61,7 +63,7 @@ class LoginScreenState extends State<LoginScreen> {
     print("Facebook Data--------------->");
     print(data);
     FacebookUser user = FacebookUser.fromJson(data);
-    loginController.apiCallForFBSignIn(context, user,accessToken);
+    loginController.apiCallForFBSignIn(context, user, accessToken);
 
     if (data.isEmpty) {
       await _logout();
@@ -269,7 +271,11 @@ class LoginScreenState extends State<LoginScreen> {
                           icon: AppSvgIcons.googleSvg,
                           text1: Strings.continueAs,
                           text2: " Rohit Kadam",
-                          onTap: () {}),
+                          onTap: () async {
+                            var userCredential =signInWithGoogle();
+                            if (userCredential!= null)
+                              print(userCredential);
+                          }),
                       CommonButton(
                           icon: AppSvgIcons.facBookIcon,
                           text1: Strings.signIn,
@@ -342,5 +348,25 @@ class LoginScreenState extends State<LoginScreen> {
         ),
       ),
     );
+  }
+
+
+  Future<dynamic> signInWithGoogle() async {
+    try {
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+      final GoogleSignInAuthentication? googleAuth =
+      await googleUser?.authentication;
+
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth?.accessToken,
+        idToken: googleAuth?.idToken,
+      );
+
+      return await FirebaseAuth.instance.signInWithCredential(credential);
+    } on Exception catch (e) {
+      // TODO
+      print('exception->$e');
+    }
   }
 }
