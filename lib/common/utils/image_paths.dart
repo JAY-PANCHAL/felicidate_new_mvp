@@ -63,6 +63,10 @@ class AppSvgIcons {
   static final String icTs5Icon = 'assets/icons/svgIcons/ts5.svg';
   static final String icTs6Icon = 'assets/icons/svgIcons/ts6.svg';
 
+  static final String icBackIcon = 'assets/icons/svgIcons/back_icon.svg';
+  static final String icCallCutIcon = 'assets/icons/pngIcons/call_cut_icon.svg';
+  static final String icMessageSendIcon = 'assets/icons/svgIcons/message_send_icon.svg';
+
 
 
 }

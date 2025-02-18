@@ -205,6 +205,7 @@ class TalkToSomeoneScreenState extends State<TalkToSomeoneScreen> {
                       SizedBox(height: 10.h,),
                       GestureDetector(
                         onTap: (){
+                          Get.toNamed(Routes.chatScreen);
                         },
                         child: Container(
                           padding: EdgeInsets.symmetric(vertical: 10.h),

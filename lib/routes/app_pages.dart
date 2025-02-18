@@ -10,6 +10,7 @@ import '../ui/screens/auth/onboarding/onboarding3/three_onboarding_screen.dart';
 import '../ui/screens/auth/phoneLogin/phoneOtp/phone_otp_screen.dart';
 import '../ui/screens/auth/phoneLogin/phone_login_screen.dart';
 import '../ui/screens/dashboard/dashboard_Screen.dart';
+import '../ui/screens/dashboard/talk/chat/chat_screen.dart';
 import '../ui/screens/dashboard/talk/talkToSomeone/talk_to_someone_screen.dart';
 import '../ui/screens/splash/splash_screen.dart';
 
@@ -68,6 +69,10 @@ class AppPages {
     GetPage(
         name: Routes.talkToSomeoneScreen,
         page: () => TalkToSomeoneScreen(),
+        transition: Transition.rightToLeft),
+    GetPage(
+        name: Routes.chatScreen,
+        page: () => ChatScreen(),
         transition: Transition.rightToLeft),
   ];
 }
