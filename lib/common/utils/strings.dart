@@ -202,7 +202,7 @@ class Strings {
   static const forAddingYourMoments = "For adding all your \nmoments";
   static const createAnewStory = "Create a new story";
   static const createJournalEntry = "Create Journal Entry";
-  static const feelingsLongText = "Feelings are something you have \n not something you are";
+  static const feelingsLongText = "Feelings are something you have; \n not something you are";
   static const String validOtp = "Please enter valid otp";
   static const String errorTitle = "Please enter title";
   static const String errorThoughts = "Please enter your thoughts";
@@ -214,6 +214,8 @@ class Strings {
   static const String ConnectSomeone = "Sad to learn,\nConnect someone to\nfeel good";
   static const String startCallingPeople = "Start calling people";
   static const String noImGood = "No, I’m good";
-  static const String connectWithSomone = "Connect with somone";
+  static const String connectWithSomone = "Connect with someone";
+  static const String connectWithSomoneNow = "Connect with someone now";
+  static const String selectfeelConnect = "Select of you feel and connect with someone who wil listen?";
 
 }

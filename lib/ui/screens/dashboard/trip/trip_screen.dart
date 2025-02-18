@@ -65,17 +65,17 @@ class TripScreenState extends State<TripScreen> {
                       children: [
                         SizedBox(height: 40.h,),
                         ImageView(
-                          width: 80.sp,
-                          height: 80.sp,
+                          width: 90.sp,
+                          height: 90.sp,
                           boxFit: BoxFit.contain,
                           image: AppSvgIcons.tripMainIcon,
                           imageType: ImageType.svg,
                         ),
-                        SizedBox(height: 15.h,),
+                        SizedBox(height: 5.h,),
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 20.w),
                           child: Text("We’re coming to you Freak my trip!!",style: Styles.textFontBoldHeight(
-                              size: 28,
+                              size: 32,
                               color: COFFIE_COLOR,
                               fontFamily: AppConstants.fontFamilyOgg),
                             textAlign: TextAlign.center,),
@@ -83,8 +83,8 @@ class TripScreenState extends State<TripScreen> {
                         SizedBox(height: 15.h,),
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 20.w),
-                          child: Text("We’re going to launch Freak my trip\nsoon. Stay tune.",style: Styles.textFontRegular(
-                              size: 18,),
+                          child: Text("We’re going to launch Freak my trip soon. Stay tune.",style: Styles.textFontRegular(
+                              size: 20,),
                             textAlign: TextAlign.center,),
                         ),
 
@@ -103,15 +103,15 @@ class TripScreenState extends State<TripScreen> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         ImageView(
-                          width: 25.sp,
-                          height: 25.sp,
+                          width: 28.sp,
+                          height: 28.sp,
                           boxFit: BoxFit.contain,
                           image: AppSvgIcons.notifyMeIcon,
                           imageType: ImageType.svg,
                         ),
                         SizedBox(width: 10.w,),
-                        Text(Strings.NotifyMe,style: Styles.textFontRegular(size: 14,color: WHITE),),
-                        Icon(Icons.chevron_right_outlined,color: WHITE,)
+                        Text(Strings.NotifyMe,style: Styles.textFontRegular(size: 18,color: WHITE),),
+                        Icon(Icons.chevron_right_outlined,color: WHITE,size: 28,)
                       ],
                     ),
                   )

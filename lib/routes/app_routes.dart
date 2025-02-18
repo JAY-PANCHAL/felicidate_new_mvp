@@ -16,4 +16,5 @@ abstract class Routes {
 
 
   static const createNewStoryScreen= "/CreateNewStoryScreen";
+  static const talkToSomeoneScreen= "/TalkToSomeoneScreen";
 }

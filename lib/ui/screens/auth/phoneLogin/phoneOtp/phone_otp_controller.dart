@@ -93,7 +93,7 @@ class PhoneOtpController extends BaseController {
           setUser(model.data?.user);
           AppConstants.showToast(model.message??"");
           var loginData = await getUser();
-          if((loginData?.cityLocation??"")==""){
+          if((loginData?.name??"")==""){
             Get.offNamedUntil(Routes.oneOnboardingScreen,(route) => false);
           }
           else{
