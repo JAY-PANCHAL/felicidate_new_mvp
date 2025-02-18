@@ -13,7 +13,6 @@ dependencies:
   cupertino_icons: ^1.0.8
   get: ^4.6.5
   get_it: ^7.2.0
-#  connectivity: ^3.0.6
   flutter_svg: ^2.0.5
   shimmer: ^3.0.0
   extended_image: ^9.1.0
@@ -29,19 +28,20 @@ dependencies:
   synchronized: ^3.1.0
   win32: ^5.5.4
   url_launcher: ^6.1.14
-#  zego_uikit: ^2.28.0-beta.3
-#  zego_uikit_prebuilt_call: ^4.17.0-beta.1
-#  zego_uikit_signaling_plugin: ^2.8.7
+  #  zego_uikit: ^2.28.0-beta.3
+  #  zego_uikit_prebuilt_call: ^4.17.0-beta.1
+  #  zego_uikit_signaling_plugin: ^2.8.7
   device_info_plus: any
   faker: ^2.1.0
   cached_network_image: ^3.3.0
-
+  pinput: ^5.0.1
   geocoding: ^3.0.0
   geolocator: ^13.0.2
   permission_handler: ^11.3.1
   flutter_facebook_auth: ^7.1.1
   firebase_auth: ^5.4.2
   google_sign_in: ^6.2.2
+  firebase_core: ^3.12.0
 
 dev_dependencies:
   flutter_test:

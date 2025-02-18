@@ -269,12 +269,21 @@ class LoginScreenState extends State<LoginScreen> {
                       Spacer(),
                       CommonButton(
                           icon: AppSvgIcons.googleSvg,
-                          text1: Strings.continueAs,
-                          text2: " Rohit Kadam",
+                          text1: Strings.signinWGoogle,
+                          text2: "",
                           onTap: () async {
-                            var userCredential =signInWithGoogle();
-                            if (userCredential!= null)
+                            UserCredential userCredential =await signInWithGoogle();
+                            if (userCredential.user?.email!=null){
+/*
+(userCredential.additionalUserInfo.profile['picture']);
+*/
+                              loginController.apiCallForGoogleSignIn(context, userCredential.user?.displayName??"", userCredential.user?.email??"",
+                                  userCredential.credential?.accessToken??"",userCredential.user?.phoneNumber??"",userCredential.additionalUserInfo?.providerId??"",userCredential.additionalUserInfo!.profile?['picture']);
+
+                            }
                               print(userCredential);
+
+                          //  AppConstants.showToast(userCredential);
                           }),
                       CommonButton(
                           icon: AppSvgIcons.facBookIcon,

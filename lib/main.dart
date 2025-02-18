@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 import 'common/dependency_injection.dart';
 import 'common/service_locator.dart';
@@ -120,6 +121,9 @@ StorageService storageService = StorageService();
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+
+  );
   /// Shared Preferences
   await SpUtil.getInstance();
 

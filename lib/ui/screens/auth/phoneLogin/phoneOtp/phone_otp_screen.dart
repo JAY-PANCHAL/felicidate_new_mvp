@@ -9,14 +9,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:pinput/pinput.dart';
 
 import '../../../../../common/utils/app_constants.dart';
 
+import '../../../../../common/utils/color_constants.dart';
 import '../../../../../common/utils/strings.dart';
 import '../../../../../routes/app_pages.dart';
 import '../../../../widget/image_view.dart';
-
-
 
 class PhoneOtpScreen extends StatefulWidget {
   PhoneOtpScreen({Key? key}) : super(key: key);
@@ -39,8 +39,6 @@ class PhoneOtpScreenState extends State<PhoneOtpScreen> {
     Get.delete<PhoneOtpController>();
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     return Obx(() {
@@ -51,17 +49,13 @@ class PhoneOtpScreenState extends State<PhoneOtpScreen> {
         inAsyncCall: phoneOtpController.isLoading.value,
         child: Scaffold(
           backgroundColor: WHITE,
-          floatingActionButton: AppConstants.CommonFloatButton(
-              onTap: (){
-                if(phoneOtpController.isOtpFilled()){
-                  AppConstants.showToast(Strings.validOtp);
-                }
-                else{
-                  phoneOtpController.apiCallForVerifyOtp(context);
-                }
-
-              }
-          ),
+          floatingActionButton: AppConstants.CommonFloatButton(onTap: () {
+            if (phoneOtpController.otpController.text.length<4) {
+              AppConstants.showToast(Strings.validOtp);
+            } else {
+              phoneOtpController.apiCallForVerifyOtp(context);
+            }
+          }),
           body: Container(
             width: 1.sw,
             height: 1.sh,
@@ -82,31 +76,60 @@ class PhoneOtpScreenState extends State<PhoneOtpScreen> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(height: 45.h,),
-                    Text(Strings.enterYourCode,style: Styles.textFontBoldHeight(size: 40,color: BLUE_COLOR),),
-                    SizedBox(height: 10.h,),
-                    Text.rich(
-                      TextSpan(
-                          children: [
-                            TextSpan(text: Strings.sFor,style: Styles.textFontMedium(size: 18,color: GREY_COLOR),),
-                            TextSpan(text: '${phoneOtpController.preNum.value} ${phoneOtpController.number.value}',style: Styles.textFontMedium(size: 18),),
-                          ]
-                      ),
+                    SizedBox(
+                      height: 45.h,
                     ),
-                    SizedBox(height: 30.h,),
-                    otpWidget(),
+                    Text(
+                      Strings.enterYourCode,
+                      style: Styles.textFontBoldHeight(
+                          size: 40, color: BLUE_COLOR),
+                    ),
+                    SizedBox(
+                      height: 10.h,
+                    ),
+                    Text.rich(
+                      TextSpan(children: [
+                        TextSpan(
+                          text: Strings.sFor,
+                          style: Styles.textFontMedium(
+                              size: 18, color: GREY_COLOR),
+                        ),
+                        TextSpan(
+                          text:
+                              '${phoneOtpController.preNum.value} ${phoneOtpController.number.value}',
+                          style: Styles.textFontMedium(size: 18),
+                        ),
+                      ]),
+                    ),
+                    SizedBox(
+                      height: 30.h,
+                    ),
+                    // otpWidget(),
+                    otpinput(),
+                    SizedBox(
+                      height: 30.h,
+                    ),
                     GestureDetector(
-                      onTap: (){
+                      onTap: () {
                         phoneOtpController.apiCallForResendOtp(context);
                       },
                       child: Text.rich(
-                        TextSpan(
-                            children: [
-                              TextSpan(text: Strings.didNotGetOtp,style: Styles.textFontMedium(size: 16,color: GREY_COLOR),),
-                              TextSpan(
-                                text: Strings.sendOtpAgain,style: TextStyle(fontSize: 16,fontWeight: FontWeight.w700,color: BLUE_COLOR,fontFamily: AppConstants.fontFamilySatoshi,decoration: TextDecoration.underline),),
-                            ]
-                        ),
+                        TextSpan(children: [
+                          TextSpan(
+                            text: Strings.didNotGetOtp,
+                            style: Styles.textFontMedium(
+                                size: 16, color: GREY_COLOR),
+                          ),
+                          TextSpan(
+                            text: Strings.sendOtpAgain,
+                            style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w700,
+                                color: BLUE_COLOR,
+                                fontFamily: AppConstants.fontFamilySatoshi,
+                                decoration: TextDecoration.underline),
+                          ),
+                        ]),
                       ),
                     ),
                   ],
@@ -119,7 +142,8 @@ class PhoneOtpScreenState extends State<PhoneOtpScreen> {
     });
   }
 
-  Widget otpWidget(){
+/*
+  Widget otpWidget() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: List.generate(4, (index) {
@@ -133,16 +157,14 @@ class PhoneOtpScreenState extends State<PhoneOtpScreen> {
             maxLength: 1,
             textAlign: TextAlign.center,
             decoration: InputDecoration(
-              counterText: '', // Hides the counter
+              counterText: '',
+              // Hides the counter
               filled: true,
               fillColor: WHITE,
               focusColor: WHITE,
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8.0),
-                borderSide: const BorderSide(
-                    color: DIVIDER_COLOR,
-                    width: 1
-                ),
+                borderSide: const BorderSide(color: DIVIDER_COLOR, width: 1),
               ),
 
               disabledBorder: OutlineInputBorder(
@@ -188,8 +210,43 @@ class PhoneOtpScreenState extends State<PhoneOtpScreen> {
       }),
     );
   }
+*/
 
+  Widget otpinput() {
+    final defaultPinTheme = PinTheme(
+      width: 70.sp,
+      height: 65.sp,
+      margin: EdgeInsets.symmetric(vertical: 5.sp,horizontal: 4.sp),
+      textStyle: TextStyle(
+          fontSize: 20,
+          color: AppColors.appColor,
+          fontWeight: FontWeight.w600),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8.0),
+        border: Border.all(color: PRIMARY_COLOR, width: 1.0),
+      ),
+    );
 
+    final focusedPinTheme = defaultPinTheme.copyDecorationWith(
+      border: Border.all(color: Color.fromRGBO(114, 178, 238, 1)),
+      borderRadius: BorderRadius.circular(8),
+    );
 
-
+    final submittedPinTheme = defaultPinTheme.copyWith(
+      decoration: defaultPinTheme.decoration?.copyWith(
+        color: Color.fromRGBO(234, 239, 243, 1),
+      ),
+    );
+    return Pinput(
+      defaultPinTheme: defaultPinTheme,
+      focusedPinTheme: focusedPinTheme,
+      submittedPinTheme: submittedPinTheme,
+      validator: (s) {},
+      controller: phoneOtpController.otpController,
+      pinputAutovalidateMode: PinputAutovalidateMode.onSubmit,
+      showCursor: true,
+      onCompleted: (pin) =>              phoneOtpController.apiCallForVerifyOtp(context),
+      mainAxisAlignment: MainAxisAlignment.center,
+    );
+  }
 }

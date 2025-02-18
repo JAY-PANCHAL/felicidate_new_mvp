@@ -26,7 +26,8 @@ class PhoneOtpController extends BaseController {
 
   final repository = getIt.get<FelicidadeRepository>();
 
-  List<TextEditingController> otpController = List.generate(4, (index) => TextEditingController());
+  TextEditingController otpController =TextEditingController();
+/*
 
   bool isOtpFilled() {
     return otpController.every((controller) => controller.text.isEmpty);
@@ -35,6 +36,8 @@ class PhoneOtpController extends BaseController {
   String getOtpValue() {
     return otpController.map((controller) => controller.text).join();
   }
+*/
+
   @override
   Future<void> onInit() async {
     var data = Get.arguments;
@@ -81,7 +84,7 @@ class PhoneOtpController extends BaseController {
 
     Map<String, dynamic> params = Endpoints.getCommonParam();
     params['mobile_number'] = number.value;
-    params['user_otp'] = getOtpValue();
+    params['user_otp'] = otpController.text;
 
     await repository.verifyOtpRequested(params, context).then((value) async {
       isLoading.value = false;

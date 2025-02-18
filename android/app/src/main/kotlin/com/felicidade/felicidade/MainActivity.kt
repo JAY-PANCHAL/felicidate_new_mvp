@@ -1,4 +1,4 @@
-package com.felicidade.felicidade
+package com.felicidade.social
 
 import io.flutter.embedding.android.FlutterActivity
 

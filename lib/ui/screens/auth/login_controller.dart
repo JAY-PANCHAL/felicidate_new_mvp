@@ -61,6 +61,45 @@ class LoginController extends BaseController {
       }
     });
   }
+  Future<void> apiCallForGoogleSignIn(context,String name,String email,String token,String phone,String providerid,String profile) async {
+    isLoading.value = true;
+
+    //Map<String, dynamic> params = Endpoints.getCommonParam();
+
+    var params = {
+      "provider_type": "google",
+      "name": name,
+      "mobile_number": phone,
+      "email": email,
+      "provider_id": providerid,
+      "provider_token": token,
+      "provider_auth_code": "",
+      "profile_picture": profile,
+      "signature_hash": getDeviceId()
+    };
+    await repo.signInRequested(params, context).then((value) async {
+      isLoading.value = false;
+      var data = jsonDecode(value);
+      if (data != null) {
+        LoginModel model = LoginModel.fromJson(data);
+        if (model.status == true) {
+          AppConstants.showToast(model.message ?? "");
+          Get.toNamed(Routes.oneOnboardingScreen);
+        }
+      }
+    }, onError: (e) {
+      isLoading.value = false;
+      if (e.toString().contains(Strings.noInternet)) {
+        AppConstants.showSnackBar(e.toString(), context, () {
+          apiCallForGoogleSignIn(context,name,email,token,phone,providerid,profile);
+        });
+      } else {
+        AppConstants.showGetSnackBar("Hold Up!", e.toString(), RED);
+      }
+    });
+  }
+
+
 }
 
 class FacebookUser {

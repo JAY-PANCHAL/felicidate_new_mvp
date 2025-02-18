@@ -1,0 +1,79 @@
+{
+  "project_info": {
+    "project_number": "144158776960",
+    "project_id": "felicidade-d8068",
+    "storage_bucket": "felicidade-d8068.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:144158776960:android:d4ff671b7948ac722ad065",
+        "android_client_info": {
+          "package_name": "com.felicidade.social"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "144158776960-8e4ogfs3r53p6ng8en87osgsv9na217b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.felicidade.social",
+            "certificate_hash": "f3ae9d2ac780ad9a99dbf892ebad676ca1dbc2a5"
+          }
+        },
+        {
+          "client_id": "144158776960-guknik08f53gp613bcacumn39dr7os3l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.felicidade.social",
+            "certificate_hash": "a17c6a22ceece85bb638d938abbc6ac0fb6f1402"
+          }
+        },
+        {
+          "client_id": "144158776960-jdahoba76h1tj9svgs3tnumdt2dj3ed0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.felicidade.social",
+            "certificate_hash": "3efc0c0abdc8a696fdb871259c388a454d3a4610"
+          }
+        },
+        {
+          "client_id": "144158776960-od0lrhmojno8ji25oo49rqs9rne79faq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.felicidade.social",
+            "certificate_hash": "6bb74ef3f84ae3315142dc03c7ab13d5e87bad14"
+          }
+        },
+        {
+          "client_id": "144158776960-v6ubor7p50oqo40h8npcqk5qjgo9c16t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.felicidade.social",
+            "certificate_hash": "046b0d78244cf05431ef7d00a254765e885a5385"
+          }
+        },
+        {
+          "client_id": "144158776960-kugjetlbdbt9hvjo3j58tedlc5apl1hh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXA0dXNIxkD3VXCcGJ1HiV3Vi5qYz1xnc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "144158776960-kugjetlbdbt9hvjo3j58tedlc5apl1hh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

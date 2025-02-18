@@ -134,6 +134,8 @@ class Strings {
   static const continueAs = 'Continue as';
   static const signIn = 'Sign in';
   static const withFacebook = 'with Facebook';
+  static const signinWGoogle = 'Sign in with Google';
+
   static const useMobileNumber = 'Use mobile number';
   static const startedWithYourNumber = 'Let’s get started with your number? ';
   static const enterYourCode = 'Enter your code';
