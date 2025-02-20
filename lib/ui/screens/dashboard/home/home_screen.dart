@@ -76,7 +76,7 @@ class HomeScreenState extends State<HomeScreen> {
                     SizedBox(
                       height: 40.h,
                     ),
-                    Text("Hello ${homeController.mLoginData.value?.name??''}",
+                    Text("Hello ${homeController.mLoginData.value?.name ?? ''}",
                         style: Styles.textFontBold(
                           size: 30,
                           fontFamily: AppConstants.fontFamilyOgg,
@@ -121,14 +121,18 @@ class HomeScreenState extends State<HomeScreen> {
                     SizedBox(
                       height: 10.h,
                     ),
-                    yourRecentJournalList(),
-                    SizedBox(
-                      height: 20.h,
-                    ),
+                    homeController.mMyDiaries.value.length > 0
+                        ? yourRecentJournalList()
+                        : Container(),
+                    homeController.mMyDiaries.value.length > 0
+                        ? SizedBox(
+                            height: 20.h,
+                          )
+                        : Container(),
                     InkWell(
-                      onTap: (){
-                        Get.toNamed(Routes.createNewStoryScreen)?.then((value){
-                          if(value=="update"){
+                      onTap: () {
+                        Get.toNamed(Routes.createNewStoryScreen)?.then((value) {
+                          if (value == "update") {
                             homeController.apiCallForGetJournalEntries(context);
                           }
                         });
@@ -137,14 +141,20 @@ class HomeScreenState extends State<HomeScreen> {
                           padding: EdgeInsets.symmetric(
                               horizontal: 15.w, vertical: 15.h),
                           decoration: BoxDecoration(
-                            boxShadow: [AppConstants().commonBoxShadow(color: LIGHT_GREY_COLOR2)],
-                            borderRadius: BorderRadius.circular(8),
-                            color: WHITE
-                          ),
+                              boxShadow: [
+                                AppConstants()
+                                    .commonBoxShadow(color: LIGHT_GREY_COLOR2)
+                              ],
+                              borderRadius: BorderRadius.circular(8),
+                              color: WHITE),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Icon(Icons.add_circle,color: Colors.black,size: 28.sp,),
+                              Icon(
+                                Icons.add_circle,
+                                color: Colors.black,
+                                size: 28.sp,
+                              ),
                               SizedBox(
                                 width: 10.h,
                               ),
@@ -207,7 +217,6 @@ class HomeScreenState extends State<HomeScreen> {
     return GestureDetector(
       onTap: () {
         homeController.saveFeelingsApiCall(context, icon ?? "");
-
       },
       child: Container(
         decoration: BoxDecoration(boxShadow: [
@@ -303,7 +312,7 @@ class HomeScreenState extends State<HomeScreen> {
                 ),
                 Container(
                   width: 1.sw,
-                  padding: EdgeInsets.symmetric(vertical: 6 .h),
+                  padding: EdgeInsets.symmetric(vertical: 6.h),
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
                       color: WHITE,
@@ -327,7 +336,6 @@ class HomeScreenState extends State<HomeScreen> {
     );
   }
 
-
   Widget feturesWidget() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -338,7 +346,7 @@ class HomeScreenState extends State<HomeScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             GestureDetector(
-              onTap: (){
+              onTap: () {
                 Get.to(TalkScreen());
               },
               child: Container(
@@ -347,7 +355,9 @@ class HomeScreenState extends State<HomeScreen> {
                 padding: EdgeInsets.symmetric(horizontal: 13.w),
                 decoration: BoxDecoration(
                   boxShadow: [
-                    AppConstants().commonBoxShadow(color:Color(0xFFFFE0E6),)
+                    AppConstants().commonBoxShadow(
+                      color: Color(0xFFFFE0E6),
+                    )
                   ],
                   borderRadius: BorderRadius.circular(15),
                   gradient: LinearGradient(
@@ -369,11 +379,14 @@ class HomeScreenState extends State<HomeScreen> {
                     Align(
                       alignment: Alignment.topRight,
                       child: Container(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 12.w, vertical: 4.h),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 12.w, vertical: 4.h),
                         decoration: BoxDecoration(
                             color: WHITE,
-                            boxShadow: [AppConstants().commonBoxShadow(color: LIGHT_GREY_COLOR)],
+                            boxShadow: [
+                              AppConstants()
+                                  .commonBoxShadow(color: LIGHT_GREY_COLOR)
+                            ],
                             borderRadius: BorderRadius.circular(5.sp),
                             border:
                                 Border.all(color: HOME_RED_LIGHT, width: 0.5)),
@@ -472,7 +485,7 @@ class HomeScreenState extends State<HomeScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             GestureDetector(
-              onTap: (){
+              onTap: () {
                 Get.to(ExpertScreen());
               },
               child: Container(
@@ -481,7 +494,7 @@ class HomeScreenState extends State<HomeScreen> {
                 padding: EdgeInsets.symmetric(horizontal: 13.w),
                 decoration: BoxDecoration(
                   boxShadow: [
-                    AppConstants().commonBoxShadow(color:  Color(0xFFC6F2FF))
+                    AppConstants().commonBoxShadow(color: Color(0xFFC6F2FF))
                   ],
                   borderRadius: BorderRadius.circular(15),
                   gradient: LinearGradient(
@@ -503,11 +516,14 @@ class HomeScreenState extends State<HomeScreen> {
                     Align(
                       alignment: Alignment.topRight,
                       child: Container(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 12.w, vertical: 4.h),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 12.w, vertical: 4.h),
                         decoration: BoxDecoration(
                             color: WHITE,
-                            boxShadow: [AppConstants().commonBoxShadow(color: LIGHT_GREY_COLOR)],
+                            boxShadow: [
+                              AppConstants()
+                                  .commonBoxShadow(color: LIGHT_GREY_COLOR)
+                            ],
                             borderRadius: BorderRadius.circular(5),
                             border: Border.all(color: BLUE_COLOR3, width: 0.5)),
                         child: Text(
@@ -545,15 +561,18 @@ class HomeScreenState extends State<HomeScreen> {
               height: 12.h,
             ),
             GestureDetector(
-              onTap: (){
+              onTap: () {
                 Get.to(TripScreen());
-              },              child: Container(
+              },
+              child: Container(
                 width: 1.sw * 0.44,
                 height: 1.sh * 0.28,
                 padding: EdgeInsets.symmetric(horizontal: 13.w),
                 decoration: BoxDecoration(
                   boxShadow: [
-                    AppConstants().commonBoxShadow(color:  Color(0xFFFFF2D8),)
+                    AppConstants().commonBoxShadow(
+                      color: Color(0xFFFFF2D8),
+                    )
                   ],
                   borderRadius: BorderRadius.circular(15),
                   gradient: LinearGradient(
@@ -577,12 +596,16 @@ class HomeScreenState extends State<HomeScreen> {
                           EdgeInsets.symmetric(horizontal: 12.w, vertical: 4.h),
                       decoration: BoxDecoration(
                           color: WHITE,
-                          boxShadow: [AppConstants().commonBoxShadow(color: LIGHT_GREY_COLOR)],
+                          boxShadow: [
+                            AppConstants()
+                                .commonBoxShadow(color: LIGHT_GREY_COLOR)
+                          ],
                           borderRadius: BorderRadius.circular(5),
                           border: Border.all(color: YELLOW_COLOR, width: 0.5)),
                       child: Text(
                         Strings.comingSoon,
-                        style: Styles.textFontBold(size: 12, color: YELLOW_COLOR),
+                        style:
+                            Styles.textFontBold(size: 12, color: YELLOW_COLOR),
                       ),
                     ),
                     SizedBox(
@@ -697,8 +720,9 @@ class HomeScreenState extends State<HomeScreen> {
                 entry.isSelected = false;
               }
               homeController.journalEntries[index].isSelected = true;
+
               homeController.selectedDate.value =
-                  homeController.journalEntries[index].date;
+                  convertDateFormat(homeController.journalEntries[index].date);
               await homeController.apiCallForGetJournalEntries(context);
             },
             child: Container(
@@ -815,9 +839,16 @@ class HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  String convertDateFormat(String inputDate) {
+    // Remove ordinal suffixes (th, st, nd, rd)
+    inputDate = inputDate.replaceAll(RegExp(r'(st|nd|rd|th)'), '');
 
+    // Parse the cleaned date
+    DateFormat inputFormat = DateFormat("d MMM yyyy");
+    DateTime dateTime = inputFormat.parse(inputDate);
 
-
-
-
+    // Format to "yyyy-MM-dd"
+    DateFormat outputFormat = DateFormat("yyyy-MM-dd");
+    return outputFormat.format(dateTime);
+  }
 }

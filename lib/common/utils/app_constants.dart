@@ -464,6 +464,7 @@ class AppConstants {
         height: 40.h,
         width: 1.sw,
         margin: EdgeInsets.symmetric(horizontal: 25.w,vertical: 10.h),
+        padding: EdgeInsets.symmetric(horizontal: 10.w,vertical: 5.h),
         alignment: Alignment.center,
         decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -498,6 +499,7 @@ class AppConstants {
         height: 40.h,
         width: 1.sw,
         margin: EdgeInsets.symmetric(horizontal: 25.w,vertical: 10.h),
+        padding: EdgeInsets.symmetric(horizontal: 10.w,vertical: 5.h),
         alignment: Alignment.center,
         decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -506,7 +508,6 @@ class AppConstants {
               colors: [
                 Color(0xFF8ADCFF),
                 Color(0xFFE4F7FF),
-
               ],
             ),
             boxShadow: [

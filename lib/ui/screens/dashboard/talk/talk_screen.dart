@@ -197,7 +197,7 @@ class TalkScreenState extends State<TalkScreen> {
                       borderRadius: BorderRadius.circular(15),
                       border: Border.all(color: RED_DARK,width: 0.5)
                   ),
-                  child: Text(Strings.feliFriend,style: Styles.textFontRegular(size: 12,color:RED_DARK  ),),
+                  child: Text(Strings.addtofav,style: Styles.textFontRegular(size: 12,color:RED_DARK  ),),
                 ),
 
               ],

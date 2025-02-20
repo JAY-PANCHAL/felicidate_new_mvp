@@ -110,7 +110,7 @@ class HomeController extends BaseController {
 
     Map<String, dynamic> params = Endpoints.getCommonParam();
     // params['journal_entry_date'] = AppConstants().getCurrentDate();
-    params['journal_entry_date'] = "" /*selectedDate.value*/;
+    params['journal_entry_date'] =  selectedDate.value;
 
     await repo.getJournalEntriesRequested(params, context).then((value) async {
       isLoading.value = false;
