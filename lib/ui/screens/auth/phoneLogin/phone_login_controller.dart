@@ -9,6 +9,7 @@ import '../../../../common/service_locator.dart';
 import '../../../../common/utils/app_constants.dart';
 import '../../../../common/utils/shared_pref_utils.dart';
 import '../../../../common/utils/strings.dart';
+import '../../../../common/zego_login_service.dart';
 import '../../../../controller/base_controller.dart';
 import '../../../../network/api/Felicidade_repository.dart';
 import '../../../../network/constant/endpoints.dart';
@@ -65,12 +66,12 @@ class PhoneLoginController extends BaseController {
 
   Future<void> apiCallForSignIn(context) async {
     isLoading.value = true;
-
-
+    var zegoID=await  getUniqueUserId();
     Map<String, dynamic> params = Endpoints.getCommonParam();
     params['provider_type'] = "mobile";
     params['mobile_number'] = number.text;
     params['signature_hash'] = getDeviceId();
+    params['zego_id'] =zegoID;
 
     await repository.signInRequested(params, context).then((value) async {
       isLoading.value = false;
@@ -79,6 +80,18 @@ class PhoneLoginController extends BaseController {
         LoginModel model = LoginModel.fromJson(data);
         if (model.status == true) {
           AppConstants.showToast(model.message??"");
+          //set zegocloud configurations
+
+          login(
+            userID: zegoID,
+            userName: 'user_${zegoID}',
+          ).then((value) {
+            onUserLogin();
+          });
+
+
+
+
           Get.toNamed(Routes.phoneOtpScreen,arguments: {
             'preNum': " ${preNum.value}",
             'number': number.text,

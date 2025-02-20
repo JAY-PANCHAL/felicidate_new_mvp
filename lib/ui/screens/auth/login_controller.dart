@@ -4,7 +4,6 @@ import 'package:felicidade/common/utils/shared_pref_utils.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
-
 import '../../../common/utils/app_constants.dart';
 import '../../../common/utils/strings.dart';
 import '../../../controller/base_controller.dart';

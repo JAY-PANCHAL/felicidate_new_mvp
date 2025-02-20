@@ -1,9 +1,10 @@
 // Package imports:
-import 'package:felicidade/common/util.dart';
 import 'package:felicidade/common/zego_constants.dart';
-import 'package:shared_preferences/shared_preferences.dart';/*
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zego_uikit_prebuilt_call/zego_uikit_prebuilt_call.dart';
-import 'package:zego_uikit_signaling_plugin/zego_uikit_signaling_plugin.dart';*/
+import 'package:zego_uikit_signaling_plugin/zego_uikit_signaling_plugin.dart';
+
+import 'zego_common.dart';
 
 /// local virtual login
 Future<void> login({
@@ -23,17 +24,12 @@ Future<void> logout() async {
   prefs.remove(cacheUserIDKey);
 }
 
-/*
 /// on user login
 void onUserLogin() {
   /// 4/5. initialized ZegoUIKitPrebuiltCallInvitationService when account is logged in or re-logged in
   ZegoUIKitPrebuiltCallInvitationService().init(
-    appID: yourAppID */
-/*input your AppID*//*
-,
-    appSign: yourAppSign */
-/*input your AppSign*//*
-,
+    appID: yourAppID,
+    appSign: yourAppSign,
     userID: currentUser.id,
     userName: currentUser.name,
     plugins: [ZegoUIKitSignalingPlugin()],
@@ -51,19 +47,17 @@ void onUserLogin() {
     requireConfig: (ZegoCallInvitationData data) {
       final config = (data.invitees.length > 1)
           ? ZegoCallType.videoCall == data.type
-          ? ZegoUIKitPrebuiltCallConfig.groupVideoCall()
-          : ZegoUIKitPrebuiltCallConfig.groupVoiceCall()
+              ? ZegoUIKitPrebuiltCallConfig.groupVideoCall()
+              : ZegoUIKitPrebuiltCallConfig.groupVoiceCall()
           : ZegoCallType.videoCall == data.type
-          ? ZegoUIKitPrebuiltCallConfig.oneOnOneVideoCall()
-          : ZegoUIKitPrebuiltCallConfig.oneOnOneVoiceCall();
-
+              ? ZegoUIKitPrebuiltCallConfig.oneOnOneVideoCall()
+              : ZegoUIKitPrebuiltCallConfig.oneOnOneVoiceCall();
       config.avatarBuilder = customAvatarBuilder;
 
       /// support minimizing, show minimizing button
       config.topMenuBar.isVisible = true;
       config.topMenuBar.buttons
           .insert(0, ZegoCallMenuBarButtonName.minimizingButton);
-
       return config;
     },
   );
@@ -74,4 +68,3 @@ void onUserLogout() {
   /// 5/5. de-initialization ZegoUIKitPrebuiltCallInvitationService when account is logged out
   ZegoUIKitPrebuiltCallInvitationService().uninit();
 }
-*/
