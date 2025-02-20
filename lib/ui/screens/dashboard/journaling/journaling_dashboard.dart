@@ -171,7 +171,13 @@ class JournalingDashboardState extends State<JournalingDashboard> {
                                 children: [
                                   Text(AppConstants().formatDateTimeString(data.createdAt??""),style: Styles.textFontBold(size: 12,color:  index%2==0?BLACK:HOME_BLUE_COLOR),),
                                   Spacer(),
-                                  Text(data.journalDescription??"",style: Styles.textFontBoldHeight(size: 32,fontFamily: AppConstants.fontFamilyOgg,color: index%2==0?BLACK:HOME_BLUE_COLOR),),
+                                  Text(data.journalDescription??"",
+                                    maxLines: 5,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: Styles.textFontBoldHeight(
+                                      size: 26,
+                                      fontFamily: AppConstants.fontFamilyOgg,
+                                      color: index%2==0?BLACK:HOME_BLUE_COLOR),),
                                   SizedBox(height: 10.h,),
                                   Text("${Strings.anxious} • ${data.journalTitle??""}",style: Styles.textFontBoldHeight(size: 12,color: index%2==0?BLACK:HOME_BLUE_COLOR),),
                                   SizedBox(height: 3.h,),

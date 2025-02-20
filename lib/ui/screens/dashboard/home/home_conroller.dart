@@ -136,58 +136,61 @@ class HomeController extends BaseController {
   Future<void> feelingDialog({type = 1}) async {
     return Get.dialog(
       Dialog(
-        insetPadding: EdgeInsets.symmetric(horizontal: 70.w),
+        insetPadding: EdgeInsets.symmetric(horizontal: 60.w),
         backgroundColor: WHITE,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15), // Optional: Rounded corners
         ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min, // Prevents unnecessary expansion
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(height: 35),
-            ImageView(
-              width: 80.sp, // Decreased icon size
-              height: 80.sp,
-              boxFit: BoxFit.contain,
-              image: type==1? AppSvgIcons.icHorrayIcon:AppSvgIcons.icConnectSomeoneIcon,
-              imageType: ImageType.svg,
-            ),
-            SizedBox(height: 20),
-            Text( type==1? Strings.hoorayShare : Strings.ConnectSomeone, textAlign: TextAlign.center,style: Styles.textFontBoldHeight(size: 19,fontFamily: AppConstants.fontFamilyOgg,color: type==1?RED_DARK:BLUE_COLOR2,height: 1.4),),
-            SizedBox(height: 7.h,),
-            type==1?
-            AppConstants.CommonButtom2(
-                text: Strings.startCallingPeople,
-                onTap: (){
+        child: Container(
+          margin: EdgeInsets.all(5.sp),
+          child: Column(
+            mainAxisSize: MainAxisSize.min, // Prevents unnecessary expansion
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(height: 35),
+              ImageView(
+                width: 80.sp, // Decreased icon size
+                height: 80.sp,
+                boxFit: BoxFit.contain,
+                image: type==1? AppSvgIcons.icHorrayIcon:AppSvgIcons.icConnectSomeoneIcon,
+                imageType: ImageType.svg,
+              ),
+              SizedBox(height: 20),
+              Text( type==1? Strings.hoorayShare : Strings.ConnectSomeone, textAlign: TextAlign.center,style: Styles.textFontBoldHeight(size: 18,fontFamily: AppConstants.fontFamilyOgg,color: type==1?RED_DARK:BLUE_COLOR2,height: 1.4),),
+              SizedBox(height: 7.h,),
+              type==1?
+              AppConstants.CommonButtom2(
+                  text: Strings.startCallingPeople,
+                  onTap: (){
 
 
-                }
-            ):    AppConstants.CommonButtom3(
-                text: Strings.connectWithSomone,
-                onTap: (){
+                  }
+              ):    AppConstants.CommonButtom3(
+                  text: Strings.connectWithSomone,
+                  onTap: (){
 
 
-                }
-            ),
-            SizedBox(height: 7),
-            GestureDetector(
-                onTap: (){
-                  Get.back();
-                },
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    SizedBox(height: 7),
-                    Text(Strings.noImGood, textAlign: TextAlign.center,style: Styles.textFontMedium(size: 17,color: type==1?RED_DARK:BLUE_COLOR2),),
-                    SizedBox(height: 20),
+                  }
+              ),
+              SizedBox(height: 7),
+              GestureDetector(
+                  onTap: (){
+                    Get.back();
+                  },
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      SizedBox(height: 7),
+                      Text(Strings.noImGood, textAlign: TextAlign.center,style: Styles.textFontMedium(size: 18,color: type==1?RED_DARK:BLUE_COLOR2),),
+                      SizedBox(height: 20),
 
-                  ],
-                )),
+                    ],
+                  )),
 
-          ],
+            ],
+          ),
         ),
       ),
     );

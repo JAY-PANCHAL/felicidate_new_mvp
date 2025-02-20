@@ -235,7 +235,7 @@ class HomeScreenState extends State<HomeScreen> {
 
   Widget recentlyTalkedWith() {
     return SizedBox(
-      height: 1.sh * 0.38,
+      height: 1.sh * 0.385,
       child: ListView.separated(
         itemCount: 3,
         shrinkWrap: true,
@@ -244,6 +244,7 @@ class HomeScreenState extends State<HomeScreen> {
         itemBuilder: (BuildContext context, int index) {
           return Container(
             width: 1.sw * 0.42,
+            height: 1.sh * 0.385,
             padding: EdgeInsets.symmetric(horizontal: 13.w, vertical: 13.h),
             decoration: BoxDecoration(
               color: WHITE,
@@ -323,6 +324,9 @@ class HomeScreenState extends State<HomeScreen> {
                     style: Styles.textFontRegular(size: 12, color: RED_DARK),
                   ),
                 ),
+                SizedBox(
+                  height: 10.h,
+                ),
               ],
             ),
           );
@@ -351,7 +355,7 @@ class HomeScreenState extends State<HomeScreen> {
               },
               child: Container(
                 width: 1.sw * 0.44,
-                height: 1.sh * 0.28,
+                // height: 1.sh * 0.28,
                 padding: EdgeInsets.symmetric(horizontal: 13.w),
                 decoration: BoxDecoration(
                   boxShadow: [
@@ -417,6 +421,9 @@ class HomeScreenState extends State<HomeScreen> {
                       image: AppSvgIcons.talkIcon,
                       imageType: ImageType.svg,
                     ),
+                    SizedBox(
+                      height: 15.h,
+                    ),
                   ],
                 ),
               ),
@@ -430,7 +437,7 @@ class HomeScreenState extends State<HomeScreen> {
               },
               child: Container(
                 width: 1.sw * 0.44,
-                height: 1.sh * 0.26,
+                // height: 1.sh * 0.26,
                 padding: EdgeInsets.symmetric(horizontal: 13.w),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15.sp),
@@ -472,7 +479,7 @@ class HomeScreenState extends State<HomeScreen> {
                           fontFamily: AppConstants.fontFamilyOgg),
                     ),
                     SizedBox(
-                      height: 10.h,
+                      height: 15.h,
                     ),
                   ],
                 ),
@@ -490,7 +497,7 @@ class HomeScreenState extends State<HomeScreen> {
               },
               child: Container(
                 width: 1.sw * 0.44,
-                height: 1.sh * 0.26,
+                // height: 1.sh * 0.26,
                 padding: EdgeInsets.symmetric(horizontal: 13.w),
                 decoration: BoxDecoration(
                   boxShadow: [
@@ -511,7 +518,7 @@ class HomeScreenState extends State<HomeScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
-                      height: 10.h,
+                      height: 20.h,
                     ),
                     Align(
                       alignment: Alignment.topRight,
@@ -553,6 +560,9 @@ class HomeScreenState extends State<HomeScreen> {
                           color: BLUE_COLOR3,
                           fontFamily: AppConstants.fontFamilyOgg),
                     ),
+                    SizedBox(
+                      height: 15.h,
+                    ),
                   ],
                 ),
               ),
@@ -566,7 +576,7 @@ class HomeScreenState extends State<HomeScreen> {
               },
               child: Container(
                 width: 1.sw * 0.44,
-                height: 1.sh * 0.28,
+                // height: 1.sh * 0.28,
                 padding: EdgeInsets.symmetric(horizontal: 13.w),
                 decoration: BoxDecoration(
                   boxShadow: [
@@ -589,7 +599,7 @@ class HomeScreenState extends State<HomeScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
-                      height: 10.h,
+                      height: 20.h,
                     ),
                     Container(
                       padding:
@@ -627,6 +637,9 @@ class HomeScreenState extends State<HomeScreen> {
                       boxFit: BoxFit.contain,
                       image: AppSvgIcons.startTripIconIcon,
                       imageType: ImageType.svg,
+                    ),
+                    SizedBox(
+                      height: 20.h,
                     ),
                   ],
                 ),

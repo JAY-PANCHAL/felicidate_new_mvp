@@ -52,7 +52,7 @@ class TalkScreenState extends State<TalkScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  height: 1.sh * 0.55,
+                  height: 1.sh * 0.57,
                   width: 1.sw,
                   margin: EdgeInsets.only(bottom: 10.h,),
                   decoration: BoxDecoration(
@@ -135,7 +135,7 @@ class TalkScreenState extends State<TalkScreen> {
 
   Widget recentlyTalkedWith(){
     return SizedBox(
-      height: 1.sh * 0.335,
+      height: 1.sh * 0.35,
       child: ListView.separated(
         itemCount: 3,
         shrinkWrap: true,
@@ -144,6 +144,7 @@ class TalkScreenState extends State<TalkScreen> {
         itemBuilder: (BuildContext context, int index) {
           return Container(
             width: 1.sw * 0.42,
+            height: 1.sh * 0.385,
             padding: EdgeInsets.symmetric(horizontal: 13.w,vertical: 13.h),
             decoration: BoxDecoration(
               color: WHITE,
@@ -199,7 +200,7 @@ class TalkScreenState extends State<TalkScreen> {
                   ),
                   child: Text(Strings.addtofav,style: Styles.textFontRegular(size: 12,color:RED_DARK  ),),
                 ),
-
+                SizedBox(height: 8.h,),
               ],
             ),
           );

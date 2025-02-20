@@ -485,7 +485,7 @@ class AppConstants {
             ],
             borderRadius: BorderRadius.circular(30)
         ),
-        child: Text(text??"",style: Styles.textFontMedium(size: 14),),
+        child: Text(text??"",style: Styles.textFontMedium(size: 12),),
       ),
     );
   }
@@ -520,7 +520,7 @@ class AppConstants {
             ],
             borderRadius: BorderRadius.circular(30)
         ),
-        child: Text(text??"",style: Styles.textFontMedium(size: 14),),
+        child: Text(text??"",style: Styles.textFontMedium(size: 12),),
       ),
     );
   }

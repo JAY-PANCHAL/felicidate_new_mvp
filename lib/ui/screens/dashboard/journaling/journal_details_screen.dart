@@ -86,7 +86,7 @@ class JournalDetailsScreenState extends State<JournalDetailsScreen> {
                                   style: Styles.textFontMedium(
                                     fontFamily: AppConstants.fontFamilyOgg,
                                     color: AppColors.black,
-                                    size: 40.sp,
+                                    size: 32.sp,
                                   )),
                             ),
                             GestureDetector(
@@ -111,12 +111,10 @@ class JournalDetailsScreenState extends State<JournalDetailsScreen> {
                             diaryDetailsController
                                 .diaryDetailModel.value.data?.diaryDetail?.journalDescription ??
                                 "",
-                            textAlign: TextAlign.center,
                             maxLines: 1000,
-                            style: Styles.textFontMedium(
-                              fontFamily: AppConstants.fontFamilyOgg,
+                            style: Styles.textFontRegular(
                               color: AppColors.black,
-                              size: 24.sp,
+                              size: 20.sp,
                             )),
                       ]),
                 ))),

@@ -65,7 +65,7 @@ class TwoOnboardingController extends BaseController {
           AppConstants.showToast(model.message??"");
           setUser(model.data?.user);
 
-          Get.offNamedUntil(Routes.threeOnboardingScreen,(route) => false);
+          Get.toNamed(Routes.threeOnboardingScreen);
         }
       }
     }, onError: (e) {

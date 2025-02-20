@@ -111,7 +111,7 @@ class CreateNewStoryScreenState extends State<CreateNewStoryScreen> {
                               SizedBox(height: 8),
                               TextFormField(
                                 controller: createStoryController.summaryController,
-                                maxLines: 4,
+                                maxLines: 8,
                                 validator: (value) => commonValidation(value,Strings.errorThoughts),
                                 decoration: InputDecoration(
                                   hintText: "Write your thoughts...",
