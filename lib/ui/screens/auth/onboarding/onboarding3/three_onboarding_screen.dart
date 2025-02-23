@@ -17,10 +17,6 @@ import '../../../../../routes/app_pages.dart';
 import '../../../../widget/gradient_text.dart';
 import '../../../../widget/image_view.dart';
 
-
-
-
-
 class ThreeOnboardingScreen extends StatefulWidget {
   const ThreeOnboardingScreen({super.key});
 
@@ -29,7 +25,8 @@ class ThreeOnboardingScreen extends StatefulWidget {
 }
 
 class ThreeOnboardingScreenState extends State<ThreeOnboardingScreen> {
-  final ThreeOnboardingController threeOnboardingController = Get.put(ThreeOnboardingController());
+  final ThreeOnboardingController threeOnboardingController =
+      Get.put(ThreeOnboardingController());
 
   @override
   void initState() {
@@ -41,8 +38,6 @@ class ThreeOnboardingScreenState extends State<ThreeOnboardingScreen> {
     super.dispose();
     Get.delete<ThreeOnboardingController>();
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -72,12 +67,16 @@ class ThreeOnboardingScreenState extends State<ThreeOnboardingScreen> {
             ),
             child: Column(
               children: [
-                SizedBox(height: 45.h,),
+                SizedBox(
+                  height: 45.h,
+                ),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 15.w),
                   child: AppConstants.CommonProgressIndicator2(),
                 ),
-                SizedBox(height: 20.h,),
+                SizedBox(
+                  height: 20.h,
+                ),
                 Expanded(
                   child: SingleChildScrollView(
                     child: Padding(
@@ -86,24 +85,41 @@ class ThreeOnboardingScreenState extends State<ThreeOnboardingScreen> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                        GradientText(
-                        text: Strings.youAreReadyToShine,
-                        style: Styles.textFontBoldHeight(size: 32,),
-                        gradient: LinearGradient(
-                          colors: [Color(0xFF86D8FF), Color(0xFFFF9FB2), Color(0xFFFFD18E)],
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                        ),
-                        ),
-                          SizedBox(height: 13.h,),
-                          Text(Strings.weCanConnectYouWithTheRightPerson,style: Styles.textFontMedium(size: 16,color: GREY_COLOR),),
-                          SizedBox(height: 35.h,),
-
-                          CommonWidget(icon: AppSvgIcons.iconB3Icon1, text: "Talk to people who understand you."),
-                          CommonWidget(icon: AppSvgIcons.iconB3Icon2, text: "Get expert advice from professionals."),
-                          CommonWidget(icon: AppSvgIcons.iconB3Icon3, text: "Go on trips and meet exciting new people.")
-
-
+                          GradientText(
+                            text: Strings.youAreReadyToShine,
+                            style: Styles.textFontBoldHeight(
+                              size: 32,
+                            ),
+                            gradient: LinearGradient(
+                              colors: [
+                                Color(0xFF86D8FF),
+                                Color(0xFFFF9FB2),
+                                Color(0xFFFFD18E)
+                              ],
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 13.h,
+                          ),
+                          Text(
+                            Strings.weCanConnectYouWithTheRightPerson,
+                            style: Styles.textFontMedium(
+                                size: 16, color: GREY_COLOR),
+                          ),
+                          SizedBox(
+                            height: 35.h,
+                          ),
+                          CommonWidget(
+                              icon: AppSvgIcons.iconB3Icon1,
+                              text: "Talk to people who understand you."),
+                          CommonWidget(
+                              icon: AppSvgIcons.iconB3Icon2,
+                              text: "Get expert advice from professionals."),
+                          CommonWidget(
+                              icon: AppSvgIcons.iconB3Icon3,
+                              text: "Go on trips and meet exciting new people.")
                         ],
                       ),
                     ),
@@ -111,10 +127,9 @@ class ThreeOnboardingScreenState extends State<ThreeOnboardingScreen> {
                 ),
                 AppConstants.CommonButtom(
                     text: Strings.txtContinueWellbeing,
-                    onTap: (){
-                      Get.offNamedUntil(Routes.dashboard,(route) => false);
-                    }
-                ),
+                    onTap: () {
+                      Get.offAllNamed(Routes.dashboard);
+                    }),
               ],
             ),
           ),
@@ -123,8 +138,8 @@ class ThreeOnboardingScreenState extends State<ThreeOnboardingScreen> {
     });
   }
 
-  Widget CommonWidget({String? icon, String? text}){
-    return  Padding(
+  Widget CommonWidget({String? icon, String? text}) {
+    return Padding(
       padding: EdgeInsets.only(bottom: 20.h),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -141,20 +156,21 @@ class ThreeOnboardingScreenState extends State<ThreeOnboardingScreen> {
               width: 75.sp,
               height: 75.sp,
               boxFit: BoxFit.contain,
-              image: icon??"",
+              image: icon ?? "",
               imageType: ImageType.svg,
             ),
           ),
-          SizedBox(width: 19.w,),
+          SizedBox(
+            width: 19.w,
+          ),
           SizedBox(
               width: 1.sw * 0.65,
-              child: Text(text??"",style: Styles.textFontMedium(size: 20),)),
+              child: Text(
+                text ?? "",
+                style: Styles.textFontMedium(size: 20),
+              )),
         ],
       ),
     );
   }
-
-
-
-
 }

@@ -6,10 +6,8 @@ import 'package:felicidade/ui/widget/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:zego_uikit_prebuilt_call/zego_uikit_prebuilt_call.dart';
-
 import '../../../../../common/utils/Styles.dart';
 import '../../../../../common/utils/app_constants.dart';
 import '../../../../../common/utils/strings.dart';
@@ -38,7 +36,7 @@ class TalkToSomeoneScreenState extends State<TalkToSomeoneScreen> {
     {"icon": AppSvgIcons.icTs1Icon, "text": "Anxious or panicky Feeling"},
     {"icon": AppSvgIcons.icTs2Icon, "text": "Difficulty in relationship"},
     {"icon": AppSvgIcons.icTs3Icon, "text": "Traumatic Experience"},
-    {"icon": AppSvgIcons.icTs4Icon, "text": "Navigating addiction"},
+    {"icon": AppSvgIcons.icTs4Icon, "text": "Navigating addi  ction"},
     {"icon": AppSvgIcons.icTs5Icon, "text": "Dealing with stress"},
     {"icon": AppSvgIcons.icTs6Icon, "text": "Don't know anything"},
   ];
@@ -220,45 +218,47 @@ class TalkToSomeoneScreenState extends State<TalkToSomeoneScreen> {
                   GestureDetector(
                     onTap: () {
                       Get.dialog(
-                        AlertDialog(
-                          title: Text('Enter Phone Number'),
-                          content: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              TextFormField(
-                                onChanged: (value) => talkToSomeoneController
-                                    .phoneNumber.value = value,
-                                keyboardType: TextInputType.phone,
-                                decoration: InputDecoration(
-                                  hintText: 'Enter phone number',
-                                  border: OutlineInputBorder(),
+                        Obx(() {
+                          return AlertDialog(
+                            title: Text('Enter Phone Number'),
+                            content: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                TextFormField(
+                                  onChanged: (value) => talkToSomeoneController
+                                      .phoneNumber.value = value,
+                                  keyboardType: TextInputType.phone,
+                                  decoration: InputDecoration(
+                                    hintText: 'Enter phone number',
+                                    border: OutlineInputBorder(),
+                                  ),
                                 ),
+                              ],
+                            ),
+                            actions: [
+                              TextButton(
+                                onPressed: () => Get.back(),
+                                child: Text('Cancel'),
                               ),
-                            ],
-                          ),
-                          actions: [
-                            TextButton(
-                              onPressed: () => Get.back(),
-                              child: Text('Cancel'),
-                            ),
-                            sendCallButton(
-                              isVideoCall: false,
-                              onCallFinished: onSendCallInvitationFinished,
-                            ),
-                            sendCallButton(
-                              isVideoCall: true,
-                              onCallFinished: onSendCallInvitationFinished,
-                            ),
+                              sendCallButton(
+                                isVideoCall: false,
+                                onCallFinished: onSendCallInvitationFinished,
+                              ),
+                              sendCallButton(
+                                isVideoCall: true,
+                                onCallFinished: onSendCallInvitationFinished,
+                              ),
 
-                            /*  ElevatedButton(
-                              onPressed: () {
-                                Get.back();
-                                print('Calling: ${talkToSomeoneController.phoneNumber.value}');
-                              },
-                              child: Text('Call'),
-                            ),*/
-                          ],
-                        ),
+                              /*  ElevatedButton(
+                                  onPressed: () {
+                                    Get.back();
+                                    print('Calling: ${talkToSomeoneController.phoneNumber.value}');
+                                  },
+                                  child: Text('Call'),
+                                ),*/
+                            ],
+                          );
+                        }),
                       );
 
                       // Get.toNamed(Routes.chatScreen);
@@ -353,17 +353,19 @@ class TalkToSomeoneScreenState extends State<TalkToSomeoneScreen> {
     required bool isVideoCall,
     void Function(String code, String message, List<String>)? onCallFinished,
   }) {
+    print("------------------------------------------------>");
 
-    var listInviteee=<ZegoUIKitUser>[
+    print(talkToSomeoneController.phoneNumber.value);
+
+    var listInviteee = <ZegoUIKitUser>[
       ZegoUIKitUser(
         id: talkToSomeoneController.phoneNumber.value,
         name: 'user_${talkToSomeoneController.phoneNumber.value}',
       )
-
     ];
     return ZegoSendCallInvitationButton(
       isVideoCall: isVideoCall,
-      invitees:listInviteee,
+      invitees: listInviteee,
       resourceID: "zego_data",
       iconSize: const Size(40, 40),
       buttonSize: const Size(50, 50),

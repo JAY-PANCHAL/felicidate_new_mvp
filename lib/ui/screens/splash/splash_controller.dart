@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 import '../../../common/utils/shared_pref_utils.dart';
+import '../../../common/zego_login_service.dart';
 import '../../../controller/base_controller.dart';
 import '../../../routes/app_pages.dart';
 
@@ -35,10 +36,14 @@ class SplashController extends BaseController {
       } else {
         // print('location--${loginData.cityLocation??''}');
         if((loginData.name??"")==""){
+          onUserLogin();
+
           Get.offNamedUntil(Routes.oneOnboardingScreen,(route) => false);
         }
         else{
-            Get.offNamedUntil(Routes.dashboard,(route) => false);
+          onUserLogin();
+
+          Get.offNamedUntil(Routes.dashboard,(route) => false);
         }
 
       }
