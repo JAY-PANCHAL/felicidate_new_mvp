@@ -46,7 +46,11 @@ class LoginController extends BaseController {
         LoginModel model = LoginModel.fromJson(data);
         if (model.status == true) {
           AppConstants.showToast(model.message ?? "");
-          Get.toNamed(Routes.oneOnboardingScreen);
+          Get.toNamed(Routes.oneOnboardingScreen,arguments: {
+            "name":user.name,
+            "email":user.email,
+              "phone":""
+          });
         }
       }
     }, onError: (e) {
@@ -83,7 +87,11 @@ class LoginController extends BaseController {
         LoginModel model = LoginModel.fromJson(data);
         if (model.status == true) {
           AppConstants.showToast(model.message ?? "");
-          Get.toNamed(Routes.oneOnboardingScreen);
+          Get.toNamed(Routes.oneOnboardingScreen,arguments: {
+            "name":name,
+            "email":email,
+            "phone":phone
+          });
         }
       }
     }, onError: (e) {

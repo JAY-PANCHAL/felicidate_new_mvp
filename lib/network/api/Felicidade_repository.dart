@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 import '../../common/utils/storage_service.dart';
 import '../constant/endpoints.dart';
 import '../dio/dio_exception.dart';
+import '../model/connect_to_feli_model.dart';
 import '../model/save_feelings_model.dart';
 import '../model/token_model.dart';
 
@@ -104,4 +105,14 @@ class   FelicidadeRepository {
     }
   }
 
+  Future<String> connectToFeliApi(params, context) async {
+    try {
+      final response = await felicidateApi.loadPostData(
+          Endpoints.connectToFeli,params, context);
+      return response;
+    } on DioException catch (e) {
+      final errorMessage = DioExceptions.fromDioError(e).toString();
+      throw errorMessage;
+    }
+  }
 }

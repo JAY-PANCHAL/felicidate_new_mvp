@@ -45,40 +45,40 @@ class TwoOnboardingController extends BaseController {
   }
 
 
-  Future<void> apiCallForInitialDetails(context) async {
-    isLoading.value = true;
+    Future<void> apiCallForInitialDetails(context) async {
+      isLoading.value = true;
 
 
-    Map<String, dynamic> params = Endpoints.getCommonParam();
-    params['name'] = nameController.text;
-    params['email'] = emailController.text;
-    params['age'] = ageController.text;
-    params['city_location'] = locationController.text;
-    params['reason_to_talk'] = helpController.text;
+      Map<String, dynamic> params = Endpoints.getCommonParam();
+      params['name'] = nameController.text;
+      params['email'] = emailController.text;
+      params['age'] = ageController.text;
+      params['city_location'] = locationController.text;
+      params['reason_to_talk'] = helpController.text;
 
-    await repository.getInitialDetailsRequested(params, context).then((value) async {
-      isLoading.value = false;
-      var data = jsonDecode(value);
-      if (data != null) {
-        LoginModel model = LoginModel.fromJson(data);
-        if (model.status == true) {
-          AppConstants.showToast(model.message??"");
-          setUser(model.data?.user);
+      await repository.getInitialDetailsRequested(params, context).then((value) async {
+        isLoading.value = false;
+        var data = jsonDecode(value);
+        if (data != null) {
+          LoginModel model = LoginModel.fromJson(data);
+          if (model.status == true) {
+            AppConstants.showToast(model.message??"");
+            setUser(model.data?.user);
 
-          Get.toNamed(Routes.threeOnboardingScreen);
+            Get.toNamed(Routes.threeOnboardingScreen);
+          }
         }
-      }
-    }, onError: (e) {
-      isLoading.value = false;
-      if (e.toString().contains(Strings.noInternet)) {
-        AppConstants.showSnackBar(e.toString(), context, () {
-          apiCallForInitialDetails(context);
-        });
-      } else {
-        AppConstants.showGetSnackBar("Hold Up!", e.toString(),RED);
-      }
-    });
-  }
+      }, onError: (e) {
+        isLoading.value = false;
+        if (e.toString().contains(Strings.noInternet)) {
+          AppConstants.showSnackBar(e.toString(), context, () {
+            apiCallForInitialDetails(context);
+          });
+        } else {
+          AppConstants.showGetSnackBar("Hold Up!", e.toString(),RED);
+        }
+      });
+    }
 
 
 

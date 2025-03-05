@@ -117,7 +117,10 @@ class TalkToSomeoneScreenState extends State<TalkToSomeoneScreen> {
                           Padding(
                             padding: EdgeInsets.symmetric(horizontal: 15.w),
                             child: InkWell(
-                              onTap: () {},
+                              onTap: () async {
+                                await talkToSomeoneController.connectToFeliApi(context);
+
+                              },
                               child: Container(
                                   padding: EdgeInsets.symmetric(
                                       horizontal: 45.w, vertical: 12.h),
@@ -216,50 +219,8 @@ class TalkToSomeoneScreenState extends State<TalkToSomeoneScreen> {
                     height: 10.h,
                   ),
                   GestureDetector(
-                    onTap: () {
-                      Get.dialog(
-                        Obx(() {
-                          return AlertDialog(
-                            title: Text('Enter Phone Number'),
-                            content: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                TextFormField(
-                                  onChanged: (value) => talkToSomeoneController
-                                      .phoneNumber.value = value,
-                                  keyboardType: TextInputType.phone,
-                                  decoration: InputDecoration(
-                                    hintText: 'Enter phone number',
-                                    border: OutlineInputBorder(),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            actions: [
-                              TextButton(
-                                onPressed: () => Get.back(),
-                                child: Text('Cancel'),
-                              ),
-                              sendCallButton(
-                                isVideoCall: false,
-                                onCallFinished: onSendCallInvitationFinished,
-                              ),
-                              sendCallButton(
-                                isVideoCall: true,
-                                onCallFinished: onSendCallInvitationFinished,
-                              ),
-
-                              /*  ElevatedButton(
-                                  onPressed: () {
-                                    Get.back();
-                                    print('Calling: ${talkToSomeoneController.phoneNumber.value}');
-                                  },
-                                  child: Text('Call'),
-                                ),*/
-                            ],
-                          );
-                        }),
-                      );
+                    onTap: () async {
+                      await talkToSomeoneController.connectToFeliApi(context);
 
                       // Get.toNamed(Routes.chatScreen);
                     },
@@ -313,63 +274,5 @@ class TalkToSomeoneScreenState extends State<TalkToSomeoneScreen> {
                 ])),
           ));
     });
-  }
-
-  void onSendCallInvitationFinished(
-    String code,
-    String message,
-    List<String> errorInvitees,
-  ) {
-    if (errorInvitees.isNotEmpty) {
-      String userIDs = "";
-      for (int index = 0; index < errorInvitees.length; index++) {
-        if (index >= 5) {
-          userIDs += '... ';
-          break;
-        }
-
-        var userID = errorInvitees.elementAt(index);
-        userIDs += userID + ' ';
-      }
-      if (userIDs.isNotEmpty) {
-        userIDs = userIDs.substring(0, userIDs.length - 1);
-      }
-
-      var message = 'User doesn\'t exist or is offline: $userIDs';
-      if (code.isNotEmpty) {
-        message += ', code: $code, message:$message';
-      }
-      AppConstants.showToast(
-        message,
-      );
-    } else if (code.isNotEmpty) {
-      AppConstants.showToast(
-        'code: $code, message:$message',
-      );
-    }
-  }
-
-  Widget sendCallButton({
-    required bool isVideoCall,
-    void Function(String code, String message, List<String>)? onCallFinished,
-  }) {
-    print("------------------------------------------------>");
-
-    print(talkToSomeoneController.phoneNumber.value);
-
-    var listInviteee = <ZegoUIKitUser>[
-      ZegoUIKitUser(
-        id: talkToSomeoneController.phoneNumber.value,
-        name: 'user_${talkToSomeoneController.phoneNumber.value}',
-      )
-    ];
-    return ZegoSendCallInvitationButton(
-      isVideoCall: isVideoCall,
-      invitees: listInviteee,
-      resourceID: "zego_data",
-      iconSize: const Size(40, 40),
-      buttonSize: const Size(50, 50),
-      onPressed: onCallFinished,
-    );
   }
 }

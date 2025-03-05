@@ -94,9 +94,13 @@ void onUserLogin() {
               ? ZegoUIKitPrebuiltCallConfig.oneOnOneVideoCall()
               : ZegoUIKitPrebuiltCallConfig.oneOnOneVoiceCall();
       config.avatarBuilder = customAvatarBuilder;
-      config.bottomMenuBar = ZegoCallBottomMenuBarConfig(
+      config.bottomMenuBar = ZegoCallBottomMenuBarConfig(buttons: [
+        ZegoCallMenuBarButtonName.chatButton,
+        ZegoCallMenuBarButtonName.hangUpButton,
+        ZegoCallMenuBarButtonName.toggleMicrophoneButton,
+        ZegoCallMenuBarButtonName.switchAudioOutputButton
+      ]);
 
-          buttons: [ZegoCallMenuBarButtonName.chatButton,ZegoCallMenuBarButtonName.hangUpButton,ZegoCallMenuBarButtonName.toggleMicrophoneButton,ZegoCallMenuBarButtonName.switchAudioOutputButton]);
       /// support minimizing, show minimizing button
       config.topMenuBar.isVisible = true;
 

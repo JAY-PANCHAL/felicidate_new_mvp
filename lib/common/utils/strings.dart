@@ -218,6 +218,6 @@ class Strings {
   static const String noImGood = "No, I’m good";
   static const String connectWithSomone = "Connect with someone";
   static const String connectWithSomoneNow = "Connect with someone now";
-  static const String selectfeelConnect = "Select of you feel and connect with someone who wil listen?";
+  static const String selectfeelConnect = "Select if you feel and connect with someone who wil listen?";
 
 }
