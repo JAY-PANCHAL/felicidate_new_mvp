@@ -79,6 +79,7 @@ class PhoneLoginController extends BaseController {
       if (data != null) {
         LoginModel model = LoginModel.fromJson(data);
         if (model.status == true) {
+
           AppConstants.showToast(model.message??"");
           //set zegocloud configurations
 

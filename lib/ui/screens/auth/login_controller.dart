@@ -5,6 +5,7 @@ import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
 import '../../../common/utils/app_constants.dart';
+import '../../../common/utils/sp_util.dart';
 import '../../../common/utils/strings.dart';
 import '../../../controller/base_controller.dart';
 import '../../../network/constant/endpoints.dart';
@@ -46,6 +47,8 @@ class LoginController extends BaseController {
         LoginModel model = LoginModel.fromJson(data);
         if (model.status == true) {
           AppConstants.showToast(model.message ?? "");
+          await SpUtil.putString(ACCESS_TOKEN, model.data?.token??"");
+
           Get.toNamed(Routes.oneOnboardingScreen,arguments: {
             "name":user.name,
             "email":user.email,
@@ -87,6 +90,8 @@ class LoginController extends BaseController {
         LoginModel model = LoginModel.fromJson(data);
         if (model.status == true) {
           AppConstants.showToast(model.message ?? "");
+          await SpUtil.putString(ACCESS_TOKEN, model.data?.token??"");
+
           Get.toNamed(Routes.oneOnboardingScreen,arguments: {
             "name":name,
             "email":email,
