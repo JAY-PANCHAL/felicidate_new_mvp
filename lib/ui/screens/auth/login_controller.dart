@@ -48,6 +48,7 @@ class LoginController extends BaseController {
         if (model.status == true) {
           AppConstants.showToast(model.message ?? "");
           await SpUtil.putString(ACCESS_TOKEN, model.data?.token??"");
+          setUser(model.data?.user);
 
           Get.toNamed(Routes.oneOnboardingScreen,arguments: {
             "name":user.name,
@@ -83,6 +84,7 @@ class LoginController extends BaseController {
       "profile_picture": profile,
       "signature_hash": getDeviceId()
     };
+
     await repo.signInRequested(params, context).then((value) async {
       isLoading.value = false;
       var data = jsonDecode(value);
@@ -91,6 +93,7 @@ class LoginController extends BaseController {
         if (model.status == true) {
           AppConstants.showToast(model.message ?? "");
           await SpUtil.putString(ACCESS_TOKEN, model.data?.token??"");
+          setUser(model.data?.user);
 
           Get.toNamed(Routes.oneOnboardingScreen,arguments: {
             "name":name,

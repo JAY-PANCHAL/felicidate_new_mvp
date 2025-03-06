@@ -109,7 +109,7 @@ class LoginScreenState extends State<LoginScreen> {
 
   Future facebookLogin() async {
     final result =
-        await FacebookAuth.i.login(permissions: ['public_profile', 'email']);
+    await FacebookAuth.i.login(permissions: ['public_profile', 'email']);
     if (result.status == LoginStatus.success) {
       final userData = await FacebookAuth.i.getUserData();
       print(userData);
@@ -272,18 +272,24 @@ class LoginScreenState extends State<LoginScreen> {
                           text1: Strings.signinWGoogle,
                           text2: "",
                           onTap: () async {
-                            UserCredential userCredential =await signInWithGoogle();
-                            if (userCredential.user?.email!=null){
+                            UserCredential userCredential = await signInWithGoogle();
+                            if (userCredential.user?.email != null) {
 /*
 (userCredential.additionalUserInfo.profile['picture']);
 */
-                              loginController.apiCallForGoogleSignIn(context, userCredential.user?.displayName??"", userCredential.user?.email??"",
-                                  userCredential.credential?.accessToken??"",userCredential.user?.phoneNumber??"",userCredential.additionalUserInfo?.providerId??"",userCredential.additionalUserInfo!.profile?['picture']);
-
+                              loginController.apiCallForGoogleSignIn(
+                                  context,
+                                  userCredential.user?.displayName ?? "",
+                                  userCredential.user?.email ?? "",
+                                  userCredential.credential?.accessToken ?? "",
+                                  userCredential.user?.phoneNumber ?? "",
+                                  userCredential.additionalUserInfo
+                                      ?.providerId ?? "",
+                                  userCredential.additionalUserInfo!
+                                      .profile?['picture']);
                             }
-                              print(userCredential);
-
-                          //  AppConstants.showToast(userCredential);
+                            print(userCredential);
+                            //  AppConstants.showToast(userCredential);
                           }),
                       CommonButton(
                           icon: AppSvgIcons.facBookIcon,

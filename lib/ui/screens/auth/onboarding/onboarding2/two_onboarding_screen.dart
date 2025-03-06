@@ -172,7 +172,9 @@ class TwoOnboardingScreenState extends State<TwoOnboardingScreen> {
                 }
                 else{
                   twoOnboardingController.helpController.text = sList[index]??"";
-                  twoOnboardingController.apiCallForInitialDetails(context);
+                  //twoOnboardingController.apiCallForInitialDetails(context); //uncomment for live TODO jaypanchal
+                  Get.toNamed(Routes.threeOnboardingScreen);
+
                 }
 
               },
@@ -243,9 +245,9 @@ class TwoOnboardingScreenState extends State<TwoOnboardingScreen> {
                         onTap: (){
                           if (twoOnboardingController.formKey.currentState!.validate()) {
                             Get.back();
-                            twoOnboardingController.apiCallForInitialDetails(context);
+                        //    twoOnboardingController.apiCallForInitialDetails(context); //uncomment for live TODO jaypanchal
+                            Get.toNamed(Routes.threeOnboardingScreen);
                           }
-
                         }
                     ),
                   ],
